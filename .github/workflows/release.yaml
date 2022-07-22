@@ -128,8 +128,9 @@ jobs:
         language:
           - nodejs
           - python
-          - dotnet
           - go
+          # Removing until I fix the SDK generation for dotnet
+          # - dotnet
         nodeversion:
           - 14.x
         pythonversion:
