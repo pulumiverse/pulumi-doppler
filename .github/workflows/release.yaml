@@ -127,9 +127,10 @@ jobs:
           - 1.17.x
         language:
           - nodejs
-          - python
           - go
-          # Removing until I fix the SDK generation for dotnet
+          # Removing until I fix the SDK generation
+          # - python
+          # Removing until I fix the SDK generation
           # - dotnet
         nodeversion:
           - 14.x
