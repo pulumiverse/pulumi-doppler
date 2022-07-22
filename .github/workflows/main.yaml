@@ -8,11 +8,11 @@ on:
 
 jobs:
   prerequisites:
-    uses: pulumiverse/infra/.github/workflows/provider-prerequisites.yaml@reusable-provider-workflows
+    uses: pulumiverse/infra/.github/workflows/provider-prerequisites.yaml@main
     with:
       provider: doppler
   build:
     needs: prerequisites
-    uses: pulumiverse/infra/.github/workflows/provider-build-sdk.yaml@reusable-provider-workflows
+    uses: pulumiverse/infra/.github/workflows/provider-build-sdk.yaml@main
     with:
       provider: doppler
