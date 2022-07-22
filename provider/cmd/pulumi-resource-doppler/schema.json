@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`doppler` Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler).",
     "repository": "https://github.com/pulumiverse/pulumi-doppler",
+    "pluginDownloadURL": "github://api.github.com/pulumiverse",
     "publisher": "Pulumiverse",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
@@ -446,7 +447,8 @@
             "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "rootNamespace": "Pulumiverse"
         },
         "go": {
             "generateExtraInputTypes": true,
@@ -464,12 +466,13 @@
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing doppler cloud resources.",
-            "packageName": "",
+            "packageName": "@pulumiverse/doppler",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-doppler` repo](https://github.com/pulumi/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
             "typescriptVersion": ""
         },
         "python": {
             "compatibility": "tfbridge20",
+            "packageName": "pulumiverse_doppler",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-doppler` repo](https://github.com/pulumi/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
