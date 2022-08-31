@@ -18,7 +18,12 @@ $ npm install @pulumiverse/doppler
 $ yarn add @pulumiverse/doppler
 ```
 
-### Python, Go & .NET
+### Python
+
+```bash
+$ pip install pulumiverse_doppler
+```
+### Go & .NET
 
 > *TBA*
 
