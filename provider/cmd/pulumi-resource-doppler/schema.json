@@ -2,17 +2,16 @@
     "name": "doppler",
     "displayName": "Doppler",
     "description": "A Pulumi package for creating and managing doppler cloud resources.",
-    "logoUrl": "https://assets.website-files.com/5de9972f49103c5df3964004/5f0c1146992a5e9e4fa553e6_logo.svg",
     "keywords": [
         "pulumi",
         "doppler",
-        "secrets",
-        "category/utility"
+        "category/cloud"
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`doppler` Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler).",
     "repository": "https://github.com/pulumiverse/pulumi-doppler",
+    "logoUrl": "https://assets.website-files.com/5de9972f49103c5df3964004/5f3ef8ee5f2763121f8bc9ad_Logo%20Dark.svg",
     "pluginDownloadURL": "github://api.github.com/pulumiverse",
     "publisher": "Pulumiverse",
     "meta": {
