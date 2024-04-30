@@ -144,6 +144,10 @@ class Environment(pulumi.CustomResource):
             name="Continuous Integration")
         ```
 
+        ## Resource ID Format
+
+        Resource IDs are in the format `<project-name>.<environment-slug>`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the Doppler environment
@@ -170,6 +174,10 @@ class Environment(pulumi.CustomResource):
             slug="ci",
             name="Continuous Integration")
         ```
+
+        ## Resource ID Format
+
+        Resource IDs are in the format `<project-name>.<environment-slug>`.
 
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.

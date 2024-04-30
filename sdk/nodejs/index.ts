@@ -20,10 +20,25 @@ export const getSecrets: typeof import("./getSecrets").getSecrets = null as any;
 export const getSecretsOutput: typeof import("./getSecrets").getSecretsOutput = null as any;
 utilities.lazyLoad(exports, ["getSecrets","getSecretsOutput"], () => require("./getSecrets"));
 
+export { GroupArgs, GroupState } from "./group";
+export type Group = import("./group").Group;
+export const Group: typeof import("./group").Group = null as any;
+utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
 utilities.lazyLoad(exports, ["Project"], () => require("./project"));
+
+export { ProjectMemberGroupArgs, ProjectMemberGroupState } from "./projectMemberGroup";
+export type ProjectMemberGroup = import("./projectMemberGroup").ProjectMemberGroup;
+export const ProjectMemberGroup: typeof import("./projectMemberGroup").ProjectMemberGroup = null as any;
+utilities.lazyLoad(exports, ["ProjectMemberGroup"], () => require("./projectMemberGroup"));
+
+export { ProjectMemberServiceAccountArgs, ProjectMemberServiceAccountState } from "./projectMemberServiceAccount";
+export type ProjectMemberServiceAccount = import("./projectMemberServiceAccount").ProjectMemberServiceAccount;
+export const ProjectMemberServiceAccount: typeof import("./projectMemberServiceAccount").ProjectMemberServiceAccount = null as any;
+utilities.lazyLoad(exports, ["ProjectMemberServiceAccount"], () => require("./projectMemberServiceAccount"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -34,6 +49,11 @@ export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
 export const Secret: typeof import("./secret").Secret = null as any;
 utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
+
+export { ServiceAccountArgs, ServiceAccountState } from "./serviceAccount";
+export type ServiceAccount = import("./serviceAccount").ServiceAccount;
+export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
+utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
 
 export { ServiceTokenArgs, ServiceTokenState } from "./serviceToken";
 export type ServiceToken = import("./serviceToken").ServiceToken;
@@ -60,10 +80,18 @@ const _module = {
                 return new BranchConfig(name, <any>undefined, { urn })
             case "doppler:index/environment:Environment":
                 return new Environment(name, <any>undefined, { urn })
+            case "doppler:index/group:Group":
+                return new Group(name, <any>undefined, { urn })
             case "doppler:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "doppler:index/projectMemberGroup:ProjectMemberGroup":
+                return new ProjectMemberGroup(name, <any>undefined, { urn })
+            case "doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount":
+                return new ProjectMemberServiceAccount(name, <any>undefined, { urn })
             case "doppler:index/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
+            case "doppler:index/serviceAccount:ServiceAccount":
+                return new ServiceAccount(name, <any>undefined, { urn })
             case "doppler:index/serviceToken:ServiceToken":
                 return new ServiceToken(name, <any>undefined, { urn })
             default:
@@ -73,8 +101,12 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("doppler", "index/branchConfig", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/environment", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/group", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/project", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/projectMemberGroup", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/projectMemberServiceAccount", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/secret", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/serviceToken", _module)
 pulumi.runtime.registerResourcePackage("doppler", {
     version: utilities.getVersion(),

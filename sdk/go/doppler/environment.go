@@ -41,6 +41,10 @@ import (
 //	}
 //
 // ```
+//
+// ## Resource ID Format
+//
+// Resource IDs are in the format `<project-name>.<environment-slug>`.
 type Environment struct {
 	pulumi.CustomResourceState
 

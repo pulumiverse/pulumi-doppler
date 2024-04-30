@@ -8,9 +8,13 @@ import typing
 from .branch_config import *
 from .environment import *
 from .get_secrets import *
+from .group import *
 from .project import *
+from .project_member_group import *
+from .project_member_service_account import *
 from .provider import *
 from .secret import *
+from .service_account import *
 from .service_token import *
 
 # Make subpackages available:
@@ -47,6 +51,14 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "index/group",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "index/project",
   "fqn": "pulumiverse_doppler",
   "classes": {
@@ -55,10 +67,34 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "index/projectMemberGroup",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/projectMemberGroup:ProjectMemberGroup": "ProjectMemberGroup"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "index/projectMemberServiceAccount",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount": "ProjectMemberServiceAccount"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "index/secret",
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/secret:Secret": "Secret"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "index/serviceAccount",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/serviceAccount:ServiceAccount": "ServiceAccount"
   }
  },
  {
