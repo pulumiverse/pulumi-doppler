@@ -55,6 +55,10 @@ export class Secret extends pulumi.CustomResource {
      * The raw secret value
      */
     public readonly value!: pulumi.Output<string>;
+    /**
+     * The visibility of the secret
+     */
+    public readonly visibility!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Secret resource with the given unique name, arguments, and options.
@@ -74,6 +78,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
             if ((!args || args.config === undefined) && !opts.urn) {
@@ -92,6 +97,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["value"] = args?.value ? pulumi.secret(args.value) : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
             resourceInputs["computed"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -125,6 +131,10 @@ export interface SecretState {
      * The raw secret value
      */
     value?: pulumi.Input<string>;
+    /**
+     * The visibility of the secret
+     */
+    visibility?: pulumi.Input<string>;
 }
 
 /**
@@ -147,4 +157,8 @@ export interface SecretArgs {
      * The raw secret value
      */
     value: pulumi.Input<string>;
+    /**
+     * The visibility of the secret
+     */
+    visibility?: pulumi.Input<string>;
 }

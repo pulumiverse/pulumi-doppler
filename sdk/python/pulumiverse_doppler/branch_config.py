@@ -15,17 +15,18 @@ __all__ = ['BranchConfigArgs', 'BranchConfig']
 class BranchConfigArgs:
     def __init__(__self__, *,
                  environment: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 project: pulumi.Input[str]):
+                 project: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BranchConfig resource.
         :param pulumi.Input[str] environment: The name of the Doppler environment where the config is located
-        :param pulumi.Input[str] name: The name of the Doppler config
         :param pulumi.Input[str] project: The name of the Doppler project where the config is located
+        :param pulumi.Input[str] name: The name of the Doppler config
         """
         pulumi.set(__self__, "environment", environment)
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -41,18 +42,6 @@ class BranchConfigArgs:
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The name of the Doppler config
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
     def project(self) -> pulumi.Input[str]:
         """
         The name of the Doppler project where the config is located
@@ -62,6 +51,18 @@ class BranchConfigArgs:
     @project.setter
     def project(self, value: pulumi.Input[str]):
         pulumi.set(self, "project", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Doppler config
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -140,7 +141,6 @@ class BranchConfig(pulumi.CustomResource):
 
         backend_ci_github = doppler.BranchConfig("backendCiGithub",
             environment="ci",
-            name="ci_github",
             project="backend")
         ```
 
@@ -167,7 +167,6 @@ class BranchConfig(pulumi.CustomResource):
 
         backend_ci_github = doppler.BranchConfig("backendCiGithub",
             environment="ci",
-            name="ci_github",
             project="backend")
         ```
 
@@ -201,8 +200,6 @@ class BranchConfig(pulumi.CustomResource):
             if environment is None and not opts.urn:
                 raise TypeError("Missing required property 'environment'")
             __props__.__dict__["environment"] = environment
-            if name is None and not opts.urn:
-                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")

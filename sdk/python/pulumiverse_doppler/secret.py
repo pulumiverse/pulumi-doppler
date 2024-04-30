@@ -17,18 +17,22 @@ class SecretArgs:
                  config: pulumi.Input[str],
                  name: pulumi.Input[str],
                  project: pulumi.Input[str],
-                 value: pulumi.Input[str]):
+                 value: pulumi.Input[str],
+                 visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] config: The name of the Doppler config
         :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] value: The raw secret value
+        :param pulumi.Input[str] visibility: The visibility of the secret
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "value", value)
+        if visibility is not None:
+            pulumi.set(__self__, "visibility", visibility)
 
     @property
     @pulumi.getter
@@ -78,6 +82,18 @@ class SecretArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+    @property
+    @pulumi.getter
+    def visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        The visibility of the secret
+        """
+        return pulumi.get(self, "visibility")
+
+    @visibility.setter
+    def visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "visibility", value)
+
 
 @pulumi.input_type
 class _SecretState:
@@ -86,7 +102,8 @@ class _SecretState:
                  config: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
+                 value: Optional[pulumi.Input[str]] = None,
+                 visibility: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
         :param pulumi.Input[str] computed: The computed secret value, after resolving secret references
@@ -94,6 +111,7 @@ class _SecretState:
         :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] value: The raw secret value
+        :param pulumi.Input[str] visibility: The visibility of the secret
         """
         if computed is not None:
             pulumi.set(__self__, "computed", computed)
@@ -105,6 +123,8 @@ class _SecretState:
             pulumi.set(__self__, "project", project)
         if value is not None:
             pulumi.set(__self__, "value", value)
+        if visibility is not None:
+            pulumi.set(__self__, "visibility", visibility)
 
     @property
     @pulumi.getter
@@ -166,6 +186,18 @@ class _SecretState:
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
 
+    @property
+    @pulumi.getter
+    def visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        The visibility of the secret
+        """
+        return pulumi.get(self, "visibility")
+
+    @visibility.setter
+    def visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "visibility", value)
+
 
 class Secret(pulumi.CustomResource):
     @overload
@@ -176,6 +208,7 @@ class Secret(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
+                 visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manage a single Doppler secret in a config.
@@ -186,6 +219,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] value: The raw secret value
+        :param pulumi.Input[str] visibility: The visibility of the secret
         """
         ...
     @overload
@@ -215,6 +249,7 @@ class Secret(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
+                 visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -236,6 +271,7 @@ class Secret(pulumi.CustomResource):
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
             __props__.__dict__["value"] = None if value is None else pulumi.Output.secret(value)
+            __props__.__dict__["visibility"] = visibility
             __props__.__dict__["computed"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["computed", "value"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -253,7 +289,8 @@ class Secret(pulumi.CustomResource):
             config: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            value: Optional[pulumi.Input[str]] = None) -> 'Secret':
+            value: Optional[pulumi.Input[str]] = None,
+            visibility: Optional[pulumi.Input[str]] = None) -> 'Secret':
         """
         Get an existing Secret resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -266,6 +303,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] value: The raw secret value
+        :param pulumi.Input[str] visibility: The visibility of the secret
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -276,6 +314,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project"] = project
         __props__.__dict__["value"] = value
+        __props__.__dict__["visibility"] = visibility
         return Secret(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -317,4 +356,12 @@ class Secret(pulumi.CustomResource):
         The raw secret value
         """
         return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def visibility(self) -> pulumi.Output[Optional[str]]:
+        """
+        The visibility of the secret
+        """
+        return pulumi.get(self, "visibility")
 

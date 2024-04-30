@@ -16,6 +16,7 @@ package doppler
 
 import (
 	"fmt"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"path/filepath"
 
 	"github.com/DopplerHQ/terraform-provider-doppler/doppler"
@@ -95,23 +96,8 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"doppler_environment": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Environment"),
-			},
-			"doppler_project": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Project"),
-			},
-			"doppler_secret": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Secret"),
-			},
-			"doppler_service_token": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ServiceToken"),
-			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"doppler_secrets": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "Secrets"),
-			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumiverse/doppler",
@@ -152,7 +138,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	//	prov.SetAutonaming(255, "-")
+	prov.SetAutonaming(255, "-")
+	prov.ComputeTokens(tokens.KnownModules("doppler_", mainMod, []string{"integration_", "secrets_sync_"}, tokens.MakeStandard(mainPkg)))
 
 	return prov
 }

@@ -30,7 +30,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := doppler.NewBranchConfig(ctx, "backendCiGithub", &doppler.BranchConfigArgs{
 //				Environment: pulumi.String("ci"),
-//				Name:        pulumi.String("ci_github"),
 //				Project:     pulumi.String("backend"),
 //			})
 //			if err != nil {
@@ -61,9 +60,6 @@ func NewBranchConfig(ctx *pulumi.Context,
 
 	if args.Environment == nil {
 		return nil, errors.New("invalid value for required argument 'Environment'")
-	}
-	if args.Name == nil {
-		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
@@ -122,7 +118,7 @@ type branchConfigArgs struct {
 	// The name of the Doppler environment where the config is located
 	Environment string `pulumi:"environment"`
 	// The name of the Doppler config
-	Name string `pulumi:"name"`
+	Name *string `pulumi:"name"`
 	// The name of the Doppler project where the config is located
 	Project string `pulumi:"project"`
 }
@@ -132,7 +128,7 @@ type BranchConfigArgs struct {
 	// The name of the Doppler environment where the config is located
 	Environment pulumi.StringInput
 	// The name of the Doppler config
-	Name pulumi.StringInput
+	Name pulumi.StringPtrInput
 	// The name of the Doppler project where the config is located
 	Project pulumi.StringInput
 }

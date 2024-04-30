@@ -7,20 +7,20 @@ import * as utilities from "./utilities";
 /**
  * Retrieve all secrets in the config.
  */
-export function secrets(args?: SecretsArgs, opts?: pulumi.InvokeOptions): Promise<SecretsResult> {
+export function getSecrets(args?: GetSecretsArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretsResult> {
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("doppler:index/secrets:Secrets", {
+    return pulumi.runtime.invoke("doppler:index/getSecrets:getSecrets", {
         "config": args.config,
         "project": args.project,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking Secrets.
+ * A collection of arguments for invoking getSecrets.
  */
-export interface SecretsArgs {
+export interface GetSecretsArgs {
     /**
      * The name of the Doppler config (required for personal tokens)
      */
@@ -32,9 +32,9 @@ export interface SecretsArgs {
 }
 
 /**
- * A collection of values returned by Secrets.
+ * A collection of values returned by getSecrets.
  */
-export interface SecretsResult {
+export interface GetSecretsResult {
     /**
      * The name of the Doppler config (required for personal tokens)
      */
@@ -55,14 +55,14 @@ export interface SecretsResult {
 /**
  * Retrieve all secrets in the config.
  */
-export function secretsOutput(args?: SecretsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecretsResult> {
-    return pulumi.output(args).apply((a: any) => secrets(a, opts))
+export function getSecretsOutput(args?: GetSecretsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsResult> {
+    return pulumi.output(args).apply((a: any) => getSecrets(a, opts))
 }
 
 /**
- * A collection of arguments for invoking Secrets.
+ * A collection of arguments for invoking getSecrets.
  */
-export interface SecretsOutputArgs {
+export interface GetSecretsOutputArgs {
     /**
      * The name of the Doppler config (required for personal tokens)
      */

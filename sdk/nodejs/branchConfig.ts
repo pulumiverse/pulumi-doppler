@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * const backendCiGithub = new doppler.BranchConfig("backendCiGithub", {
  *     environment: "ci",
- *     name: "ci_github",
  *     project: "backend",
  * });
  * ```
@@ -82,9 +81,6 @@ export class BranchConfig extends pulumi.CustomResource {
             if ((!args || args.environment === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'environment'");
             }
-            if ((!args || args.name === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'name'");
-            }
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
@@ -128,7 +124,7 @@ export interface BranchConfigArgs {
     /**
      * The name of the Doppler config
      */
-    name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The name of the Doppler project where the config is located
      */

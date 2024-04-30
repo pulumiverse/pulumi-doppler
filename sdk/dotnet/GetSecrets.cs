@@ -10,23 +10,23 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
-    public static class Secrets
+    public static class GetSecrets
     {
         /// <summary>
         /// Retrieve all secrets in the config.
         /// </summary>
-        public static Task<SecretsResult> InvokeAsync(SecretsArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<SecretsResult>("doppler:index/secrets:Secrets", args ?? new SecretsArgs(), options.WithDefaults());
+        public static Task<GetSecretsResult> InvokeAsync(GetSecretsArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretsResult>("doppler:index/getSecrets:getSecrets", args ?? new GetSecretsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve all secrets in the config.
         /// </summary>
-        public static Output<SecretsResult> Invoke(SecretsInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<SecretsResult>("doppler:index/secrets:Secrets", args ?? new SecretsInvokeArgs(), options.WithDefaults());
+        public static Output<GetSecretsResult> Invoke(GetSecretsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretsResult>("doppler:index/getSecrets:getSecrets", args ?? new GetSecretsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SecretsArgs : global::Pulumi.InvokeArgs
+    public sealed class GetSecretsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Doppler config (required for personal tokens)
@@ -40,13 +40,13 @@ namespace Pulumiverse.Doppler
         [Input("project")]
         public string? Project { get; set; }
 
-        public SecretsArgs()
+        public GetSecretsArgs()
         {
         }
-        public static new SecretsArgs Empty => new SecretsArgs();
+        public static new GetSecretsArgs Empty => new GetSecretsArgs();
     }
 
-    public sealed class SecretsInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetSecretsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Doppler config (required for personal tokens)
@@ -60,15 +60,15 @@ namespace Pulumiverse.Doppler
         [Input("project")]
         public Input<string>? Project { get; set; }
 
-        public SecretsInvokeArgs()
+        public GetSecretsInvokeArgs()
         {
         }
-        public static new SecretsInvokeArgs Empty => new SecretsInvokeArgs();
+        public static new GetSecretsInvokeArgs Empty => new GetSecretsInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class SecretsResult
+    public sealed class GetSecretsResult
     {
         /// <summary>
         /// The name of the Doppler config (required for personal tokens)
@@ -88,7 +88,7 @@ namespace Pulumiverse.Doppler
         public readonly string? Project;
 
         [OutputConstructor]
-        private SecretsResult(
+        private GetSecretsResult(
             string? config,
 
             string id,

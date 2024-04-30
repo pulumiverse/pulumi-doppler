@@ -26,6 +26,8 @@ type Secret struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The raw secret value
 	Value pulumi.StringOutput `pulumi:"value"`
+	// The visibility of the secret
+	Visibility pulumi.StringPtrOutput `pulumi:"visibility"`
 }
 
 // NewSecret registers a new resource with the given unique name, arguments, and options.
@@ -88,6 +90,8 @@ type secretState struct {
 	Project *string `pulumi:"project"`
 	// The raw secret value
 	Value *string `pulumi:"value"`
+	// The visibility of the secret
+	Visibility *string `pulumi:"visibility"`
 }
 
 type SecretState struct {
@@ -101,6 +105,8 @@ type SecretState struct {
 	Project pulumi.StringPtrInput
 	// The raw secret value
 	Value pulumi.StringPtrInput
+	// The visibility of the secret
+	Visibility pulumi.StringPtrInput
 }
 
 func (SecretState) ElementType() reflect.Type {
@@ -116,6 +122,8 @@ type secretArgs struct {
 	Project string `pulumi:"project"`
 	// The raw secret value
 	Value string `pulumi:"value"`
+	// The visibility of the secret
+	Visibility *string `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a Secret resource.
@@ -128,6 +136,8 @@ type SecretArgs struct {
 	Project pulumi.StringInput
 	// The raw secret value
 	Value pulumi.StringInput
+	// The visibility of the secret
+	Visibility pulumi.StringPtrInput
 }
 
 func (SecretArgs) ElementType() reflect.Type {
@@ -240,6 +250,11 @@ func (o SecretOutput) Project() pulumi.StringOutput {
 // The raw secret value
 func (o SecretOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
+}
+
+// The visibility of the secret
+func (o SecretOutput) Visibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Visibility }).(pulumi.StringPtrOutput)
 }
 
 type SecretArrayOutput struct{ *pulumi.OutputState }

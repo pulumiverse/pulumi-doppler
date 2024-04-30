@@ -26,7 +26,6 @@ namespace Pulumiverse.Doppler
     ///     var backendCiGithub = new Doppler.BranchConfig("backendCiGithub", new()
     ///     {
     ///         Environment = "ci",
-    ///         Name = "ci_github",
     ///         Project = "backend",
     ///     });
     /// 
@@ -114,8 +113,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler config
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The name of the Doppler project where the config is located
