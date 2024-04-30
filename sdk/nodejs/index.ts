@@ -43,9 +43,13 @@ utilities.lazyLoad(exports, ["ServiceToken"], () => require("./serviceToken"));
 
 // Export sub-modules:
 import * as config from "./config";
+import * as integration from "./integration";
+import * as secretssync from "./secretssync";
 
 export {
     config,
+    integration,
+    secretssync,
 };
 
 const _module = {

@@ -26,7 +26,6 @@ namespace Pulumiverse.Doppler
     ///     var backend = new Doppler.Project("backend", new()
     ///     {
     ///         Description = "The main backend project",
-    ///         Name = "backend",
     ///     });
     /// 
     /// });
@@ -55,7 +54,7 @@ namespace Pulumiverse.Doppler
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Project(string name, ProjectArgs args, CustomResourceOptions? options = null)
+        public Project(string name, ProjectArgs? args = null, CustomResourceOptions? options = null)
             : base("doppler:index/project:Project", name, args ?? new ProjectArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -103,8 +102,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler project
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         public ProjectArgs()
         {

@@ -18,10 +18,16 @@
         "config/vars.ts",
         "environment.ts",
         "index.ts",
+        "integration/awsParameterStore.ts",
+        "integration/awsSecretsManager.ts",
+        "integration/index.ts",
         "project.ts",
         "provider.ts",
         "secret.ts",
         "secrets.ts",
+        "secretssync/awsParameterStore.ts",
+        "secretssync/awsSecretsManager.ts",
+        "secretssync/index.ts",
         "serviceToken.ts",
         "utilities.ts"
     ]

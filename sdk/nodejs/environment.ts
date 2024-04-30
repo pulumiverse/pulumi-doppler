@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * import * as doppler from "@pulumiverse/doppler";
  *
  * const backendCi = new doppler.Environment("backendCi", {
- *     name: "Continuous Integration",
  *     project: "backend",
  *     slug: "ci",
  * });
@@ -79,9 +78,6 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["slug"] = state ? state.slug : undefined;
         } else {
             const args = argsOrState as EnvironmentArgs | undefined;
-            if ((!args || args.name === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'name'");
-            }
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
@@ -122,7 +118,7 @@ export interface EnvironmentArgs {
     /**
      * The name of the Doppler environment
      */
-    name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The name of the Doppler project where the environment is located
      */

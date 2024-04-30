@@ -17,8 +17,14 @@ from .service_token import *
 if typing.TYPE_CHECKING:
     import pulumiverse_doppler.config as __config
     config = __config
+    import pulumiverse_doppler.integration as __integration
+    integration = __integration
+    import pulumiverse_doppler.secretssync as __secretssync
+    secretssync = __secretssync
 else:
     config = _utilities.lazy_import('pulumiverse_doppler.config')
+    integration = _utilities.lazy_import('pulumiverse_doppler.integration')
+    secretssync = _utilities.lazy_import('pulumiverse_doppler.secretssync')
 
 _utilities.register(
     resource_modules="""
@@ -61,6 +67,38 @@ _utilities.register(
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/serviceToken:ServiceToken": "ServiceToken"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "integration/awsParameterStore",
+  "fqn": "pulumiverse_doppler.integration",
+  "classes": {
+   "doppler:integration/awsParameterStore:AwsParameterStore": "AwsParameterStore"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "integration/awsSecretsManager",
+  "fqn": "pulumiverse_doppler.integration",
+  "classes": {
+   "doppler:integration/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "secretsSync/awsParameterStore",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/awsParameterStore:AwsParameterStore": "AwsParameterStore"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "secretsSync/awsSecretsManager",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
   }
  }
 ]

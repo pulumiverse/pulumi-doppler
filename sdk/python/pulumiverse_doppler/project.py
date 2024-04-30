@@ -14,28 +14,17 @@ __all__ = ['ProjectArgs', 'Project']
 @pulumi.input_type
 class ProjectArgs:
     def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 description: Optional[pulumi.Input[str]] = None):
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Project resource.
-        :param pulumi.Input[str] name: The name of the Doppler project
         :param pulumi.Input[str] description: The description of the Doppler project
+        :param pulumi.Input[str] name: The name of the Doppler project
         """
-        pulumi.set(__self__, "name", name)
         if description is not None:
             pulumi.set(__self__, "description", description)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The name of the Doppler project
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -48,6 +37,18 @@ class ProjectArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Doppler project
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -107,9 +108,7 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend = doppler.Project("backend",
-            description="The main backend project",
-            name="backend")
+        backend = doppler.Project("backend", description="The main backend project")
         ```
 
         :param str resource_name: The name of the resource.
@@ -121,7 +120,7 @@ class Project(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProjectArgs,
+                 args: Optional[ProjectArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manage a Doppler project.
@@ -132,9 +131,7 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend = doppler.Project("backend",
-            description="The main backend project",
-            name="backend")
+        backend = doppler.Project("backend", description="The main backend project")
         ```
 
         :param str resource_name: The name of the resource.
@@ -164,8 +161,6 @@ class Project(pulumi.CustomResource):
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
             __props__.__dict__["description"] = description
-            if name is None and not opts.urn:
-                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
         super(Project, __self__).__init__(
             'doppler:index/project:Project',

@@ -46,6 +46,12 @@ namespace Pulumiverse.Doppler
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
 
+        /// <summary>
+        /// The visibility of the secret
+        /// </summary>
+        [Output("visibility")]
+        public Output<string?> Visibility { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Secret resource with the given unique name, arguments, and options.
@@ -107,8 +113,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler secret
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The name of the Doppler project
@@ -131,6 +137,12 @@ namespace Pulumiverse.Doppler
                 _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The visibility of the secret
+        /// </summary>
+        [Input("visibility")]
+        public Input<string>? Visibility { get; set; }
 
         public SecretArgs()
         {
@@ -189,6 +201,12 @@ namespace Pulumiverse.Doppler
                 _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The visibility of the secret
+        /// </summary>
+        [Input("visibility")]
+        public Input<string>? Visibility { get; set; }
 
         public SecretState()
         {

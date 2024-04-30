@@ -27,7 +27,6 @@ namespace Pulumiverse.Doppler
     ///     {
     ///         Access = "read",
     ///         Config = "ci",
-    ///         Name = "Builder Token",
     ///         Project = "backend",
     ///     });
     /// 
@@ -133,8 +132,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler service token
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The name of the Doppler project where the service token is located

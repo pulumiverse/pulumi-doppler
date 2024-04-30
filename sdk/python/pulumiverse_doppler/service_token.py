@@ -15,21 +15,22 @@ __all__ = ['ServiceTokenArgs', 'ServiceToken']
 class ServiceTokenArgs:
     def __init__(__self__, *,
                  config: pulumi.Input[str],
-                 name: pulumi.Input[str],
                  project: pulumi.Input[str],
-                 access: Optional[pulumi.Input[str]] = None):
+                 access: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceToken resource.
         :param pulumi.Input[str] config: The name of the Doppler config where the service token is located
-        :param pulumi.Input[str] name: The name of the Doppler service token
         :param pulumi.Input[str] project: The name of the Doppler project where the service token is located
         :param pulumi.Input[str] access: The access level (read or read/write)
+        :param pulumi.Input[str] name: The name of the Doppler service token
         """
         pulumi.set(__self__, "config", config)
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
         if access is not None:
             pulumi.set(__self__, "access", access)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -42,18 +43,6 @@ class ServiceTokenArgs:
     @config.setter
     def config(self, value: pulumi.Input[str]):
         pulumi.set(self, "config", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The name of the Doppler service token
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -78,6 +67,18 @@ class ServiceTokenArgs:
     @access.setter
     def access(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Doppler service token
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -190,7 +191,6 @@ class ServiceToken(pulumi.CustomResource):
         backend_ci_token = doppler.ServiceToken("backendCiToken",
             access="read",
             config="ci",
-            name="Builder Token",
             project="backend")
         ```
 
@@ -219,7 +219,6 @@ class ServiceToken(pulumi.CustomResource):
         backend_ci_token = doppler.ServiceToken("backendCiToken",
             access="read",
             config="ci",
-            name="Builder Token",
             project="backend")
         ```
 
@@ -255,8 +254,6 @@ class ServiceToken(pulumi.CustomResource):
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config
-            if name is None and not opts.urn:
-                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")

@@ -14,30 +14,19 @@ __all__ = ['EnvironmentArgs', 'Environment']
 @pulumi.input_type
 class EnvironmentArgs:
     def __init__(__self__, *,
-                 name: pulumi.Input[str],
                  project: pulumi.Input[str],
-                 slug: pulumi.Input[str]):
+                 slug: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Environment resource.
-        :param pulumi.Input[str] name: The name of the Doppler environment
         :param pulumi.Input[str] project: The name of the Doppler project where the environment is located
         :param pulumi.Input[str] slug: The slug of the Doppler environment
+        :param pulumi.Input[str] name: The name of the Doppler environment
         """
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "slug", slug)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The name of the Doppler environment
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -62,6 +51,18 @@ class EnvironmentArgs:
     @slug.setter
     def slug(self, value: pulumi.Input[str]):
         pulumi.set(self, "slug", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Doppler environment
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -139,7 +140,6 @@ class Environment(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         backend_ci = doppler.Environment("backendCi",
-            name="Continuous Integration",
             project="backend",
             slug="ci")
         ```
@@ -166,7 +166,6 @@ class Environment(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         backend_ci = doppler.Environment("backendCi",
-            name="Continuous Integration",
             project="backend",
             slug="ci")
         ```
@@ -198,8 +197,6 @@ class Environment(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = EnvironmentArgs.__new__(EnvironmentArgs)
 
-            if name is None and not opts.urn:
-                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
