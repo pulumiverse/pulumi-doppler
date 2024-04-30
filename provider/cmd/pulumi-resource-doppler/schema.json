@@ -17,6 +17,43 @@
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20",
+            "rootNamespace": "Pulumiverse"
+        },
+        "go": {
+            "importBasePath": "github.com/pulumiverse/pulumi-doppler/sdk/go/doppler",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "nodejs": {
+            "packageName": "@pulumiverse/doppler",
+            "packageDescription": "A Pulumi package for creating and managing doppler cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-doppler` repo](https://github.com/pulumiverse/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "packageName": "pulumiverse_doppler",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-doppler` repo](https://github.com/pulumiverse/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
     "config": {
         "variables": {
             "dopplerToken": {
@@ -237,7 +274,8 @@
             "properties": {
                 "computed": {
                     "type": "string",
-                    "description": "The computed secret value, after resolving secret references\n"
+                    "description": "The computed secret value, after resolving secret references\n",
+                    "secret": true
                 },
                 "config": {
                     "type": "string",
@@ -253,7 +291,8 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "The raw secret value\n"
+                    "description": "The raw secret value\n",
+                    "secret": true
                 }
             },
             "required": [
@@ -278,7 +317,8 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "The raw secret value\n"
+                    "description": "The raw secret value\n",
+                    "secret": true
                 }
             },
             "requiredInputs": [
@@ -291,7 +331,8 @@
                 "properties": {
                     "computed": {
                         "type": "string",
-                        "description": "The computed secret value, after resolving secret references\n"
+                        "description": "The computed secret value, after resolving secret references\n",
+                        "secret": true
                     },
                     "config": {
                         "type": "string",
@@ -307,7 +348,8 @@
                     },
                     "value": {
                         "type": "string",
-                        "description": "The raw secret value\n"
+                        "description": "The raw secret value\n",
+                        "secret": true
                     }
                 },
                 "type": "object"
@@ -325,7 +367,8 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "The key for the Doppler service token\n"
+                    "description": "The key for the Doppler service token\n",
+                    "secret": true
                 },
                 "name": {
                     "type": "string",
@@ -383,7 +426,8 @@
                     },
                     "key": {
                         "type": "string",
-                        "description": "The key for the Doppler service token\n"
+                        "description": "The key for the Doppler service token\n",
+                        "secret": true
                     },
                     "name": {
                         "type": "string",
@@ -428,7 +472,8 @@
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
-                        }
+                        },
+                        "secret": true
                     },
                     "project": {
                         "type": "string"
@@ -439,44 +484,6 @@
                     "map",
                     "id"
                 ]
-            }
-        }
-    },
-    "language": {
-        "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
-            "packageReferences": {
-                "Pulumi": "3.*"
-            },
-            "rootNamespace": "Pulumiverse"
-        },
-        "go": {
-            "generateExtraInputTypes": true,
-            "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumiverse/pulumi-doppler/sdk/go/doppler"
-        },
-        "nodejs": {
-            "compatibility": "tfbridge20",
-            "dependencies": {
-                "@pulumi/pulumi": "^3.0.0"
-            },
-            "devDependencies": {
-                "@types/mime": "^2.0.0",
-                "@types/node": "^10.0.0"
-            },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing doppler cloud resources.",
-            "packageName": "@pulumiverse/doppler",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-doppler` repo](https://github.com/pulumi/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
-            "typescriptVersion": ""
-        },
-        "python": {
-            "compatibility": "tfbridge20",
-            "packageName": "pulumiverse_doppler",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-doppler)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-doppler` repo](https://github.com/pulumi/pulumi-doppler/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-doppler` repo](https://github.com/terraform-providers/terraform-provider-doppler/issues).",
-            "requires": {
-                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
