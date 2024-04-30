@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`doppler` Terraform Provider](https://github.com/DopplerHQ/terraform-provider-doppler).",
     "repository": "https://github.com/pulumiverse/pulumi-doppler",
-    "logoUrl": "https://assets.website-files.com/5de9972f49103c5df3964004/5f3ef8ee5f2763121f8bc9ad_Logo%20Dark.svg",
+    "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-doppler/main/docs/logo.png",
     "pluginDownloadURL": "github://api.github.com/pulumiverse",
     "publisher": "Pulumiverse",
     "meta": {
