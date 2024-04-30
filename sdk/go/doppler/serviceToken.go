@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
 type ServiceToken struct {
@@ -39,7 +40,11 @@ func NewServiceToken(ctx *pulumi.Context,
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceToken
 	err := ctx.RegisterResource("doppler:index/serviceToken:ServiceToken", name, args, &resource, opts...)
 	if err != nil {
@@ -140,7 +145,7 @@ func (i *ServiceToken) ToServiceTokenOutputWithContext(ctx context.Context) Serv
 // ServiceTokenArrayInput is an input type that accepts ServiceTokenArray and ServiceTokenArrayOutput values.
 // You can construct a concrete instance of `ServiceTokenArrayInput` via:
 //
-//          ServiceTokenArray{ ServiceTokenArgs{...} }
+//	ServiceTokenArray{ ServiceTokenArgs{...} }
 type ServiceTokenArrayInput interface {
 	pulumi.Input
 
@@ -165,7 +170,7 @@ func (i ServiceTokenArray) ToServiceTokenArrayOutputWithContext(ctx context.Cont
 // ServiceTokenMapInput is an input type that accepts ServiceTokenMap and ServiceTokenMapOutput values.
 // You can construct a concrete instance of `ServiceTokenMapInput` via:
 //
-//          ServiceTokenMap{ "key": ServiceTokenArgs{...} }
+//	ServiceTokenMap{ "key": ServiceTokenArgs{...} }
 type ServiceTokenMapInput interface {
 	pulumi.Input
 

@@ -2,10 +2,9 @@ module github.com/pulumiverse/pulumi-doppler/sdk
 
 go 1.21
 
-require (
-	github.com/pkg/errors v0.9.1
-	github.com/pulumi/pulumi/sdk/v3 v3.113.0
-)
+require github.com/pulumi/pulumi/sdk/v3 v3.113.0
+
+require github.com/pkg/errors v0.9.1 // indirect
 
 require (
 	dario.cat/mergo v1.0.0 // indirect

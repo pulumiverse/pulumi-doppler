@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
 type Environment struct {
@@ -35,7 +36,7 @@ func NewEnvironment(ctx *pulumi.Context,
 	if args.Slug == nil {
 		return nil, errors.New("invalid value for required argument 'Slug'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Environment
 	err := ctx.RegisterResource("doppler:index/environment:Environment", name, args, &resource, opts...)
 	if err != nil {
@@ -124,7 +125,7 @@ func (i *Environment) ToEnvironmentOutputWithContext(ctx context.Context) Enviro
 // EnvironmentArrayInput is an input type that accepts EnvironmentArray and EnvironmentArrayOutput values.
 // You can construct a concrete instance of `EnvironmentArrayInput` via:
 //
-//          EnvironmentArray{ EnvironmentArgs{...} }
+//	EnvironmentArray{ EnvironmentArgs{...} }
 type EnvironmentArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +150,7 @@ func (i EnvironmentArray) ToEnvironmentArrayOutputWithContext(ctx context.Contex
 // EnvironmentMapInput is an input type that accepts EnvironmentMap and EnvironmentMapOutput values.
 // You can construct a concrete instance of `EnvironmentMapInput` via:
 //
-//          EnvironmentMap{ "key": EnvironmentArgs{...} }
+//	EnvironmentMap{ "key": EnvironmentArgs{...} }
 type EnvironmentMapInput interface {
 	pulumi.Input
 

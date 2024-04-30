@@ -8,10 +8,11 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
 func Secrets(ctx *pulumi.Context, args *SecretsArgs, opts ...pulumi.InvokeOption) (*SecretsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SecretsResult
 	err := ctx.Invoke("doppler:index/secrets:Secrets", args, &rv, opts...)
 	if err != nil {

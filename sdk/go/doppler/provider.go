@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
 // The provider type for the doppler package. By default, resources use package-wide configuration
@@ -34,7 +35,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args.DopplerToken == nil {
 		return nil, errors.New("invalid value for required argument 'DopplerToken'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:doppler", name, args, &resource, opts...)
 	if err != nil {
