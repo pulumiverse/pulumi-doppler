@@ -7,9 +7,39 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a Doppler project.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := doppler.NewProject(ctx, "backend", &doppler.ProjectArgs{
+//				Description: pulumi.String("The main backend project"),
+//				Name:        pulumi.String("backend"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Project struct {
 	pulumi.CustomResourceState
 
@@ -23,10 +53,13 @@ type Project struct {
 func NewProject(ctx *pulumi.Context,
 	name string, args *ProjectArgs, opts ...pulumi.ResourceOption) (*Project, error) {
 	if args == nil {
-		args = &ProjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Project
 	err := ctx.RegisterResource("doppler:index/project:Project", name, args, &resource, opts...)
 	if err != nil {
@@ -70,7 +103,7 @@ type projectArgs struct {
 	// The description of the Doppler project
 	Description *string `pulumi:"description"`
 	// The name of the Doppler project
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Project resource.
@@ -78,7 +111,7 @@ type ProjectArgs struct {
 	// The description of the Doppler project
 	Description pulumi.StringPtrInput
 	// The name of the Doppler project
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {
@@ -107,7 +140,7 @@ func (i *Project) ToProjectOutputWithContext(ctx context.Context) ProjectOutput 
 // ProjectArrayInput is an input type that accepts ProjectArray and ProjectArrayOutput values.
 // You can construct a concrete instance of `ProjectArrayInput` via:
 //
-//          ProjectArray{ ProjectArgs{...} }
+//	ProjectArray{ ProjectArgs{...} }
 type ProjectArrayInput interface {
 	pulumi.Input
 
@@ -132,7 +165,7 @@ func (i ProjectArray) ToProjectArrayOutputWithContext(ctx context.Context) Proje
 // ProjectMapInput is an input type that accepts ProjectMap and ProjectMapOutput values.
 // You can construct a concrete instance of `ProjectMapInput` via:
 //
-//          ProjectMap{ "key": ProjectArgs{...} }
+//	ProjectMap{ "key": ProjectArgs{...} }
 type ProjectMapInput interface {
 	pulumi.Input
 

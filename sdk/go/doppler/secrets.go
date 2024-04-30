@@ -8,10 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Retrieve all secrets in the config.
 func Secrets(ctx *pulumi.Context, args *SecretsArgs, opts ...pulumi.InvokeOption) (*SecretsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SecretsResult
 	err := ctx.Invoke("doppler:index/secrets:Secrets", args, &rv, opts...)
 	if err != nil {
@@ -22,17 +24,22 @@ func Secrets(ctx *pulumi.Context, args *SecretsArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking Secrets.
 type SecretsArgs struct {
-	Config  *string `pulumi:"config"`
+	// The name of the Doppler config (required for personal tokens)
+	Config *string `pulumi:"config"`
+	// The name of the Doppler project (required for personal tokens)
 	Project *string `pulumi:"project"`
 }
 
 // A collection of values returned by Secrets.
 type SecretsResult struct {
+	// The name of the Doppler config (required for personal tokens)
 	Config *string `pulumi:"config"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string            `pulumi:"id"`
-	Map     map[string]string `pulumi:"map"`
-	Project *string           `pulumi:"project"`
+	Id string `pulumi:"id"`
+	// A mapping of secret names to computed secret values
+	Map map[string]string `pulumi:"map"`
+	// The name of the Doppler project (required for personal tokens)
+	Project *string `pulumi:"project"`
 }
 
 func SecretsOutput(ctx *pulumi.Context, args SecretsOutputArgs, opts ...pulumi.InvokeOption) SecretsResultOutput {
@@ -50,7 +57,9 @@ func SecretsOutput(ctx *pulumi.Context, args SecretsOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking Secrets.
 type SecretsOutputArgs struct {
-	Config  pulumi.StringPtrInput `pulumi:"config"`
+	// The name of the Doppler config (required for personal tokens)
+	Config pulumi.StringPtrInput `pulumi:"config"`
+	// The name of the Doppler project (required for personal tokens)
 	Project pulumi.StringPtrInput `pulumi:"project"`
 }
 
@@ -73,6 +82,7 @@ func (o SecretsResultOutput) ToSecretsResultOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The name of the Doppler config (required for personal tokens)
 func (o SecretsResultOutput) Config() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsResult) *string { return v.Config }).(pulumi.StringPtrOutput)
 }
@@ -82,10 +92,12 @@ func (o SecretsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A mapping of secret names to computed secret values
 func (o SecretsResultOutput) Map() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecretsResult) map[string]string { return v.Map }).(pulumi.StringMapOutput)
 }
 
+// The name of the Doppler project (required for personal tokens)
 func (o SecretsResultOutput) Project() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsResult) *string { return v.Project }).(pulumi.StringPtrOutput)
 }

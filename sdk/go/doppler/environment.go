@@ -7,10 +7,40 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a Doppler environment.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := doppler.NewEnvironment(ctx, "backendCi", &doppler.EnvironmentArgs{
+//				Name:    pulumi.String("Continuous Integration"),
+//				Project: pulumi.String("backend"),
+//				Slug:    pulumi.String("ci"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Environment struct {
 	pulumi.CustomResourceState
 
@@ -29,13 +59,16 @@ func NewEnvironment(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
 	}
 	if args.Slug == nil {
 		return nil, errors.New("invalid value for required argument 'Slug'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Environment
 	err := ctx.RegisterResource("doppler:index/environment:Environment", name, args, &resource, opts...)
 	if err != nil {
@@ -81,7 +114,7 @@ func (EnvironmentState) ElementType() reflect.Type {
 
 type environmentArgs struct {
 	// The name of the Doppler environment
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project where the environment is located
 	Project string `pulumi:"project"`
 	// The slug of the Doppler environment
@@ -91,7 +124,7 @@ type environmentArgs struct {
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
 	// The name of the Doppler environment
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project where the environment is located
 	Project pulumi.StringInput
 	// The slug of the Doppler environment
@@ -124,7 +157,7 @@ func (i *Environment) ToEnvironmentOutputWithContext(ctx context.Context) Enviro
 // EnvironmentArrayInput is an input type that accepts EnvironmentArray and EnvironmentArrayOutput values.
 // You can construct a concrete instance of `EnvironmentArrayInput` via:
 //
-//          EnvironmentArray{ EnvironmentArgs{...} }
+//	EnvironmentArray{ EnvironmentArgs{...} }
 type EnvironmentArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +182,7 @@ func (i EnvironmentArray) ToEnvironmentArrayOutputWithContext(ctx context.Contex
 // EnvironmentMapInput is an input type that accepts EnvironmentMap and EnvironmentMapOutput values.
 // You can construct a concrete instance of `EnvironmentMapInput` via:
 //
-//          EnvironmentMap{ "key": EnvironmentArgs{...} }
+//	EnvironmentMap{ "key": EnvironmentArgs{...} }
 type EnvironmentMapInput interface {
 	pulumi.Input
 

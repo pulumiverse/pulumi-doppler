@@ -7,10 +7,41 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a Doppler service token.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := doppler.NewServiceToken(ctx, "backendCiToken", &doppler.ServiceTokenArgs{
+//				Access:  pulumi.String("read"),
+//				Config:  pulumi.String("ci"),
+//				Name:    pulumi.String("Builder Token"),
+//				Project: pulumi.String("backend"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServiceToken struct {
 	pulumi.CustomResourceState
 
@@ -36,10 +67,17 @@ func NewServiceToken(ctx *pulumi.Context,
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
 	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceToken
 	err := ctx.RegisterResource("doppler:index/serviceToken:ServiceToken", name, args, &resource, opts...)
 	if err != nil {
@@ -97,7 +135,7 @@ type serviceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config string `pulumi:"config"`
 	// The name of the Doppler service token
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project where the service token is located
 	Project string `pulumi:"project"`
 }
@@ -109,7 +147,7 @@ type ServiceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config pulumi.StringInput
 	// The name of the Doppler service token
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project where the service token is located
 	Project pulumi.StringInput
 }
@@ -140,7 +178,7 @@ func (i *ServiceToken) ToServiceTokenOutputWithContext(ctx context.Context) Serv
 // ServiceTokenArrayInput is an input type that accepts ServiceTokenArray and ServiceTokenArrayOutput values.
 // You can construct a concrete instance of `ServiceTokenArrayInput` via:
 //
-//          ServiceTokenArray{ ServiceTokenArgs{...} }
+//	ServiceTokenArray{ ServiceTokenArgs{...} }
 type ServiceTokenArrayInput interface {
 	pulumi.Input
 
@@ -165,7 +203,7 @@ func (i ServiceTokenArray) ToServiceTokenArrayOutputWithContext(ctx context.Cont
 // ServiceTokenMapInput is an input type that accepts ServiceTokenMap and ServiceTokenMapOutput values.
 // You can construct a concrete instance of `ServiceTokenMapInput` via:
 //
-//          ServiceTokenMap{ "key": ServiceTokenArgs{...} }
+//	ServiceTokenMap{ "key": ServiceTokenArgs{...} }
 type ServiceTokenMapInput interface {
 	pulumi.Input
 

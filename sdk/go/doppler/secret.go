@@ -7,10 +7,12 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a single Doppler secret in a config.
 type Secret struct {
 	pulumi.CustomResourceState
 
@@ -36,13 +38,24 @@ func NewSecret(ctx *pulumi.Context,
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
 	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
 	}
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	if args.Value != nil {
+		args.Value = pulumi.ToSecret(args.Value).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"computed",
+		"value",
+	})
+	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Secret
 	err := ctx.RegisterResource("doppler:index/secret:Secret", name, args, &resource, opts...)
 	if err != nil {
@@ -98,7 +111,7 @@ type secretArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
 	// The name of the Doppler secret
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project
 	Project string `pulumi:"project"`
 	// The raw secret value
@@ -110,7 +123,7 @@ type SecretArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
 	// The name of the Doppler secret
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project
 	Project pulumi.StringInput
 	// The raw secret value
@@ -143,7 +156,7 @@ func (i *Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
 // SecretArrayInput is an input type that accepts SecretArray and SecretArrayOutput values.
 // You can construct a concrete instance of `SecretArrayInput` via:
 //
-//          SecretArray{ SecretArgs{...} }
+//	SecretArray{ SecretArgs{...} }
 type SecretArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +181,7 @@ func (i SecretArray) ToSecretArrayOutputWithContext(ctx context.Context) SecretA
 // SecretMapInput is an input type that accepts SecretMap and SecretMapOutput values.
 // You can construct a concrete instance of `SecretMapInput` via:
 //
-//          SecretMap{ "key": SecretArgs{...} }
+//	SecretMap{ "key": SecretArgs{...} }
 type SecretMapInput interface {
 	pulumi.Input
 

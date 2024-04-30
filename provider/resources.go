@@ -48,6 +48,8 @@ func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 	p := shimv2.NewProvider(doppler.Provider())
 
+	oldConfigType := tfbridge.MakeResource(mainPkg, mainMod, "Config").String()
+	
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
@@ -78,14 +80,20 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/pulumiverse/pulumi-doppler",
+		Version:    version.Version,
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:            "",
+		GitHubOrg:            "DopplerHQ",
 		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"doppler_config": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Config"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "BranchConfig"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: &oldConfigType,
+					},
+				},
 			},
 			"doppler_environment": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Environment"),
@@ -144,7 +152,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	prov.SetAutonaming(255, "-")
+	//	prov.SetAutonaming(255, "-")
 
 	return prov
 }
