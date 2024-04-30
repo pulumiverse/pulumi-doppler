@@ -7,10 +7,10 @@ import typing
 # Export this package's modules as members:
 from .branch_config import *
 from .environment import *
+from .get_secrets import *
 from .project import *
 from .provider import *
 from .secret import *
-from .secrets import *
 from .service_token import *
 
 # Make subpackages available:

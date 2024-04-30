@@ -113,8 +113,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler secret
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project

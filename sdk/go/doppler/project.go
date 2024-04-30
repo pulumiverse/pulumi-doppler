@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
@@ -29,6 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := doppler.NewProject(ctx, "backend", &doppler.ProjectArgs{
 //				Description: pulumi.String("The main backend project"),
+//				Name:        pulumi.String("backend"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,9 +53,12 @@ type Project struct {
 func NewProject(ctx *pulumi.Context,
 	name string, args *ProjectArgs, opts ...pulumi.ResourceOption) (*Project, error) {
 	if args == nil {
-		args = &ProjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Project
 	err := ctx.RegisterResource("doppler:index/project:Project", name, args, &resource, opts...)
@@ -98,7 +103,7 @@ type projectArgs struct {
 	// The description of the Doppler project
 	Description *string `pulumi:"description"`
 	// The name of the Doppler project
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Project resource.
@@ -106,7 +111,7 @@ type ProjectArgs struct {
 	// The description of the Doppler project
 	Description pulumi.StringPtrInput
 	// The name of the Doppler project
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {

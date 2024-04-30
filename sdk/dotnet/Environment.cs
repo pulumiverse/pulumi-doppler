@@ -25,6 +25,7 @@ namespace Pulumiverse.Doppler
     /// {
     ///     var backendCi = new Doppler.Environment("backendCi", new()
     ///     {
+    ///         Name = "Continuous Integration",
     ///         Project = "backend",
     ///         Slug = "ci",
     ///     });
@@ -103,8 +104,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler environment
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the environment is located

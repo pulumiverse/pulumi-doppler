@@ -84,6 +84,9 @@ export class Secret extends pulumi.CustomResource {
             if ((!args || args.config === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
@@ -145,7 +148,7 @@ export interface SecretArgs {
     /**
      * The name of the Doppler secret
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The name of the Doppler project
      */

@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := doppler.NewEnvironment(ctx, "backendCi", &doppler.EnvironmentArgs{
+//				Name:    pulumi.String("Continuous Integration"),
 //				Project: pulumi.String("backend"),
 //				Slug:    pulumi.String("ci"),
 //			})
@@ -58,6 +59,9 @@ func NewEnvironment(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
 	}
@@ -110,7 +114,7 @@ func (EnvironmentState) ElementType() reflect.Type {
 
 type environmentArgs struct {
 	// The name of the Doppler environment
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project where the environment is located
 	Project string `pulumi:"project"`
 	// The slug of the Doppler environment
@@ -120,7 +124,7 @@ type environmentArgs struct {
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
 	// The name of the Doppler environment
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project where the environment is located
 	Project pulumi.StringInput
 	// The slug of the Doppler environment

@@ -31,6 +31,7 @@ import (
 //			_, err := doppler.NewServiceToken(ctx, "backendCiToken", &doppler.ServiceTokenArgs{
 //				Access:  pulumi.String("read"),
 //				Config:  pulumi.String("ci"),
+//				Name:    pulumi.String("Builder Token"),
 //				Project: pulumi.String("backend"),
 //			})
 //			if err != nil {
@@ -65,6 +66,9 @@ func NewServiceToken(ctx *pulumi.Context,
 
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
@@ -131,7 +135,7 @@ type serviceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config string `pulumi:"config"`
 	// The name of the Doppler service token
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project where the service token is located
 	Project string `pulumi:"project"`
 }
@@ -143,7 +147,7 @@ type ServiceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config pulumi.StringInput
 	// The name of the Doppler service token
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project where the service token is located
 	Project pulumi.StringInput
 }

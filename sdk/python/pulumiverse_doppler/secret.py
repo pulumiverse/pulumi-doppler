@@ -15,23 +15,22 @@ __all__ = ['SecretArgs', 'Secret']
 class SecretArgs:
     def __init__(__self__, *,
                  config: pulumi.Input[str],
+                 name: pulumi.Input[str],
                  project: pulumi.Input[str],
                  value: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] config: The name of the Doppler config
+        :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] value: The raw secret value
-        :param pulumi.Input[str] name: The name of the Doppler secret
         :param pulumi.Input[str] visibility: The visibility of the secret
         """
         pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "value", value)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if visibility is not None:
             pulumi.set(__self__, "visibility", visibility)
 
@@ -46,6 +45,18 @@ class SecretArgs:
     @config.setter
     def config(self, value: pulumi.Input[str]):
         pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the Doppler secret
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -70,18 +81,6 @@ class SecretArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the Doppler secret
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -263,6 +262,8 @@ class Secret(pulumi.CustomResource):
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")

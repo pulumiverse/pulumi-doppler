@@ -15,6 +15,11 @@ export type Environment = import("./environment").Environment;
 export const Environment: typeof import("./environment").Environment = null as any;
 utilities.lazyLoad(exports, ["Environment"], () => require("./environment"));
 
+export { GetSecretsArgs, GetSecretsResult, GetSecretsOutputArgs } from "./getSecrets";
+export const getSecrets: typeof import("./getSecrets").getSecrets = null as any;
+export const getSecretsOutput: typeof import("./getSecrets").getSecretsOutput = null as any;
+utilities.lazyLoad(exports, ["getSecrets","getSecretsOutput"], () => require("./getSecrets"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
@@ -29,11 +34,6 @@ export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
 export const Secret: typeof import("./secret").Secret = null as any;
 utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
-
-export { SecretsArgs, SecretsResult, SecretsOutputArgs } from "./secrets";
-export const secrets: typeof import("./secrets").secrets = null as any;
-export const secretsOutput: typeof import("./secrets").secretsOutput = null as any;
-utilities.lazyLoad(exports, ["secrets","secretsOutput"], () => require("./secrets"));
 
 export { ServiceTokenArgs, ServiceTokenState } from "./serviceToken";
 export type ServiceToken = import("./serviceToken").ServiceToken;
