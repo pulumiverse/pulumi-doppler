@@ -108,8 +108,8 @@ class Project(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         backend = doppler.Project("backend",
-            description="The main backend project",
-            name="backend")
+            name="backend",
+            description="The main backend project")
         ```
 
         :param str resource_name: The name of the resource.
@@ -133,8 +133,8 @@ class Project(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         backend = doppler.Project("backend",
-            description="The main backend project",
-            name="backend")
+            name="backend",
+            description="The main backend project")
         ```
 
         :param str resource_name: The name of the resource.

@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  * import * as doppler from "@pulumiverse/doppler";
  *
  * const backend = new doppler.Project("backend", {
- *     description: "The main backend project",
  *     name: "backend",
+ *     description: "The main backend project",
  * });
  * ```
  */

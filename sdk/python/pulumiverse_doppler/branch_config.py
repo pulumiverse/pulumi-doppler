@@ -139,9 +139,10 @@ class BranchConfig(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci_github = doppler.BranchConfig("backendCiGithub",
+        backend_ci_github = doppler.BranchConfig("backend_ci_github",
+            project="backend",
             environment="ci",
-            project="backend")
+            name="ci_github")
         ```
 
         :param str resource_name: The name of the resource.
@@ -165,9 +166,10 @@ class BranchConfig(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci_github = doppler.BranchConfig("backendCiGithub",
+        backend_ci_github = doppler.BranchConfig("backend_ci_github",
+            project="backend",
             environment="ci",
-            project="backend")
+            name="ci_github")
         ```
 
         :param str resource_name: The name of the resource.

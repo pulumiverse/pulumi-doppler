@@ -23,12 +23,12 @@ namespace Pulumiverse.Doppler
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backendCiToken = new Doppler.ServiceToken("backendCiToken", new()
+    ///     var backendCiToken = new Doppler.ServiceToken("backend_ci_token", new()
     ///     {
-    ///         Access = "read",
+    ///         Project = "backend",
     ///         Config = "ci",
     ///         Name = "Builder Token",
-    ///         Project = "backend",
+    ///         Access = "read",
     ///     });
     /// 
     /// });

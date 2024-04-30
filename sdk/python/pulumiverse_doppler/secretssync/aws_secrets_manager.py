@@ -204,7 +204,8 @@ class AwsSecretsManager(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumiverse_doppler as doppler
 
-        doppler_secrets_manager = aws.iam.Role("dopplerSecretsManager",
+        doppler_secrets_manager = aws.iam.Role("doppler_secrets_manager",
+            name="doppler_secrets_manager",
             assume_role_policy=json.dumps({
                 "Version": "2012-10-17",
                 "Statement": [{
@@ -221,6 +222,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                 }],
             }),
             inline_policies=[aws.iam.RoleInlinePolicyArgs(
+                name="doppler_secret_manager",
                 policy=json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
@@ -241,7 +243,7 @@ class AwsSecretsManager(pulumi.CustomResource):
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
-        backend_prod = doppler.secrets_sync.AwsSecretsManager("backendProd",
+        backend_prod = doppler.secrets_sync.AwsSecretsManager("backend_prod",
             integration=prod.id,
             project="backend",
             config="prd",
@@ -274,7 +276,8 @@ class AwsSecretsManager(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumiverse_doppler as doppler
 
-        doppler_secrets_manager = aws.iam.Role("dopplerSecretsManager",
+        doppler_secrets_manager = aws.iam.Role("doppler_secrets_manager",
+            name="doppler_secrets_manager",
             assume_role_policy=json.dumps({
                 "Version": "2012-10-17",
                 "Statement": [{
@@ -291,6 +294,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                 }],
             }),
             inline_policies=[aws.iam.RoleInlinePolicyArgs(
+                name="doppler_secret_manager",
                 policy=json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
@@ -311,7 +315,7 @@ class AwsSecretsManager(pulumi.CustomResource):
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
-        backend_prod = doppler.secrets_sync.AwsSecretsManager("backendProd",
+        backend_prod = doppler.secrets_sync.AwsSecretsManager("backend_prod",
             integration=prod.id,
             project="backend",
             config="prd",

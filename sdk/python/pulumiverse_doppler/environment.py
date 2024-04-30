@@ -138,10 +138,10 @@ class Environment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci = doppler.Environment("backendCi",
-            name="Continuous Integration",
+        backend_ci = doppler.Environment("backend_ci",
             project="backend",
-            slug="ci")
+            slug="ci",
+            name="Continuous Integration")
         ```
 
         :param str resource_name: The name of the resource.
@@ -165,10 +165,10 @@ class Environment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci = doppler.Environment("backendCi",
-            name="Continuous Integration",
+        backend_ci = doppler.Environment("backend_ci",
             project="backend",
-            slug="ci")
+            slug="ci",
+            name="Continuous Integration")
         ```
 
         :param str resource_name: The name of the resource.

@@ -75,10 +75,12 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			dopplerSecretsManager, err := iam.NewRole(ctx, "dopplerSecretsManager", &iam.RoleArgs{
+//			dopplerSecretsManager, err := iam.NewRole(ctx, "doppler_secrets_manager", &iam.RoleArgs{
+//				Name:             pulumi.String("doppler_secrets_manager"),
 //				AssumeRolePolicy: pulumi.String(json0),
 //				InlinePolicies: iam.RoleInlinePolicyArray{
 //					&iam.RoleInlinePolicyArgs{
+//						Name:   pulumi.String("doppler_secret_manager"),
 //						Policy: pulumi.String(json1),
 //					},
 //				},
@@ -93,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = secretsSync.NewAwsSecretsManager(ctx, "backendProd", &secretsSync.AwsSecretsManagerArgs{
+//			_, err = secretsSync.NewAwsSecretsManager(ctx, "backend_prod", &secretsSync.AwsSecretsManagerArgs{
 //				Integration: prod.ID(),
 //				Project:     pulumi.String("backend"),
 //				Config:      pulumi.String("prd"),

@@ -29,8 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := doppler.NewProject(ctx, "backend", &doppler.ProjectArgs{
-//				Description: pulumi.String("The main backend project"),
 //				Name:        pulumi.String("backend"),
+//				Description: pulumi.String("The main backend project"),
 //			})
 //			if err != nil {
 //				return err

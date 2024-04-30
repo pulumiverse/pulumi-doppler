@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as doppler from "@pulumiverse/doppler";
  *
- * const backendCiToken = new doppler.ServiceToken("backendCiToken", {
- *     access: "read",
+ * const backendCiToken = new doppler.ServiceToken("backend_ci_token", {
+ *     project: "backend",
  *     config: "ci",
  *     name: "Builder Token",
- *     project: "backend",
+ *     access: "read",
  * });
  * ```
  */

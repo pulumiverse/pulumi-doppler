@@ -28,10 +28,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := doppler.NewEnvironment(ctx, "backendCi", &doppler.EnvironmentArgs{
-//				Name:    pulumi.String("Continuous Integration"),
+//			_, err := doppler.NewEnvironment(ctx, "backend_ci", &doppler.EnvironmentArgs{
 //				Project: pulumi.String("backend"),
 //				Slug:    pulumi.String("ci"),
+//				Name:    pulumi.String("Continuous Integration"),
 //			})
 //			if err != nil {
 //				return err

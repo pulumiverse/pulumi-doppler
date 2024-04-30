@@ -23,10 +23,11 @@ namespace Pulumiverse.Doppler
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backendCiGithub = new Doppler.BranchConfig("backendCiGithub", new()
+    ///     var backendCiGithub = new Doppler.BranchConfig("backend_ci_github", new()
     ///     {
-    ///         Environment = "ci",
     ///         Project = "backend",
+    ///         Environment = "ci",
+    ///         Name = "ci_github",
     ///     });
     /// 
     /// });

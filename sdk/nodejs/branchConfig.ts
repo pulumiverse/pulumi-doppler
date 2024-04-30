@@ -13,9 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as doppler from "@pulumiverse/doppler";
  *
- * const backendCiGithub = new doppler.BranchConfig("backendCiGithub", {
- *     environment: "ci",
+ * const backendCiGithub = new doppler.BranchConfig("backend_ci_github", {
  *     project: "backend",
+ *     environment: "ci",
+ *     name: "ci_github",
  * });
  * ```
  */

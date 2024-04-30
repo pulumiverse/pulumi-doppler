@@ -13,10 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as doppler from "@pulumiverse/doppler";
  *
- * const backendCi = new doppler.Environment("backendCi", {
- *     name: "Continuous Integration",
+ * const backendCi = new doppler.Environment("backend_ci", {
  *     project: "backend",
  *     slug: "ci",
+ *     name: "Continuous Integration",
  * });
  * ```
  */

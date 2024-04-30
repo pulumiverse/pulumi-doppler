@@ -23,11 +23,11 @@ namespace Pulumiverse.Doppler
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backendCi = new Doppler.Environment("backendCi", new()
+    ///     var backendCi = new Doppler.Environment("backend_ci", new()
     ///     {
-    ///         Name = "Continuous Integration",
     ///         Project = "backend",
     ///         Slug = "ci",
+    ///         Name = "Continuous Integration",
     ///     });
     /// 
     /// });

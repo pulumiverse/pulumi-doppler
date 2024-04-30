@@ -28,11 +28,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := doppler.NewServiceToken(ctx, "backendCiToken", &doppler.ServiceTokenArgs{
-//				Access:  pulumi.String("read"),
+//			_, err := doppler.NewServiceToken(ctx, "backend_ci_token", &doppler.ServiceTokenArgs{
+//				Project: pulumi.String("backend"),
 //				Config:  pulumi.String("ci"),
 //				Name:    pulumi.String("Builder Token"),
-//				Project: pulumi.String("backend"),
+//				Access:  pulumi.String("read"),
 //			})
 //			if err != nil {
 //				return err

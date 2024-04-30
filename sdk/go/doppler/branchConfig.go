@@ -28,9 +28,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := doppler.NewBranchConfig(ctx, "backendCiGithub", &doppler.BranchConfigArgs{
-//				Environment: pulumi.String("ci"),
+//			_, err := doppler.NewBranchConfig(ctx, "backend_ci_github", &doppler.BranchConfigArgs{
 //				Project:     pulumi.String("backend"),
+//				Environment: pulumi.String("ci"),
+//				Name:        pulumi.String("ci_github"),
 //			})
 //			if err != nil {
 //				return err

@@ -14,7 +14,8 @@ import * as utilities from "../utilities";
  * import * as aws from "@pulumi/aws";
  * import * as doppler from "@pulumiverse/doppler";
  *
- * const dopplerParameterStore = new aws.iam.Role("dopplerParameterStore", {
+ * const dopplerParameterStore = new aws.iam.Role("doppler_parameter_store", {
+ *     name: "doppler_parameter_store",
  *     assumeRolePolicy: JSON.stringify({
  *         Version: "2012-10-17",
  *         Statement: [{
@@ -31,6 +32,7 @@ import * as utilities from "../utilities";
  *         }],
  *     }),
  *     inlinePolicies: [{
+ *         name: "doppler_secret_manager",
  *         policy: JSON.stringify({
  *             Version: "2012-10-17",
  *             Statement: [{
@@ -56,7 +58,7 @@ import * as utilities from "../utilities";
  *     name: "Production",
  *     assumeRoleArn: dopplerParameterStore.arn,
  * });
- * const backendProd = new doppler.secretssync.AwsParameterStore("backendProd", {
+ * const backendProd = new doppler.secretssync.AwsParameterStore("backend_prod", {
  *     integration: prod.id,
  *     project: "backend",
  *     config: "prd",

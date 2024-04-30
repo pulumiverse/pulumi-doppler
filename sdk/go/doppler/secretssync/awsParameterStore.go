@@ -78,10 +78,12 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			dopplerParameterStore, err := iam.NewRole(ctx, "dopplerParameterStore", &iam.RoleArgs{
+//			dopplerParameterStore, err := iam.NewRole(ctx, "doppler_parameter_store", &iam.RoleArgs{
+//				Name:             pulumi.String("doppler_parameter_store"),
 //				AssumeRolePolicy: pulumi.String(json0),
 //				InlinePolicies: iam.RoleInlinePolicyArray{
 //					&iam.RoleInlinePolicyArgs{
+//						Name:   pulumi.String("doppler_secret_manager"),
 //						Policy: pulumi.String(json1),
 //					},
 //				},
@@ -96,7 +98,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = secretsSync.NewAwsParameterStore(ctx, "backendProd", &secretsSync.AwsParameterStoreArgs{
+//			_, err = secretsSync.NewAwsParameterStore(ctx, "backend_prod", &secretsSync.AwsParameterStoreArgs{
 //				Integration:  prod.ID(),
 //				Project:      pulumi.String("backend"),
 //				Config:       pulumi.String("prd"),

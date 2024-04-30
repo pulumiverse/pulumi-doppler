@@ -25,8 +25,9 @@ namespace Pulumiverse.Doppler.SecretsSync
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dopplerSecretsManager = new Aws.Iam.Role("dopplerSecretsManager", new()
+    ///     var dopplerSecretsManager = new Aws.Iam.Role("doppler_secrets_manager", new()
     ///     {
+    ///         Name = "doppler_secrets_manager",
     ///         AssumeRolePolicy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["Version"] = "2012-10-17",
@@ -54,6 +55,7 @@ namespace Pulumiverse.Doppler.SecretsSync
     ///         {
     ///             new Aws.Iam.Inputs.RoleInlinePolicyArgs
     ///             {
+    ///                 Name = "doppler_secret_manager",
     ///                 Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                 {
     ///                     ["Version"] = "2012-10-17",
@@ -86,7 +88,7 @@ namespace Pulumiverse.Doppler.SecretsSync
     ///         AssumeRoleArn = dopplerSecretsManager.Arn,
     ///     });
     /// 
-    ///     var backendProd = new Doppler.SecretsSync.AwsSecretsManager("backendProd", new()
+    ///     var backendProd = new Doppler.SecretsSync.AwsSecretsManager("backend_prod", new()
     ///     {
     ///         Integration = prod.Id,
     ///         Project = "backend",

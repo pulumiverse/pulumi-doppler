@@ -270,7 +270,8 @@ class AwsParameterStore(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumiverse_doppler as doppler
 
-        doppler_parameter_store = aws.iam.Role("dopplerParameterStore",
+        doppler_parameter_store = aws.iam.Role("doppler_parameter_store",
+            name="doppler_parameter_store",
             assume_role_policy=json.dumps({
                 "Version": "2012-10-17",
                 "Statement": [{
@@ -287,6 +288,7 @@ class AwsParameterStore(pulumi.CustomResource):
                 }],
             }),
             inline_policies=[aws.iam.RoleInlinePolicyArgs(
+                name="doppler_secret_manager",
                 policy=json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
@@ -310,7 +312,7 @@ class AwsParameterStore(pulumi.CustomResource):
         prod = doppler.integration.AwsParameterStore("prod",
             name="Production",
             assume_role_arn=doppler_parameter_store.arn)
-        backend_prod = doppler.secrets_sync.AwsParameterStore("backendProd",
+        backend_prod = doppler.secrets_sync.AwsParameterStore("backend_prod",
             integration=prod.id,
             project="backend",
             config="prd",
@@ -349,7 +351,8 @@ class AwsParameterStore(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumiverse_doppler as doppler
 
-        doppler_parameter_store = aws.iam.Role("dopplerParameterStore",
+        doppler_parameter_store = aws.iam.Role("doppler_parameter_store",
+            name="doppler_parameter_store",
             assume_role_policy=json.dumps({
                 "Version": "2012-10-17",
                 "Statement": [{
@@ -366,6 +369,7 @@ class AwsParameterStore(pulumi.CustomResource):
                 }],
             }),
             inline_policies=[aws.iam.RoleInlinePolicyArgs(
+                name="doppler_secret_manager",
                 policy=json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
@@ -389,7 +393,7 @@ class AwsParameterStore(pulumi.CustomResource):
         prod = doppler.integration.AwsParameterStore("prod",
             name="Production",
             assume_role_arn=doppler_parameter_store.arn)
-        backend_prod = doppler.secrets_sync.AwsParameterStore("backendProd",
+        backend_prod = doppler.secrets_sync.AwsParameterStore("backend_prod",
             integration=prod.id,
             project="backend",
             config="prd",

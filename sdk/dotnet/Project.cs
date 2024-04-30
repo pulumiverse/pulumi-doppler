@@ -25,8 +25,8 @@ namespace Pulumiverse.Doppler
     /// {
     ///     var backend = new Doppler.Project("backend", new()
     ///     {
-    ///         Description = "The main backend project",
     ///         Name = "backend",
+    ///         Description = "The main backend project",
     ///     });
     /// 
     /// });

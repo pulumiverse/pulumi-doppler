@@ -187,11 +187,11 @@ class ServiceToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci_token = doppler.ServiceToken("backendCiToken",
-            access="read",
+        backend_ci_token = doppler.ServiceToken("backend_ci_token",
+            project="backend",
             config="ci",
             name="Builder Token",
-            project="backend")
+            access="read")
         ```
 
         :param str resource_name: The name of the resource.
@@ -216,11 +216,11 @@ class ServiceToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_ci_token = doppler.ServiceToken("backendCiToken",
-            access="read",
+        backend_ci_token = doppler.ServiceToken("backend_ci_token",
+            project="backend",
             config="ci",
             name="Builder Token",
-            project="backend")
+            access="read")
         ```
 
         :param str resource_name: The name of the resource.
