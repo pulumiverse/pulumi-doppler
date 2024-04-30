@@ -10,8 +10,6 @@ from .environment import *
 from .get_secrets import *
 from .group import *
 from .project import *
-from .project_member_group import *
-from .project_member_service_account import *
 from .provider import *
 from .secret import *
 from .service_account import *
@@ -23,11 +21,14 @@ if typing.TYPE_CHECKING:
     config = __config
     import pulumiverse_doppler.integration as __integration
     integration = __integration
+    import pulumiverse_doppler.projectmember as __projectmember
+    projectmember = __projectmember
     import pulumiverse_doppler.secretssync as __secretssync
     secretssync = __secretssync
 else:
     config = _utilities.lazy_import('pulumiverse_doppler.config')
     integration = _utilities.lazy_import('pulumiverse_doppler.integration')
+    projectmember = _utilities.lazy_import('pulumiverse_doppler.projectmember')
     secretssync = _utilities.lazy_import('pulumiverse_doppler.secretssync')
 
 _utilities.register(
@@ -63,22 +64,6 @@ _utilities.register(
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/project:Project": "Project"
-  }
- },
- {
-  "pkg": "doppler",
-  "mod": "index/projectMemberGroup",
-  "fqn": "pulumiverse_doppler",
-  "classes": {
-   "doppler:index/projectMemberGroup:ProjectMemberGroup": "ProjectMemberGroup"
-  }
- },
- {
-  "pkg": "doppler",
-  "mod": "index/projectMemberServiceAccount",
-  "fqn": "pulumiverse_doppler",
-  "classes": {
-   "doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount": "ProjectMemberServiceAccount"
   }
  },
  {
@@ -119,6 +104,22 @@ _utilities.register(
   "fqn": "pulumiverse_doppler.integration",
   "classes": {
    "doppler:integration/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "projectMember/group",
+  "fqn": "pulumiverse_doppler.projectmember",
+  "classes": {
+   "doppler:projectMember/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "projectMember/serviceAccount",
+  "fqn": "pulumiverse_doppler.projectmember",
+  "classes": {
+   "doppler:projectMember/serviceAccount:ServiceAccount": "ServiceAccount"
   }
  },
  {

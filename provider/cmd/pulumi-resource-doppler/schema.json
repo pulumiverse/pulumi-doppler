@@ -334,174 +334,6 @@
                 "type": "object"
             }
         },
-        "doppler:index/projectMemberGroup:ProjectMemberGroup": {
-            "description": "Manage a Doppler project group member.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendEngineering = new doppler.ProjectMemberGroup(\"backend_engineering\", {\n    project: \"backend\",\n    groupSlug: engineering.slug,\n    role: \"collaborator\",\n    environments: [\n        \"dev\",\n        \"stg\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_engineering = doppler.ProjectMemberGroup(\"backend_engineering\",\n    project=\"backend\",\n    group_slug=engineering[\"slug\"],\n    role=\"collaborator\",\n    environments=[\n        \"dev\",\n        \"stg\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendEngineering = new Doppler.ProjectMemberGroup(\"backend_engineering\", new()\n    {\n        Project = \"backend\",\n        GroupSlug = engineering.Slug,\n        Role = \"collaborator\",\n        Environments = new[]\n        {\n            \"dev\",\n            \"stg\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewProjectMemberGroup(ctx, \"backend_engineering\", \u0026doppler.ProjectMemberGroupArgs{\n\t\t\tProject:   pulumi.String(\"backend\"),\n\t\t\tGroupSlug: pulumi.Any(engineering.Slug),\n\t\t\tRole:      pulumi.String(\"collaborator\"),\n\t\t\tEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"stg\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.ProjectMemberGroup;\nimport com.pulumi.doppler.ProjectMemberGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendEngineering = new ProjectMemberGroup(\"backendEngineering\", ProjectMemberGroupArgs.builder()        \n            .project(\"backend\")\n            .groupSlug(engineering.slug())\n            .role(\"collaborator\")\n            .environments(            \n                \"dev\",\n                \"stg\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendEngineering:\n    type: doppler:ProjectMemberGroup\n    name: backend_engineering\n    properties:\n      project: backend\n      groupSlug: ${engineering.slug}\n      role: collaborator\n      environments:\n        - dev\n        - stg\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "properties": {
-                "environments": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                },
-                "groupSlug": {
-                    "type": "string",
-                    "description": "The slug of the Doppler group\n"
-                },
-                "project": {
-                    "type": "string",
-                    "description": "The name of the Doppler project where the access is applied\n"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "The project role identifier for the access\n"
-                }
-            },
-            "required": [
-                "groupSlug",
-                "project",
-                "role"
-            ],
-            "inputProperties": {
-                "environments": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                },
-                "groupSlug": {
-                    "type": "string",
-                    "description": "The slug of the Doppler group\n",
-                    "willReplaceOnChanges": true
-                },
-                "project": {
-                    "type": "string",
-                    "description": "The name of the Doppler project where the access is applied\n",
-                    "willReplaceOnChanges": true
-                },
-                "role": {
-                    "type": "string",
-                    "description": "The project role identifier for the access\n"
-                }
-            },
-            "requiredInputs": [
-                "groupSlug",
-                "project",
-                "role"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ProjectMemberGroup resources.\n",
-                "properties": {
-                    "environments": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                    },
-                    "groupSlug": {
-                        "type": "string",
-                        "description": "The slug of the Doppler group\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "project": {
-                        "type": "string",
-                        "description": "The name of the Doppler project where the access is applied\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "role": {
-                        "type": "string",
-                        "description": "The project role identifier for the access\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount": {
-            "description": "Manage a Doppler project service account member.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCi = new doppler.ProjectMemberServiceAccount(\"backend_ci\", {\n    project: \"backend\",\n    serviceAccountSlug: ci.slug,\n    role: \"viewer\",\n    environments: [\n        \"dev\",\n        \"stg\",\n        \"prd\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci = doppler.ProjectMemberServiceAccount(\"backend_ci\",\n    project=\"backend\",\n    service_account_slug=ci[\"slug\"],\n    role=\"viewer\",\n    environments=[\n        \"dev\",\n        \"stg\",\n        \"prd\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCi = new Doppler.ProjectMemberServiceAccount(\"backend_ci\", new()\n    {\n        Project = \"backend\",\n        ServiceAccountSlug = ci.Slug,\n        Role = \"viewer\",\n        Environments = new[]\n        {\n            \"dev\",\n            \"stg\",\n            \"prd\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewProjectMemberServiceAccount(ctx, \"backend_ci\", \u0026doppler.ProjectMemberServiceAccountArgs{\n\t\t\tProject:            pulumi.String(\"backend\"),\n\t\t\tServiceAccountSlug: pulumi.Any(ci.Slug),\n\t\t\tRole:               pulumi.String(\"viewer\"),\n\t\t\tEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"stg\"),\n\t\t\t\tpulumi.String(\"prd\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.ProjectMemberServiceAccount;\nimport com.pulumi.doppler.ProjectMemberServiceAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCi = new ProjectMemberServiceAccount(\"backendCi\", ProjectMemberServiceAccountArgs.builder()        \n            .project(\"backend\")\n            .serviceAccountSlug(ci.slug())\n            .role(\"viewer\")\n            .environments(            \n                \"dev\",\n                \"stg\",\n                \"prd\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCi:\n    type: doppler:ProjectMemberServiceAccount\n    name: backend_ci\n    properties:\n      project: backend\n      serviceAccountSlug: ${ci.slug}\n      role: viewer\n      environments:\n        - dev\n        - stg\n        - prd\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "properties": {
-                "environments": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                },
-                "project": {
-                    "type": "string",
-                    "description": "The name of the Doppler project where the access is applied\n"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "The project role identifier for the access\n"
-                },
-                "serviceAccountSlug": {
-                    "type": "string",
-                    "description": "The slug of the Doppler service account\n"
-                }
-            },
-            "required": [
-                "project",
-                "role",
-                "serviceAccountSlug"
-            ],
-            "inputProperties": {
-                "environments": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                },
-                "project": {
-                    "type": "string",
-                    "description": "The name of the Doppler project where the access is applied\n",
-                    "willReplaceOnChanges": true
-                },
-                "role": {
-                    "type": "string",
-                    "description": "The project role identifier for the access\n"
-                },
-                "serviceAccountSlug": {
-                    "type": "string",
-                    "description": "The slug of the Doppler service account\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "project",
-                "role",
-                "serviceAccountSlug"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ProjectMemberServiceAccount resources.\n",
-                "properties": {
-                    "environments": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
-                    },
-                    "project": {
-                        "type": "string",
-                        "description": "The name of the Doppler project where the access is applied\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "role": {
-                        "type": "string",
-                        "description": "The project role identifier for the access\n"
-                    },
-                    "serviceAccountSlug": {
-                        "type": "string",
-                        "description": "The slug of the Doppler service account\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
         "doppler:index/secret:Secret": {
             "description": "Manage a single Doppler secret in a config.\n\n",
             "properties": {
@@ -852,6 +684,174 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the integration\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:projectMember/group:Group": {
+            "description": "Manage a Doppler project group member.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendEngineering = new doppler.projectmember.Group(\"backend_engineering\", {\n    project: \"backend\",\n    groupSlug: engineering.slug,\n    role: \"collaborator\",\n    environments: [\n        \"dev\",\n        \"stg\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_engineering = doppler.project_member.Group(\"backend_engineering\",\n    project=\"backend\",\n    group_slug=engineering[\"slug\"],\n    role=\"collaborator\",\n    environments=[\n        \"dev\",\n        \"stg\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendEngineering = new Doppler.ProjectMember.Group(\"backend_engineering\", new()\n    {\n        Project = \"backend\",\n        GroupSlug = engineering.Slug,\n        Role = \"collaborator\",\n        Environments = new[]\n        {\n            \"dev\",\n            \"stg\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/projectMember\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := projectMember.NewGroup(ctx, \"backend_engineering\", \u0026projectMember.GroupArgs{\n\t\t\tProject:   pulumi.String(\"backend\"),\n\t\t\tGroupSlug: pulumi.Any(engineering.Slug),\n\t\t\tRole:      pulumi.String(\"collaborator\"),\n\t\t\tEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"stg\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.projectMember.Group;\nimport com.pulumi.doppler.projectMember.GroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendEngineering = new Group(\"backendEngineering\", GroupArgs.builder()        \n            .project(\"backend\")\n            .groupSlug(engineering.slug())\n            .role(\"collaborator\")\n            .environments(            \n                \"dev\",\n                \"stg\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendEngineering:\n    type: doppler:projectMember:Group\n    name: backend_engineering\n    properties:\n      project: backend\n      groupSlug: ${engineering.slug}\n      role: collaborator\n      environments:\n        - dev\n        - stg\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                },
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler group\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project where the access is applied\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The project role identifier for the access\n"
+                }
+            },
+            "required": [
+                "groupSlug",
+                "project",
+                "role"
+            ],
+            "inputProperties": {
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                },
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler group\n",
+                    "willReplaceOnChanges": true
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project where the access is applied\n",
+                    "willReplaceOnChanges": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The project role identifier for the access\n"
+                }
+            },
+            "requiredInputs": [
+                "groupSlug",
+                "project",
+                "role"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Group resources.\n",
+                "properties": {
+                    "environments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                    },
+                    "groupSlug": {
+                        "type": "string",
+                        "description": "The slug of the Doppler group\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "project": {
+                        "type": "string",
+                        "description": "The name of the Doppler project where the access is applied\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The project role identifier for the access\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:projectMember/serviceAccount:ServiceAccount": {
+            "description": "Manage a Doppler project service account member.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCi = new doppler.projectmember.ServiceAccount(\"backend_ci\", {\n    project: \"backend\",\n    serviceAccountSlug: ci.slug,\n    role: \"viewer\",\n    environments: [\n        \"dev\",\n        \"stg\",\n        \"prd\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci = doppler.project_member.ServiceAccount(\"backend_ci\",\n    project=\"backend\",\n    service_account_slug=ci[\"slug\"],\n    role=\"viewer\",\n    environments=[\n        \"dev\",\n        \"stg\",\n        \"prd\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCi = new Doppler.ProjectMember.ServiceAccount(\"backend_ci\", new()\n    {\n        Project = \"backend\",\n        ServiceAccountSlug = ci.Slug,\n        Role = \"viewer\",\n        Environments = new[]\n        {\n            \"dev\",\n            \"stg\",\n            \"prd\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/projectMember\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := projectMember.NewServiceAccount(ctx, \"backend_ci\", \u0026projectMember.ServiceAccountArgs{\n\t\t\tProject:            pulumi.String(\"backend\"),\n\t\t\tServiceAccountSlug: pulumi.Any(ci.Slug),\n\t\t\tRole:               pulumi.String(\"viewer\"),\n\t\t\tEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"stg\"),\n\t\t\t\tpulumi.String(\"prd\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.projectMember.ServiceAccount;\nimport com.pulumi.doppler.projectMember.ServiceAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCi = new ServiceAccount(\"backendCi\", ServiceAccountArgs.builder()        \n            .project(\"backend\")\n            .serviceAccountSlug(ci.slug())\n            .role(\"viewer\")\n            .environments(            \n                \"dev\",\n                \"stg\",\n                \"prd\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCi:\n    type: doppler:projectMember:ServiceAccount\n    name: backend_ci\n    properties:\n      project: backend\n      serviceAccountSlug: ${ci.slug}\n      role: viewer\n      environments:\n        - dev\n        - stg\n        - prd\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project where the access is applied\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The project role identifier for the access\n"
+                },
+                "serviceAccountSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler service account\n"
+                }
+            },
+            "required": [
+                "project",
+                "role",
+                "serviceAccountSlug"
+            ],
+            "inputProperties": {
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project where the access is applied\n",
+                    "willReplaceOnChanges": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The project role identifier for the access\n"
+                },
+                "serviceAccountSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler service account\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "project",
+                "role",
+                "serviceAccountSlug"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceAccount resources.\n",
+                "properties": {
+                    "environments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The environments in the project where this access will apply (null or omitted for roles with access to all environments)\n"
+                    },
+                    "project": {
+                        "type": "string",
+                        "description": "The name of the Doppler project where the access is applied\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The project role identifier for the access\n"
+                    },
+                    "serviceAccountSlug": {
+                        "type": "string",
+                        "description": "The slug of the Doppler service account\n",
                         "willReplaceOnChanges": true
                     }
                 },

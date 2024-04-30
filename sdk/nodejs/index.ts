@@ -30,16 +30,6 @@ export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
 utilities.lazyLoad(exports, ["Project"], () => require("./project"));
 
-export { ProjectMemberGroupArgs, ProjectMemberGroupState } from "./projectMemberGroup";
-export type ProjectMemberGroup = import("./projectMemberGroup").ProjectMemberGroup;
-export const ProjectMemberGroup: typeof import("./projectMemberGroup").ProjectMemberGroup = null as any;
-utilities.lazyLoad(exports, ["ProjectMemberGroup"], () => require("./projectMemberGroup"));
-
-export { ProjectMemberServiceAccountArgs, ProjectMemberServiceAccountState } from "./projectMemberServiceAccount";
-export type ProjectMemberServiceAccount = import("./projectMemberServiceAccount").ProjectMemberServiceAccount;
-export const ProjectMemberServiceAccount: typeof import("./projectMemberServiceAccount").ProjectMemberServiceAccount = null as any;
-utilities.lazyLoad(exports, ["ProjectMemberServiceAccount"], () => require("./projectMemberServiceAccount"));
-
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -64,11 +54,13 @@ utilities.lazyLoad(exports, ["ServiceToken"], () => require("./serviceToken"));
 // Export sub-modules:
 import * as config from "./config";
 import * as integration from "./integration";
+import * as projectmember from "./projectmember";
 import * as secretssync from "./secretssync";
 
 export {
     config,
     integration,
+    projectmember,
     secretssync,
 };
 
@@ -84,10 +76,6 @@ const _module = {
                 return new Group(name, <any>undefined, { urn })
             case "doppler:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
-            case "doppler:index/projectMemberGroup:ProjectMemberGroup":
-                return new ProjectMemberGroup(name, <any>undefined, { urn })
-            case "doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount":
-                return new ProjectMemberServiceAccount(name, <any>undefined, { urn })
             case "doppler:index/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
             case "doppler:index/serviceAccount:ServiceAccount":
@@ -103,8 +91,6 @@ pulumi.runtime.registerResourceModule("doppler", "index/branchConfig", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/environment", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/group", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/project", _module)
-pulumi.runtime.registerResourceModule("doppler", "index/projectMemberGroup", _module)
-pulumi.runtime.registerResourceModule("doppler", "index/projectMemberServiceAccount", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/secret", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/serviceToken", _module)

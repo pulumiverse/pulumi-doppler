@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manage a Doppler project service account member.
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as doppler from "@pulumiverse/doppler";
  *
- * const backendCi = new doppler.ProjectMemberServiceAccount("backend_ci", {
+ * const backendCi = new doppler.projectmember.ServiceAccount("backend_ci", {
  *     project: "backend",
  *     serviceAccountSlug: ci.slug,
  *     role: "viewer",
@@ -25,9 +25,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export class ProjectMemberServiceAccount extends pulumi.CustomResource {
+export class ServiceAccount extends pulumi.CustomResource {
     /**
-     * Get an existing ProjectMemberServiceAccount resource's state with the given name, ID, and optional extra
+     * Get an existing ServiceAccount resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -35,22 +35,22 @@ export class ProjectMemberServiceAccount extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProjectMemberServiceAccountState, opts?: pulumi.CustomResourceOptions): ProjectMemberServiceAccount {
-        return new ProjectMemberServiceAccount(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServiceAccountState, opts?: pulumi.CustomResourceOptions): ServiceAccount {
+        return new ServiceAccount(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'doppler:index/projectMemberServiceAccount:ProjectMemberServiceAccount';
+    public static readonly __pulumiType = 'doppler:projectMember/serviceAccount:ServiceAccount';
 
     /**
-     * Returns true if the given object is an instance of ProjectMemberServiceAccount.  This is designed to work even
+     * Returns true if the given object is an instance of ServiceAccount.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ProjectMemberServiceAccount {
+    public static isInstance(obj: any): obj is ServiceAccount {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ProjectMemberServiceAccount.__pulumiType;
+        return obj['__pulumiType'] === ServiceAccount.__pulumiType;
     }
 
     /**
@@ -71,24 +71,24 @@ export class ProjectMemberServiceAccount extends pulumi.CustomResource {
     public readonly serviceAccountSlug!: pulumi.Output<string>;
 
     /**
-     * Create a ProjectMemberServiceAccount resource with the given unique name, arguments, and options.
+     * Create a ServiceAccount resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProjectMemberServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ProjectMemberServiceAccountArgs | ProjectMemberServiceAccountState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: ServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: ServiceAccountArgs | ServiceAccountState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ProjectMemberServiceAccountState | undefined;
+            const state = argsOrState as ServiceAccountState | undefined;
             resourceInputs["environments"] = state ? state.environments : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["serviceAccountSlug"] = state ? state.serviceAccountSlug : undefined;
         } else {
-            const args = argsOrState as ProjectMemberServiceAccountArgs | undefined;
+            const args = argsOrState as ServiceAccountArgs | undefined;
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
@@ -104,14 +104,14 @@ export class ProjectMemberServiceAccount extends pulumi.CustomResource {
             resourceInputs["serviceAccountSlug"] = args ? args.serviceAccountSlug : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ProjectMemberServiceAccount.__pulumiType, name, resourceInputs, opts);
+        super(ServiceAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering ProjectMemberServiceAccount resources.
+ * Input properties used for looking up and filtering ServiceAccount resources.
  */
-export interface ProjectMemberServiceAccountState {
+export interface ServiceAccountState {
     /**
      * The environments in the project where this access will apply (null or omitted for roles with access to all environments)
      */
@@ -131,9 +131,9 @@ export interface ProjectMemberServiceAccountState {
 }
 
 /**
- * The set of arguments for constructing a ProjectMemberServiceAccount resource.
+ * The set of arguments for constructing a ServiceAccount resource.
  */
-export interface ProjectMemberServiceAccountArgs {
+export interface ServiceAccountArgs {
     /**
      * The environments in the project where this access will apply (null or omitted for roles with access to all environments)
      */

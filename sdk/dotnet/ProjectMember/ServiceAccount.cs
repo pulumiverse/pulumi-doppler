@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Doppler
+namespace Pulumiverse.Doppler.ProjectMember
 {
     /// <summary>
-    /// Manage a Doppler project group member.
+    /// Manage a Doppler project service account member.
     /// 
     /// ## Example Usage
     /// 
@@ -23,35 +23,30 @@ namespace Pulumiverse.Doppler
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backendEngineering = new Doppler.ProjectMemberGroup("backend_engineering", new()
+    ///     var backendCi = new Doppler.ProjectMember.ServiceAccount("backend_ci", new()
     ///     {
     ///         Project = "backend",
-    ///         GroupSlug = engineering.Slug,
-    ///         Role = "collaborator",
+    ///         ServiceAccountSlug = ci.Slug,
+    ///         Role = "viewer",
     ///         Environments = new[]
     ///         {
     ///             "dev",
     ///             "stg",
+    ///             "prd",
     ///         },
     ///     });
     /// 
     /// });
     /// ```
     /// </summary>
-    [DopplerResourceType("doppler:index/projectMemberGroup:ProjectMemberGroup")]
-    public partial class ProjectMemberGroup : global::Pulumi.CustomResource
+    [DopplerResourceType("doppler:projectMember/serviceAccount:ServiceAccount")]
+    public partial class ServiceAccount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The environments in the project where this access will apply (null or omitted for roles with access to all environments)
         /// </summary>
         [Output("environments")]
         public Output<ImmutableArray<string>> Environments { get; private set; } = null!;
-
-        /// <summary>
-        /// The slug of the Doppler group
-        /// </summary>
-        [Output("groupSlug")]
-        public Output<string> GroupSlug { get; private set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the access is applied
@@ -65,21 +60,27 @@ namespace Pulumiverse.Doppler
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
+        /// <summary>
+        /// The slug of the Doppler service account
+        /// </summary>
+        [Output("serviceAccountSlug")]
+        public Output<string> ServiceAccountSlug { get; private set; } = null!;
+
 
         /// <summary>
-        /// Create a ProjectMemberGroup resource with the given unique name, arguments, and options.
+        /// Create a ServiceAccount resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ProjectMemberGroup(string name, ProjectMemberGroupArgs args, CustomResourceOptions? options = null)
-            : base("doppler:index/projectMemberGroup:ProjectMemberGroup", name, args ?? new ProjectMemberGroupArgs(), MakeResourceOptions(options, ""))
+        public ServiceAccount(string name, ServiceAccountArgs args, CustomResourceOptions? options = null)
+            : base("doppler:projectMember/serviceAccount:ServiceAccount", name, args ?? new ServiceAccountArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ProjectMemberGroup(string name, Input<string> id, ProjectMemberGroupState? state = null, CustomResourceOptions? options = null)
-            : base("doppler:index/projectMemberGroup:ProjectMemberGroup", name, state, MakeResourceOptions(options, id))
+        private ServiceAccount(string name, Input<string> id, ServiceAccountState? state = null, CustomResourceOptions? options = null)
+            : base("doppler:projectMember/serviceAccount:ServiceAccount", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -96,7 +97,7 @@ namespace Pulumiverse.Doppler
             return merged;
         }
         /// <summary>
-        /// Get an existing ProjectMemberGroup resource's state with the given name, ID, and optional extra
+        /// Get an existing ServiceAccount resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -104,13 +105,13 @@ namespace Pulumiverse.Doppler
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ProjectMemberGroup Get(string name, Input<string> id, ProjectMemberGroupState? state = null, CustomResourceOptions? options = null)
+        public static ServiceAccount Get(string name, Input<string> id, ServiceAccountState? state = null, CustomResourceOptions? options = null)
         {
-            return new ProjectMemberGroup(name, id, state, options);
+            return new ServiceAccount(name, id, state, options);
         }
     }
 
-    public sealed class ProjectMemberGroupArgs : global::Pulumi.ResourceArgs
+    public sealed class ServiceAccountArgs : global::Pulumi.ResourceArgs
     {
         [Input("environments")]
         private InputList<string>? _environments;
@@ -123,12 +124,6 @@ namespace Pulumiverse.Doppler
             get => _environments ?? (_environments = new InputList<string>());
             set => _environments = value;
         }
-
-        /// <summary>
-        /// The slug of the Doppler group
-        /// </summary>
-        [Input("groupSlug", required: true)]
-        public Input<string> GroupSlug { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the access is applied
@@ -142,13 +137,19 @@ namespace Pulumiverse.Doppler
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
-        public ProjectMemberGroupArgs()
+        /// <summary>
+        /// The slug of the Doppler service account
+        /// </summary>
+        [Input("serviceAccountSlug", required: true)]
+        public Input<string> ServiceAccountSlug { get; set; } = null!;
+
+        public ServiceAccountArgs()
         {
         }
-        public static new ProjectMemberGroupArgs Empty => new ProjectMemberGroupArgs();
+        public static new ServiceAccountArgs Empty => new ServiceAccountArgs();
     }
 
-    public sealed class ProjectMemberGroupState : global::Pulumi.ResourceArgs
+    public sealed class ServiceAccountState : global::Pulumi.ResourceArgs
     {
         [Input("environments")]
         private InputList<string>? _environments;
@@ -163,12 +164,6 @@ namespace Pulumiverse.Doppler
         }
 
         /// <summary>
-        /// The slug of the Doppler group
-        /// </summary>
-        [Input("groupSlug")]
-        public Input<string>? GroupSlug { get; set; }
-
-        /// <summary>
         /// The name of the Doppler project where the access is applied
         /// </summary>
         [Input("project")]
@@ -180,9 +175,15 @@ namespace Pulumiverse.Doppler
         [Input("role")]
         public Input<string>? Role { get; set; }
 
-        public ProjectMemberGroupState()
+        /// <summary>
+        /// The slug of the Doppler service account
+        /// </summary>
+        [Input("serviceAccountSlug")]
+        public Input<string>? ServiceAccountSlug { get; set; }
+
+        public ServiceAccountState()
         {
         }
-        public static new ProjectMemberGroupState Empty => new ProjectMemberGroupState();
+        public static new ServiceAccountState Empty => new ServiceAccountState();
     }
 }

@@ -7,41 +7,29 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['ProjectMemberGroupArgs', 'ProjectMemberGroup']
+__all__ = ['ServiceAccountArgs', 'ServiceAccount']
 
 @pulumi.input_type
-class ProjectMemberGroupArgs:
+class ServiceAccountArgs:
     def __init__(__self__, *,
-                 group_slug: pulumi.Input[str],
                  project: pulumi.Input[str],
                  role: pulumi.Input[str],
+                 service_account_slug: pulumi.Input[str],
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        The set of arguments for constructing a ProjectMemberGroup resource.
-        :param pulumi.Input[str] group_slug: The slug of the Doppler group
+        The set of arguments for constructing a ServiceAccount resource.
         :param pulumi.Input[str] project: The name of the Doppler project where the access is applied
         :param pulumi.Input[str] role: The project role identifier for the access
+        :param pulumi.Input[str] service_account_slug: The slug of the Doppler service account
         :param pulumi.Input[Sequence[pulumi.Input[str]]] environments: The environments in the project where this access will apply (null or omitted for roles with access to all environments)
         """
-        pulumi.set(__self__, "group_slug", group_slug)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "service_account_slug", service_account_slug)
         if environments is not None:
             pulumi.set(__self__, "environments", environments)
-
-    @property
-    @pulumi.getter(name="groupSlug")
-    def group_slug(self) -> pulumi.Input[str]:
-        """
-        The slug of the Doppler group
-        """
-        return pulumi.get(self, "group_slug")
-
-    @group_slug.setter
-    def group_slug(self, value: pulumi.Input[str]):
-        pulumi.set(self, "group_slug", value)
 
     @property
     @pulumi.getter
@@ -68,6 +56,18 @@ class ProjectMemberGroupArgs:
         pulumi.set(self, "role", value)
 
     @property
+    @pulumi.getter(name="serviceAccountSlug")
+    def service_account_slug(self) -> pulumi.Input[str]:
+        """
+        The slug of the Doppler service account
+        """
+        return pulumi.get(self, "service_account_slug")
+
+    @service_account_slug.setter
+    def service_account_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_account_slug", value)
+
+    @property
     @pulumi.getter
     def environments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -81,27 +81,27 @@ class ProjectMemberGroupArgs:
 
 
 @pulumi.input_type
-class _ProjectMemberGroupState:
+class _ServiceAccountState:
     def __init__(__self__, *,
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 group_slug: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 role: Optional[pulumi.Input[str]] = None):
+                 role: Optional[pulumi.Input[str]] = None,
+                 service_account_slug: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering ProjectMemberGroup resources.
+        Input properties used for looking up and filtering ServiceAccount resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] environments: The environments in the project where this access will apply (null or omitted for roles with access to all environments)
-        :param pulumi.Input[str] group_slug: The slug of the Doppler group
         :param pulumi.Input[str] project: The name of the Doppler project where the access is applied
         :param pulumi.Input[str] role: The project role identifier for the access
+        :param pulumi.Input[str] service_account_slug: The slug of the Doppler service account
         """
         if environments is not None:
             pulumi.set(__self__, "environments", environments)
-        if group_slug is not None:
-            pulumi.set(__self__, "group_slug", group_slug)
         if project is not None:
             pulumi.set(__self__, "project", project)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if service_account_slug is not None:
+            pulumi.set(__self__, "service_account_slug", service_account_slug)
 
     @property
     @pulumi.getter
@@ -114,18 +114,6 @@ class _ProjectMemberGroupState:
     @environments.setter
     def environments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "environments", value)
-
-    @property
-    @pulumi.getter(name="groupSlug")
-    def group_slug(self) -> Optional[pulumi.Input[str]]:
-        """
-        The slug of the Doppler group
-        """
-        return pulumi.get(self, "group_slug")
-
-    @group_slug.setter
-    def group_slug(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "group_slug", value)
 
     @property
     @pulumi.getter
@@ -151,19 +139,31 @@ class _ProjectMemberGroupState:
     def role(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role", value)
 
+    @property
+    @pulumi.getter(name="serviceAccountSlug")
+    def service_account_slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        The slug of the Doppler service account
+        """
+        return pulumi.get(self, "service_account_slug")
 
-class ProjectMemberGroup(pulumi.CustomResource):
+    @service_account_slug.setter
+    def service_account_slug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_slug", value)
+
+
+class ServiceAccount(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 group_slug: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 service_account_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manage a Doppler project group member.
+        Manage a Doppler project service account member.
 
         ## Example Usage
 
@@ -171,31 +171,32 @@ class ProjectMemberGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_engineering = doppler.ProjectMemberGroup("backend_engineering",
+        backend_ci = doppler.project_member.ServiceAccount("backend_ci",
             project="backend",
-            group_slug=engineering["slug"],
-            role="collaborator",
+            service_account_slug=ci["slug"],
+            role="viewer",
             environments=[
                 "dev",
                 "stg",
+                "prd",
             ])
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] environments: The environments in the project where this access will apply (null or omitted for roles with access to all environments)
-        :param pulumi.Input[str] group_slug: The slug of the Doppler group
         :param pulumi.Input[str] project: The name of the Doppler project where the access is applied
         :param pulumi.Input[str] role: The project role identifier for the access
+        :param pulumi.Input[str] service_account_slug: The slug of the Doppler service account
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProjectMemberGroupArgs,
+                 args: ServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manage a Doppler project group member.
+        Manage a Doppler project service account member.
 
         ## Example Usage
 
@@ -203,23 +204,24 @@ class ProjectMemberGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_doppler as doppler
 
-        backend_engineering = doppler.ProjectMemberGroup("backend_engineering",
+        backend_ci = doppler.project_member.ServiceAccount("backend_ci",
             project="backend",
-            group_slug=engineering["slug"],
-            role="collaborator",
+            service_account_slug=ci["slug"],
+            role="viewer",
             environments=[
                 "dev",
                 "stg",
+                "prd",
             ])
         ```
 
         :param str resource_name: The name of the resource.
-        :param ProjectMemberGroupArgs args: The arguments to use to populate this resource's properties.
+        :param ServiceAccountArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ProjectMemberGroupArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(ServiceAccountArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -229,9 +231,9 @@ class ProjectMemberGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 group_slug: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 service_account_slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -239,20 +241,20 @@ class ProjectMemberGroup(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ProjectMemberGroupArgs.__new__(ProjectMemberGroupArgs)
+            __props__ = ServiceAccountArgs.__new__(ServiceAccountArgs)
 
             __props__.__dict__["environments"] = environments
-            if group_slug is None and not opts.urn:
-                raise TypeError("Missing required property 'group_slug'")
-            __props__.__dict__["group_slug"] = group_slug
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
             __props__.__dict__["project"] = project
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
-        super(ProjectMemberGroup, __self__).__init__(
-            'doppler:index/projectMemberGroup:ProjectMemberGroup',
+            if service_account_slug is None and not opts.urn:
+                raise TypeError("Missing required property 'service_account_slug'")
+            __props__.__dict__["service_account_slug"] = service_account_slug
+        super(ServiceAccount, __self__).__init__(
+            'doppler:projectMember/serviceAccount:ServiceAccount',
             resource_name,
             __props__,
             opts)
@@ -262,30 +264,30 @@ class ProjectMemberGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            group_slug: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            role: Optional[pulumi.Input[str]] = None) -> 'ProjectMemberGroup':
+            role: Optional[pulumi.Input[str]] = None,
+            service_account_slug: Optional[pulumi.Input[str]] = None) -> 'ServiceAccount':
         """
-        Get an existing ProjectMemberGroup resource's state with the given name, id, and optional extra
+        Get an existing ServiceAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] environments: The environments in the project where this access will apply (null or omitted for roles with access to all environments)
-        :param pulumi.Input[str] group_slug: The slug of the Doppler group
         :param pulumi.Input[str] project: The name of the Doppler project where the access is applied
         :param pulumi.Input[str] role: The project role identifier for the access
+        :param pulumi.Input[str] service_account_slug: The slug of the Doppler service account
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _ProjectMemberGroupState.__new__(_ProjectMemberGroupState)
+        __props__ = _ServiceAccountState.__new__(_ServiceAccountState)
 
         __props__.__dict__["environments"] = environments
-        __props__.__dict__["group_slug"] = group_slug
         __props__.__dict__["project"] = project
         __props__.__dict__["role"] = role
-        return ProjectMemberGroup(resource_name, opts=opts, __props__=__props__)
+        __props__.__dict__["service_account_slug"] = service_account_slug
+        return ServiceAccount(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
@@ -294,14 +296,6 @@ class ProjectMemberGroup(pulumi.CustomResource):
         The environments in the project where this access will apply (null or omitted for roles with access to all environments)
         """
         return pulumi.get(self, "environments")
-
-    @property
-    @pulumi.getter(name="groupSlug")
-    def group_slug(self) -> pulumi.Output[str]:
-        """
-        The slug of the Doppler group
-        """
-        return pulumi.get(self, "group_slug")
 
     @property
     @pulumi.getter
@@ -318,4 +312,12 @@ class ProjectMemberGroup(pulumi.CustomResource):
         The project role identifier for the access
         """
         return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="serviceAccountSlug")
+    def service_account_slug(self) -> pulumi.Output[str]:
+        """
+        The slug of the Doppler service account
+        """
+        return pulumi.get(self, "service_account_slug")
 
