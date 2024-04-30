@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { ConfigArgs, ConfigState } from "./config";
-export type Config = import("./config").Config;
-export const Config: typeof import("./config").Config = null as any;
-utilities.lazyLoad(exports, ["Config"], () => require("./config"));
+export { BranchConfigArgs, BranchConfigState } from "./branchConfig";
+export type BranchConfig = import("./branchConfig").BranchConfig;
+export const BranchConfig: typeof import("./branchConfig").BranchConfig = null as any;
+utilities.lazyLoad(exports, ["BranchConfig"], () => require("./branchConfig"));
 
 export { EnvironmentArgs, EnvironmentState } from "./environment";
 export type Environment = import("./environment").Environment;
@@ -52,8 +52,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "doppler:index/config:Config":
-                return new Config(name, <any>undefined, { urn })
+            case "doppler:index/branchConfig:BranchConfig":
+                return new BranchConfig(name, <any>undefined, { urn })
             case "doppler:index/environment:Environment":
                 return new Environment(name, <any>undefined, { urn })
             case "doppler:index/project:Project":
@@ -67,7 +67,7 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("doppler", "index/config", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/branchConfig", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/environment", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/project", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/secret", _module)

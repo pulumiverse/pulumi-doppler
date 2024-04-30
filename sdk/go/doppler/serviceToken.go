@@ -12,6 +12,36 @@ import (
 	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a Doppler service token.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := doppler.NewServiceToken(ctx, "backendCiToken", &doppler.ServiceTokenArgs{
+//				Access:  pulumi.String("read"),
+//				Config:  pulumi.String("ci"),
+//				Name:    pulumi.String("Builder Token"),
+//				Project: pulumi.String("backend"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServiceToken struct {
 	pulumi.CustomResourceState
 
@@ -36,6 +66,9 @@ func NewServiceToken(ctx *pulumi.Context,
 
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
@@ -102,7 +135,7 @@ type serviceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config string `pulumi:"config"`
 	// The name of the Doppler service token
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project where the service token is located
 	Project string `pulumi:"project"`
 }
@@ -114,7 +147,7 @@ type ServiceTokenArgs struct {
 	// The name of the Doppler config where the service token is located
 	Config pulumi.StringInput
 	// The name of the Doppler service token
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project where the service token is located
 	Project pulumi.StringInput
 }

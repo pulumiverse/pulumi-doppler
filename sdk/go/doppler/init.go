@@ -21,8 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "doppler:index/config:Config":
-		r = &Config{}
+	case "doppler:index/branchConfig:BranchConfig":
+		r = &BranchConfig{}
 	case "doppler:index/environment:Environment":
 		r = &Environment{}
 	case "doppler:index/project:Project":
@@ -64,7 +64,7 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"doppler",
-		"index/config",
+		"index/branchConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Retrieve all secrets in the config.
+ */
 export function secrets(args?: SecretsArgs, opts?: pulumi.InvokeOptions): Promise<SecretsResult> {
     args = args || {};
 
@@ -18,7 +21,13 @@ export function secrets(args?: SecretsArgs, opts?: pulumi.InvokeOptions): Promis
  * A collection of arguments for invoking Secrets.
  */
 export interface SecretsArgs {
+    /**
+     * The name of the Doppler config (required for personal tokens)
+     */
     config?: string;
+    /**
+     * The name of the Doppler project (required for personal tokens)
+     */
     project?: string;
 }
 
@@ -26,14 +35,26 @@ export interface SecretsArgs {
  * A collection of values returned by Secrets.
  */
 export interface SecretsResult {
+    /**
+     * The name of the Doppler config (required for personal tokens)
+     */
     readonly config?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A mapping of secret names to computed secret values
+     */
     readonly map: {[key: string]: string};
+    /**
+     * The name of the Doppler project (required for personal tokens)
+     */
     readonly project?: string;
 }
+/**
+ * Retrieve all secrets in the config.
+ */
 export function secretsOutput(args?: SecretsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecretsResult> {
     return pulumi.output(args).apply((a: any) => secrets(a, opts))
 }
@@ -42,6 +63,12 @@ export function secretsOutput(args?: SecretsOutputArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking Secrets.
  */
 export interface SecretsOutputArgs {
+    /**
+     * The name of the Doppler config (required for personal tokens)
+     */
     config?: pulumi.Input<string>;
+    /**
+     * The name of the Doppler project (required for personal tokens)
+     */
     project?: pulumi.Input<string>;
 }

@@ -10,6 +10,9 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
+    /// <summary>
+    /// Manage a single Doppler secret in a config.
+    /// </summary>
     [DopplerResourceType("doppler:index/secret:Secret")]
     public partial class Secret : global::Pulumi.CustomResource
     {
@@ -104,8 +107,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler secret
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project

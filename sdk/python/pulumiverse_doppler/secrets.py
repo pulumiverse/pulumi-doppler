@@ -38,6 +38,9 @@ class SecretsResult:
     @property
     @pulumi.getter
     def config(self) -> Optional[str]:
+        """
+        The name of the Doppler config (required for personal tokens)
+        """
         return pulumi.get(self, "config")
 
     @property
@@ -51,11 +54,17 @@ class SecretsResult:
     @property
     @pulumi.getter
     def map(self) -> Mapping[str, str]:
+        """
+        A mapping of secret names to computed secret values
+        """
         return pulumi.get(self, "map")
 
     @property
     @pulumi.getter
     def project(self) -> Optional[str]:
+        """
+        The name of the Doppler project (required for personal tokens)
+        """
         return pulumi.get(self, "project")
 
 
@@ -75,7 +84,11 @@ def secrets(config: Optional[str] = None,
             project: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableSecretsResult:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve all secrets in the config.
+
+
+    :param str config: The name of the Doppler config (required for personal tokens)
+    :param str project: The name of the Doppler project (required for personal tokens)
     """
     __args__ = dict()
     __args__['config'] = config
@@ -95,6 +108,10 @@ def secrets_output(config: Optional[pulumi.Input[Optional[str]]] = None,
                    project: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecretsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve all secrets in the config.
+
+
+    :param str config: The name of the Doppler config (required for personal tokens)
+    :param str project: The name of the Doppler project (required for personal tokens)
     """
     ...

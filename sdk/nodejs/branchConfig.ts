@@ -4,9 +4,25 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-export class Config extends pulumi.CustomResource {
+/**
+ * Manage a Doppler config.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as doppler from "@pulumiverse/doppler";
+ *
+ * const backendCiGithub = new doppler.BranchConfig("backendCiGithub", {
+ *     environment: "ci",
+ *     name: "ci_github",
+ *     project: "backend",
+ * });
+ * ```
+ */
+export class BranchConfig extends pulumi.CustomResource {
     /**
-     * Get an existing Config resource's state with the given name, ID, and optional extra
+     * Get an existing BranchConfig resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -14,22 +30,22 @@ export class Config extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ConfigState, opts?: pulumi.CustomResourceOptions): Config {
-        return new Config(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BranchConfigState, opts?: pulumi.CustomResourceOptions): BranchConfig {
+        return new BranchConfig(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'doppler:index/config:Config';
+    public static readonly __pulumiType = 'doppler:index/branchConfig:BranchConfig';
 
     /**
-     * Returns true if the given object is an instance of Config.  This is designed to work even
+     * Returns true if the given object is an instance of BranchConfig.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Config {
+    public static isInstance(obj: any): obj is BranchConfig {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Config.__pulumiType;
+        return obj['__pulumiType'] === BranchConfig.__pulumiType;
     }
 
     /**
@@ -46,25 +62,28 @@ export class Config extends pulumi.CustomResource {
     public readonly project!: pulumi.Output<string>;
 
     /**
-     * Create a Config resource with the given unique name, arguments, and options.
+     * Create a BranchConfig resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ConfigArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ConfigArgs | ConfigState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: BranchConfigArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: BranchConfigArgs | BranchConfigState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ConfigState | undefined;
+            const state = argsOrState as BranchConfigState | undefined;
             resourceInputs["environment"] = state ? state.environment : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
         } else {
-            const args = argsOrState as ConfigArgs | undefined;
+            const args = argsOrState as BranchConfigArgs | undefined;
             if ((!args || args.environment === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'environment'");
+            }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
             }
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
@@ -74,14 +93,16 @@ export class Config extends pulumi.CustomResource {
             resourceInputs["project"] = args ? args.project : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Config.__pulumiType, name, resourceInputs, opts);
+        const aliasOpts = { aliases: [{ type: "doppler:index/config:Config" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
+        super(BranchConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Config resources.
+ * Input properties used for looking up and filtering BranchConfig resources.
  */
-export interface ConfigState {
+export interface BranchConfigState {
     /**
      * The name of the Doppler environment where the config is located
      */
@@ -97,9 +118,9 @@ export interface ConfigState {
 }
 
 /**
- * The set of arguments for constructing a Config resource.
+ * The set of arguments for constructing a BranchConfig resource.
  */
-export interface ConfigArgs {
+export interface BranchConfigArgs {
     /**
      * The name of the Doppler environment where the config is located
      */
@@ -107,7 +128,7 @@ export interface ConfigArgs {
     /**
      * The name of the Doppler config
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The name of the Doppler project where the config is located
      */

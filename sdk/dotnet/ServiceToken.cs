@@ -10,6 +10,30 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
+    /// <summary>
+    /// Manage a Doppler service token.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Doppler = Pulumiverse.Doppler;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backendCiToken = new Doppler.ServiceToken("backendCiToken", new()
+    ///     {
+    ///         Access = "read",
+    ///         Config = "ci",
+    ///         Name = "Builder Token",
+    ///         Project = "backend",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [DopplerResourceType("doppler:index/serviceToken:ServiceToken")]
     public partial class ServiceToken : global::Pulumi.CustomResource
     {
@@ -109,8 +133,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler service token
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the service token is located

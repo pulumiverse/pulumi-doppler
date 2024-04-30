@@ -12,6 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
+// Manage a single Doppler secret in a config.
 type Secret struct {
 	pulumi.CustomResourceState
 
@@ -36,6 +37,9 @@ func NewSecret(ctx *pulumi.Context,
 
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.Project == nil {
 		return nil, errors.New("invalid value for required argument 'Project'")
@@ -107,7 +111,7 @@ type secretArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
 	// The name of the Doppler secret
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The name of the Doppler project
 	Project string `pulumi:"project"`
 	// The raw secret value
@@ -119,7 +123,7 @@ type SecretArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
 	// The name of the Doppler secret
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The name of the Doppler project
 	Project pulumi.StringInput
 	// The raw secret value

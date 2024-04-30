@@ -5,7 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .config import *
+from .branch_config import *
 from .environment import *
 from .project import *
 from .provider import *
@@ -25,10 +25,10 @@ _utilities.register(
 [
  {
   "pkg": "doppler",
-  "mod": "index/config",
+  "mod": "index/branchConfig",
   "fqn": "pulumiverse_doppler",
   "classes": {
-   "doppler:index/config:Config": "Config"
+   "doppler:index/branchConfig:BranchConfig": "BranchConfig"
   }
  },
  {

@@ -12,9 +12,15 @@ namespace Pulumiverse.Doppler
 {
     public static class Secrets
     {
+        /// <summary>
+        /// Retrieve all secrets in the config.
+        /// </summary>
         public static Task<SecretsResult> InvokeAsync(SecretsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SecretsResult>("doppler:index/secrets:Secrets", args ?? new SecretsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve all secrets in the config.
+        /// </summary>
         public static Output<SecretsResult> Invoke(SecretsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SecretsResult>("doppler:index/secrets:Secrets", args ?? new SecretsInvokeArgs(), options.WithDefaults());
     }
@@ -22,9 +28,15 @@ namespace Pulumiverse.Doppler
 
     public sealed class SecretsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Doppler config (required for personal tokens)
+        /// </summary>
         [Input("config")]
         public string? Config { get; set; }
 
+        /// <summary>
+        /// The name of the Doppler project (required for personal tokens)
+        /// </summary>
         [Input("project")]
         public string? Project { get; set; }
 
@@ -36,9 +48,15 @@ namespace Pulumiverse.Doppler
 
     public sealed class SecretsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Doppler config (required for personal tokens)
+        /// </summary>
         [Input("config")]
         public Input<string>? Config { get; set; }
 
+        /// <summary>
+        /// The name of the Doppler project (required for personal tokens)
+        /// </summary>
         [Input("project")]
         public Input<string>? Project { get; set; }
 
@@ -52,12 +70,21 @@ namespace Pulumiverse.Doppler
     [OutputType]
     public sealed class SecretsResult
     {
+        /// <summary>
+        /// The name of the Doppler config (required for personal tokens)
+        /// </summary>
         public readonly string? Config;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A mapping of secret names to computed secret values
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Map;
+        /// <summary>
+        /// The name of the Doppler project (required for personal tokens)
+        /// </summary>
         public readonly string? Project;
 
         [OutputConstructor]

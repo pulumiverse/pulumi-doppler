@@ -10,6 +10,29 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
+    /// <summary>
+    /// Manage a Doppler environment.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Doppler = Pulumiverse.Doppler;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backendCi = new Doppler.Environment("backendCi", new()
+    ///     {
+    ///         Name = "Continuous Integration",
+    ///         Project = "backend",
+    ///         Slug = "ci",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [DopplerResourceType("doppler:index/environment:Environment")]
     public partial class Environment : global::Pulumi.CustomResource
     {
@@ -81,8 +104,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler environment
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the environment is located

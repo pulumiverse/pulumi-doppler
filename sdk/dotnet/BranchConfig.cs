@@ -10,8 +10,31 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
-    [DopplerResourceType("doppler:index/config:Config")]
-    public partial class Config : global::Pulumi.CustomResource
+    /// <summary>
+    /// Manage a Doppler config.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Doppler = Pulumiverse.Doppler;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backendCiGithub = new Doppler.BranchConfig("backendCiGithub", new()
+    ///     {
+    ///         Environment = "ci",
+    ///         Name = "ci_github",
+    ///         Project = "backend",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
+    [DopplerResourceType("doppler:index/branchConfig:BranchConfig")]
+    public partial class BranchConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Doppler environment where the config is located
@@ -33,19 +56,19 @@ namespace Pulumiverse.Doppler
 
 
         /// <summary>
-        /// Create a Config resource with the given unique name, arguments, and options.
+        /// Create a BranchConfig resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Config(string name, ConfigArgs args, CustomResourceOptions? options = null)
-            : base("doppler:index/config:Config", name, args ?? new ConfigArgs(), MakeResourceOptions(options, ""))
+        public BranchConfig(string name, BranchConfigArgs args, CustomResourceOptions? options = null)
+            : base("doppler:index/branchConfig:BranchConfig", name, args ?? new BranchConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Config(string name, Input<string> id, ConfigState? state = null, CustomResourceOptions? options = null)
-            : base("doppler:index/config:Config", name, state, MakeResourceOptions(options, id))
+        private BranchConfig(string name, Input<string> id, BranchConfigState? state = null, CustomResourceOptions? options = null)
+            : base("doppler:index/branchConfig:BranchConfig", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -55,6 +78,10 @@ namespace Pulumiverse.Doppler
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "doppler:index/config:Config" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -62,7 +89,7 @@ namespace Pulumiverse.Doppler
             return merged;
         }
         /// <summary>
-        /// Get an existing Config resource's state with the given name, ID, and optional extra
+        /// Get an existing BranchConfig resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -70,13 +97,13 @@ namespace Pulumiverse.Doppler
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Config Get(string name, Input<string> id, ConfigState? state = null, CustomResourceOptions? options = null)
+        public static BranchConfig Get(string name, Input<string> id, BranchConfigState? state = null, CustomResourceOptions? options = null)
         {
-            return new Config(name, id, state, options);
+            return new BranchConfig(name, id, state, options);
         }
     }
 
-    public sealed class ConfigArgs : global::Pulumi.ResourceArgs
+    public sealed class BranchConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Doppler environment where the config is located
@@ -87,8 +114,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler config
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The name of the Doppler project where the config is located
@@ -96,13 +123,13 @@ namespace Pulumiverse.Doppler
         [Input("project", required: true)]
         public Input<string> Project { get; set; } = null!;
 
-        public ConfigArgs()
+        public BranchConfigArgs()
         {
         }
-        public static new ConfigArgs Empty => new ConfigArgs();
+        public static new BranchConfigArgs Empty => new BranchConfigArgs();
     }
 
-    public sealed class ConfigState : global::Pulumi.ResourceArgs
+    public sealed class BranchConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Doppler environment where the config is located
@@ -122,9 +149,9 @@ namespace Pulumiverse.Doppler
         [Input("project")]
         public Input<string>? Project { get; set; }
 
-        public ConfigState()
+        public BranchConfigState()
         {
         }
-        public static new ConfigState Empty => new ConfigState();
+        public static new BranchConfigState Empty => new BranchConfigState();
     }
 }

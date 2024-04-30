@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manage a Doppler project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as doppler from "@pulumiverse/doppler";
+ *
+ * const backend = new doppler.Project("backend", {
+ *     description: "The main backend project",
+ *     name: "backend",
+ * });
+ * ```
+ */
 export class Project extends pulumi.CustomResource {
     /**
      * Get an existing Project resource's state with the given name, ID, and optional extra
@@ -48,7 +63,7 @@ export class Project extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProjectArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: ProjectArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectArgs | ProjectState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -58,6 +73,9 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
         }
@@ -91,5 +109,5 @@ export interface ProjectArgs {
     /**
      * The name of the Doppler project
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
 }

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manage a single Doppler secret in a config.
+ */
 export class Secret extends pulumi.CustomResource {
     /**
      * Get an existing Secret resource's state with the given name, ID, and optional extra
@@ -76,6 +79,9 @@ export class Secret extends pulumi.CustomResource {
             if ((!args || args.config === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
@@ -132,7 +138,7 @@ export interface SecretArgs {
     /**
      * The name of the Doppler secret
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The name of the Doppler project
      */

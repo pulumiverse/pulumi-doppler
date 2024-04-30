@@ -10,6 +10,28 @@ using Pulumi;
 
 namespace Pulumiverse.Doppler
 {
+    /// <summary>
+    /// Manage a Doppler project.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Doppler = Pulumiverse.Doppler;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backend = new Doppler.Project("backend", new()
+    ///     {
+    ///         Description = "The main backend project",
+    ///         Name = "backend",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [DopplerResourceType("doppler:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
     {
@@ -33,7 +55,7 @@ namespace Pulumiverse.Doppler
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Project(string name, ProjectArgs? args = null, CustomResourceOptions? options = null)
+        public Project(string name, ProjectArgs args, CustomResourceOptions? options = null)
             : base("doppler:index/project:Project", name, args ?? new ProjectArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -81,8 +103,8 @@ namespace Pulumiverse.Doppler
         /// <summary>
         /// The name of the Doppler project
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         public ProjectArgs()
         {
