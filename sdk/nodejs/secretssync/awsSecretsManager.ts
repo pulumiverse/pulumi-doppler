@@ -61,6 +61,9 @@ import * as utilities from "../utilities";
  *     config: "prd",
  *     region: "us-east-1",
  *     path: "/backend/",
+ *     tags: {
+ *         myTag: "enabled",
+ *     },
  * });
  * ```
  */
@@ -112,6 +115,10 @@ export class AwsSecretsManager extends pulumi.CustomResource {
      * The AWS region
      */
     public readonly region!: pulumi.Output<string>;
+    /**
+     * AWS tags to attach to the secrets
+     */
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a AwsSecretsManager resource with the given unique name, arguments, and options.
@@ -131,6 +138,7 @@ export class AwsSecretsManager extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as AwsSecretsManagerArgs | undefined;
             if ((!args || args.config === undefined) && !opts.urn) {
@@ -153,6 +161,7 @@ export class AwsSecretsManager extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AwsSecretsManager.__pulumiType, name, resourceInputs, opts);
@@ -183,6 +192,10 @@ export interface AwsSecretsManagerState {
      * The AWS region
      */
     region?: pulumi.Input<string>;
+    /**
+     * AWS tags to attach to the secrets
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -209,4 +222,8 @@ export interface AwsSecretsManagerArgs {
      * The AWS region
      */
     region: pulumi.Input<string>;
+    /**
+     * AWS tags to attach to the secrets
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

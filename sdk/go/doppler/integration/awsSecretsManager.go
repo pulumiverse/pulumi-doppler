@@ -101,6 +101,9 @@ import (
 //				Config:      pulumi.String("prd"),
 //				Region:      pulumi.String("us-east-1"),
 //				Path:        pulumi.String("/backend/"),
+//				Tags: pulumi.StringMap{
+//					"myTag": pulumi.String("enabled"),
+//				},
 //			})
 //			if err != nil {
 //				return err

@@ -18,7 +18,8 @@ class AwsSecretsManagerArgs:
                  integration: pulumi.Input[str],
                  path: pulumi.Input[str],
                  project: pulumi.Input[str],
-                 region: pulumi.Input[str]):
+                 region: pulumi.Input[str],
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a AwsSecretsManager resource.
         :param pulumi.Input[str] config: The name of the Doppler config
@@ -26,12 +27,15 @@ class AwsSecretsManagerArgs:
         :param pulumi.Input[str] path: The path to the secret in AWS
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] region: The AWS region
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: AWS tags to attach to the secrets
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "integration", integration)
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -93,6 +97,18 @@ class AwsSecretsManagerArgs:
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        AWS tags to attach to the secrets
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _AwsSecretsManagerState:
@@ -101,7 +117,8 @@ class _AwsSecretsManagerState:
                  integration: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering AwsSecretsManager resources.
         :param pulumi.Input[str] config: The name of the Doppler config
@@ -109,6 +126,7 @@ class _AwsSecretsManagerState:
         :param pulumi.Input[str] path: The path to the secret in AWS
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] region: The AWS region
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: AWS tags to attach to the secrets
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -120,6 +138,8 @@ class _AwsSecretsManagerState:
             pulumi.set(__self__, "project", project)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -181,6 +201,18 @@ class _AwsSecretsManagerState:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        AWS tags to attach to the secrets
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 class AwsSecretsManager(pulumi.CustomResource):
     @overload
@@ -192,6 +224,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Manage an AWS Secrets Manager Doppler sync.
@@ -248,7 +281,10 @@ class AwsSecretsManager(pulumi.CustomResource):
             project="backend",
             config="prd",
             region="us-east-1",
-            path="/backend/")
+            path="/backend/",
+            tags={
+                "myTag": "enabled",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -258,6 +294,7 @@ class AwsSecretsManager(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to the secret in AWS
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] region: The AWS region
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: AWS tags to attach to the secrets
         """
         ...
     @overload
@@ -320,7 +357,10 @@ class AwsSecretsManager(pulumi.CustomResource):
             project="backend",
             config="prd",
             region="us-east-1",
-            path="/backend/")
+            path="/backend/",
+            tags={
+                "myTag": "enabled",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -343,6 +383,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -367,6 +408,7 @@ class AwsSecretsManager(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
+            __props__.__dict__["tags"] = tags
         super(AwsSecretsManager, __self__).__init__(
             'doppler:secretsSync/awsSecretsManager:AwsSecretsManager',
             resource_name,
@@ -381,7 +423,8 @@ class AwsSecretsManager(pulumi.CustomResource):
             integration: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'AwsSecretsManager':
+            region: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'AwsSecretsManager':
         """
         Get an existing AwsSecretsManager resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -394,6 +437,7 @@ class AwsSecretsManager(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to the secret in AWS
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] region: The AWS region
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: AWS tags to attach to the secrets
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -404,6 +448,7 @@ class AwsSecretsManager(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["project"] = project
         __props__.__dict__["region"] = region
+        __props__.__dict__["tags"] = tags
         return AwsSecretsManager(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -445,4 +490,12 @@ class AwsSecretsManager(pulumi.CustomResource):
         The AWS region
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        AWS tags to attach to the secrets
+        """
+        return pulumi.get(self, "tags")
 

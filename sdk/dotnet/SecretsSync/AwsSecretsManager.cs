@@ -95,6 +95,10 @@ namespace Pulumiverse.Doppler.SecretsSync
     ///         Config = "prd",
     ///         Region = "us-east-1",
     ///         Path = "/backend/",
+    ///         Tags = 
+    ///         {
+    ///             { "myTag", "enabled" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -132,6 +136,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// AWS tags to attach to the secrets
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -210,6 +220,18 @@ namespace Pulumiverse.Doppler.SecretsSync
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// AWS tags to attach to the secrets
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         public AwsSecretsManagerArgs()
         {
         }
@@ -247,6 +269,18 @@ namespace Pulumiverse.Doppler.SecretsSync
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// AWS tags to attach to the secrets
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         public AwsSecretsManagerState()
         {

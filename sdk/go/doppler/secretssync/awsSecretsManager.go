@@ -101,6 +101,9 @@ import (
 //				Config:      pulumi.String("prd"),
 //				Region:      pulumi.String("us-east-1"),
 //				Path:        pulumi.String("/backend/"),
+//				Tags: pulumi.StringMap{
+//					"myTag": pulumi.String("enabled"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -123,6 +126,8 @@ type AwsSecretsManager struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The AWS region
 	Region pulumi.StringOutput `pulumi:"region"`
+	// AWS tags to attach to the secrets
+	Tags pulumi.StringMapOutput `pulumi:"tags"`
 }
 
 // NewAwsSecretsManager registers a new resource with the given unique name, arguments, and options.
@@ -180,6 +185,8 @@ type awsSecretsManagerState struct {
 	Project *string `pulumi:"project"`
 	// The AWS region
 	Region *string `pulumi:"region"`
+	// AWS tags to attach to the secrets
+	Tags map[string]string `pulumi:"tags"`
 }
 
 type AwsSecretsManagerState struct {
@@ -193,6 +200,8 @@ type AwsSecretsManagerState struct {
 	Project pulumi.StringPtrInput
 	// The AWS region
 	Region pulumi.StringPtrInput
+	// AWS tags to attach to the secrets
+	Tags pulumi.StringMapInput
 }
 
 func (AwsSecretsManagerState) ElementType() reflect.Type {
@@ -210,6 +219,8 @@ type awsSecretsManagerArgs struct {
 	Project string `pulumi:"project"`
 	// The AWS region
 	Region string `pulumi:"region"`
+	// AWS tags to attach to the secrets
+	Tags map[string]string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a AwsSecretsManager resource.
@@ -224,6 +235,8 @@ type AwsSecretsManagerArgs struct {
 	Project pulumi.StringInput
 	// The AWS region
 	Region pulumi.StringInput
+	// AWS tags to attach to the secrets
+	Tags pulumi.StringMapInput
 }
 
 func (AwsSecretsManagerArgs) ElementType() reflect.Type {
@@ -336,6 +349,11 @@ func (o AwsSecretsManagerOutput) Project() pulumi.StringOutput {
 // The AWS region
 func (o AwsSecretsManagerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// AWS tags to attach to the secrets
+func (o AwsSecretsManagerOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 type AwsSecretsManagerArrayOutput struct{ *pulumi.OutputState }

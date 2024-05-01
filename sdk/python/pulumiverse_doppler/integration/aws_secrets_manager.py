@@ -152,7 +152,10 @@ class AwsSecretsManager(pulumi.CustomResource):
             project="backend",
             config="prd",
             region="us-east-1",
-            path="/backend/")
+            path="/backend/",
+            tags={
+                "myTag": "enabled",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -221,7 +224,10 @@ class AwsSecretsManager(pulumi.CustomResource):
             project="backend",
             config="prd",
             region="us-east-1",
-            path="/backend/")
+            path="/backend/",
+            tags={
+                "myTag": "enabled",
+            })
         ```
 
         :param str resource_name: The name of the resource.
