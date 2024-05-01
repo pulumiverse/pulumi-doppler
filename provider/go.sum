@@ -1233,8 +1233,8 @@ github.com/BurntSushi/toml v1.2.1 h1:9F2/+DoOYIOksmaJFPw1tGFy1eDnIJXg+UHjuD8lTak
 github.com/BurntSushi/toml v1.2.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-github.com/DopplerHQ/terraform-provider-doppler v1.3.0 h1:5td43ASavOVHvLzhk4dSMgL3GJ0MdI2GFmPrrdArKGk=
-github.com/DopplerHQ/terraform-provider-doppler v1.3.0/go.mod h1:8cVZpRDn6zWlVkRPvUf1jZdVD2MsLGTIeo5JbGal78o=
+github.com/DopplerHQ/terraform-provider-doppler v1.4.0 h1:i2mx6llGW5NkfSFQjRUp4XHD7GcpaYH3O6+7PG53bIU=
+github.com/DopplerHQ/terraform-provider-doppler v1.4.0/go.mod h1:/sy0E0B/0sDv2N/BUAHVQeaKF5F9AXTfjBxhCCHpa5Q=
 github.com/GoogleCloudPlatform/cloudsql-proxy v1.31.2/go.mod h1:qR6jVnZTKDCW3j+fC9mOEPHm++1nKDMkqbbkD6KNsfo=
 github.com/HdrHistogram/hdrhistogram-go v1.1.2 h1:5IcZpTvzydCQeHzK4Ef/D5rrSqwxob0t8PQPMybUNFM=
 github.com/HdrHistogram/hdrhistogram-go v1.1.2/go.mod h1:yDgFjdqOqDEKOvasDdhWNXYg9BVp4O+o5f6V/ehm6Oo=
