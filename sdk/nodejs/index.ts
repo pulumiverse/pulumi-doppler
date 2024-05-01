@@ -20,10 +20,20 @@ export const getSecrets: typeof import("./getSecrets").getSecrets = null as any;
 export const getSecretsOutput: typeof import("./getSecrets").getSecretsOutput = null as any;
 utilities.lazyLoad(exports, ["getSecrets","getSecretsOutput"], () => require("./getSecrets"));
 
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
 utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+
+export { GroupMemberArgs, GroupMemberState } from "./groupMember";
+export type GroupMember = import("./groupMember").GroupMember;
+export const GroupMember: typeof import("./groupMember").GroupMember = null as any;
+utilities.lazyLoad(exports, ["GroupMember"], () => require("./groupMember"));
 
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
@@ -74,6 +84,8 @@ const _module = {
                 return new Environment(name, <any>undefined, { urn })
             case "doppler:index/group:Group":
                 return new Group(name, <any>undefined, { urn })
+            case "doppler:index/groupMember:GroupMember":
+                return new GroupMember(name, <any>undefined, { urn })
             case "doppler:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
             case "doppler:index/secret:Secret":
@@ -90,6 +102,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("doppler", "index/branchConfig", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/environment", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/group", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/groupMember", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/project", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/secret", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/serviceAccount", _module)

@@ -84,8 +84,7 @@ def get_secrets(config: Optional[str] = None,
                 project: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsResult:
     """
-    Retrieve all secrets in the config.
-
+    Use this data source to access information about an existing resource.
 
     :param str config: The name of the Doppler config (required for personal tokens)
     :param str project: The name of the Doppler project (required for personal tokens)
@@ -108,8 +107,7 @@ def get_secrets_output(config: Optional[pulumi.Input[Optional[str]]] = None,
                        project: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsResult]:
     """
-    Retrieve all secrets in the config.
-
+    Use this data source to access information about an existing resource.
 
     :param str config: The name of the Doppler config (required for personal tokens)
     :param str project: The name of the Doppler project (required for personal tokens)

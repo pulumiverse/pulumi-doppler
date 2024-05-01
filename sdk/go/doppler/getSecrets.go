@@ -11,7 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/internal"
 )
 
-// Retrieve all secrets in the config.
 func GetSecrets(ctx *pulumi.Context, args *GetSecretsArgs, opts ...pulumi.InvokeOption) (*GetSecretsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSecretsResult
