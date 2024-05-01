@@ -19,9 +19,9 @@ class ProviderArgs:
                  verify_tls: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[str] doppler_token: A Doppler token, either a personal or service token
-        :param pulumi.Input[str] host: The Doppler API host (i.e. https://api.doppler.com)
-        :param pulumi.Input[bool] verify_tls: Whether or not to verify TLS
+        :param pulumi.Input[str] doppler_token: A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
+        :param pulumi.Input[str] host: The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
+        :param pulumi.Input[bool] verify_tls: Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         """
         pulumi.set(__self__, "doppler_token", doppler_token)
         if host is not None:
@@ -33,7 +33,7 @@ class ProviderArgs:
     @pulumi.getter(name="dopplerToken")
     def doppler_token(self) -> pulumi.Input[str]:
         """
-        A Doppler token, either a personal or service token
+        A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         """
         return pulumi.get(self, "doppler_token")
 
@@ -45,7 +45,7 @@ class ProviderArgs:
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
-        The Doppler API host (i.e. https://api.doppler.com)
+        The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         """
         return pulumi.get(self, "host")
 
@@ -57,7 +57,7 @@ class ProviderArgs:
     @pulumi.getter(name="verifyTls")
     def verify_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to verify TLS
+        Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         """
         return pulumi.get(self, "verify_tls")
 
@@ -83,9 +83,9 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] doppler_token: A Doppler token, either a personal or service token
-        :param pulumi.Input[str] host: The Doppler API host (i.e. https://api.doppler.com)
-        :param pulumi.Input[bool] verify_tls: Whether or not to verify TLS
+        :param pulumi.Input[str] doppler_token: A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
+        :param pulumi.Input[str] host: The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
+        :param pulumi.Input[bool] verify_tls: Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         """
         ...
     @overload
@@ -141,7 +141,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="dopplerToken")
     def doppler_token(self) -> pulumi.Output[str]:
         """
-        A Doppler token, either a personal or service token
+        A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         """
         return pulumi.get(self, "doppler_token")
 
@@ -149,7 +149,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def host(self) -> pulumi.Output[Optional[str]]:
         """
-        The Doppler API host (i.e. https://api.doppler.com)
+        The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         """
         return pulumi.get(self, "host")
 

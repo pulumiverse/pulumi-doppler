@@ -20,13 +20,13 @@ namespace Pulumiverse.Doppler
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// A Doppler token, either a personal or service token
+        /// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         /// </summary>
         [Output("dopplerToken")]
         public Output<string> DopplerToken { get; private set; } = null!;
 
         /// <summary>
-        /// The Doppler API host (i.e. https://api.doppler.com)
+        /// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         /// </summary>
         [Output("host")]
         public Output<string?> Host { get; private set; } = null!;
@@ -61,19 +61,19 @@ namespace Pulumiverse.Doppler
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A Doppler token, either a personal or service token
+        /// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         /// </summary>
         [Input("dopplerToken", required: true)]
         public Input<string> DopplerToken { get; set; } = null!;
 
         /// <summary>
-        /// The Doppler API host (i.e. https://api.doppler.com)
+        /// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// Whether or not to verify TLS
+        /// Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         /// </summary>
         [Input("verifyTls", json: true)]
         public Input<bool>? VerifyTls { get; set; }

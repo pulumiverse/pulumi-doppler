@@ -11,16 +11,16 @@ from .. import _utilities
 
 dopplerToken: Optional[str]
 """
-A Doppler token, either a personal or service token
+A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 """
 
 host: Optional[str]
 """
-The Doppler API host (i.e. https://api.doppler.com)
+The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 """
 
 verifyTls: Optional[bool]
 """
-Whether or not to verify TLS
+Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
 """
 
