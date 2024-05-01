@@ -8,7 +8,9 @@ import typing
 from .branch_config import *
 from .environment import *
 from .get_secrets import *
+from .get_user import *
 from .group import *
+from .group_member import *
 from .project import *
 from .provider import *
 from .secret import *
@@ -56,6 +58,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "index/groupMember",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/groupMember:GroupMember": "GroupMember"
   }
  },
  {

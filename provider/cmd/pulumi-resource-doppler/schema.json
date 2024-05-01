@@ -291,6 +291,55 @@
                 "type": "object"
             }
         },
+        "doppler:index/groupMember:GroupMember": {
+            "description": "Manage a Doppler user/group membership.\n\n",
+            "properties": {
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler group\n"
+                },
+                "userSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler workplace user\n"
+                }
+            },
+            "required": [
+                "groupSlug",
+                "userSlug"
+            ],
+            "inputProperties": {
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler group\n",
+                    "willReplaceOnChanges": true
+                },
+                "userSlug": {
+                    "type": "string",
+                    "description": "The slug of the Doppler workplace user\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "groupSlug",
+                "userSlug"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GroupMember resources.\n",
+                "properties": {
+                    "groupSlug": {
+                        "type": "string",
+                        "description": "The slug of the Doppler group\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "userSlug": {
+                        "type": "string",
+                        "description": "The slug of the Doppler workplace user\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "doppler:index/project:Project": {
             "description": "Manage a Doppler project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backend = new doppler.Project(\"backend\", {\n    name: \"backend\",\n    description: \"The main backend project\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend = doppler.Project(\"backend\",\n    name=\"backend\",\n    description=\"The main backend project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backend = new Doppler.Project(\"backend\", new()\n    {\n        Name = \"backend\",\n        Description = \"The main backend project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewProject(ctx, \"backend\", \u0026doppler.ProjectArgs{\n\t\t\tName:        pulumi.String(\"backend\"),\n\t\t\tDescription: pulumi.String(\"The main backend project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Project;\nimport com.pulumi.doppler.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backend = new Project(\"backend\", ProjectArgs.builder()        \n            .name(\"backend\")\n            .description(\"The main backend project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backend:\n    type: doppler:Project\n    properties:\n      name: backend\n      description: The main backend project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -374,7 +423,8 @@
             "inputProperties": {
                 "config": {
                     "type": "string",
-                    "description": "The name of the Doppler config\n"
+                    "description": "The name of the Doppler config\n",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
@@ -382,7 +432,8 @@
                 },
                 "project": {
                     "type": "string",
-                    "description": "The name of the Doppler project\n"
+                    "description": "The name of the Doppler project\n",
+                    "willReplaceOnChanges": true
                 },
                 "value": {
                     "type": "string",
@@ -410,7 +461,8 @@
                     },
                     "config": {
                         "type": "string",
-                        "description": "The name of the Doppler config\n"
+                        "description": "The name of the Doppler config\n",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
@@ -418,7 +470,8 @@
                     },
                     "project": {
                         "type": "string",
-                        "description": "The name of the Doppler project\n"
+                        "description": "The name of the Doppler project\n",
+                        "willReplaceOnChanges": true
                     },
                     "value": {
                         "type": "string",
@@ -1306,7 +1359,6 @@
     },
     "functions": {
         "doppler:index/getSecrets:getSecrets": {
-            "description": "Retrieve all secrets in the config.\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSecrets.\n",
                 "properties": {
@@ -1347,6 +1399,45 @@
                 },
                 "required": [
                     "map",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "doppler:index/getUser:getUser": {
+            "description": "Retrieve an existing Doppler user.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumi/doppler\";\n\nconst nic = doppler.getUser({\n    email: \"nic@doppler.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_doppler as doppler\n\nnic = doppler.get_user(email=\"nic@doppler.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumi.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var nic = Doppler.GetUser.Invoke(new()\n    {\n        Email = \"nic@doppler.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.GetUser(ctx, \u0026doppler.GetUserArgs{\n\t\t\tEmail: \"nic@doppler.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.DopplerFunctions;\nimport com.pulumi.doppler.inputs.GetUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var nic = DopplerFunctions.getUser(GetUserArgs.builder()\n            .email(\"nic@doppler.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  nic:\n    fn::invoke:\n      Function: doppler:getUser\n      Arguments:\n        email: nic@doppler.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUser.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the Doppler user\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "email"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUser.\n",
+                "properties": {
+                    "email": {
+                        "description": "The email address of the Doppler user\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "description": "The slug of the Doppler user\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "slug",
                     "id"
                 ],
                 "type": "object"

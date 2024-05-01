@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Environment{}
 	case "doppler:index/group:Group":
 		r = &Group{}
+	case "doppler:index/groupMember:GroupMember":
+		r = &GroupMember{}
 	case "doppler:index/project:Project":
 		r = &Project{}
 	case "doppler:index/secret:Secret":
@@ -79,6 +81,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"doppler",
 		"index/group",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
+		"index/groupMember",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
