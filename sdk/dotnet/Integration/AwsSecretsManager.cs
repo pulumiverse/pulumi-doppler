@@ -95,6 +95,10 @@ namespace Pulumiverse.Doppler.Integration
     ///         Config = "prd",
     ///         Region = "us-east-1",
     ///         Path = "/backend/",
+    ///         Tags = 
+    ///         {
+    ///             { "myTag", "enabled" },
+    ///         },
     ///     });
     /// 
     /// });

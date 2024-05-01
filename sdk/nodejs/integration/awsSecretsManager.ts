@@ -61,6 +61,9 @@ import * as utilities from "../utilities";
  *     config: "prd",
  *     region: "us-east-1",
  *     path: "/backend/",
+ *     tags: {
+ *         myTag: "enabled",
+ *     },
  * });
  * ```
  */
