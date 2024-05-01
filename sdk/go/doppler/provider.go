@@ -19,9 +19,9 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// A Doppler token, either a personal or service token
+	// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 	DopplerToken pulumi.StringOutput `pulumi:"dopplerToken"`
-	// The Doppler API host (i.e. https://api.doppler.com)
+	// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 	Host pulumi.StringPtrOutput `pulumi:"host"`
 }
 
@@ -45,21 +45,21 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// A Doppler token, either a personal or service token
+	// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 	DopplerToken string `pulumi:"dopplerToken"`
-	// The Doppler API host (i.e. https://api.doppler.com)
+	// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 	Host *string `pulumi:"host"`
-	// Whether or not to verify TLS
+	// Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
 	VerifyTls *bool `pulumi:"verifyTls"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// A Doppler token, either a personal or service token
+	// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 	DopplerToken pulumi.StringInput
-	// The Doppler API host (i.e. https://api.doppler.com)
+	// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 	Host pulumi.StringPtrInput
-	// Whether or not to verify TLS
+	// Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
 	VerifyTls pulumi.BoolPtrInput
 }
 
@@ -100,12 +100,12 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// A Doppler token, either a personal or service token
+// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 func (o ProviderOutput) DopplerToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.DopplerToken }).(pulumi.StringOutput)
 }
 
-// The Doppler API host (i.e. https://api.doppler.com)
+// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 func (o ProviderOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Host }).(pulumi.StringPtrOutput)
 }

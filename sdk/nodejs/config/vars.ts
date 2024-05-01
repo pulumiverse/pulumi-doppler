@@ -8,7 +8,7 @@ declare var exports: any;
 const __config = new pulumi.Config("doppler");
 
 /**
- * A Doppler token, either a personal or service token
+ * A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
  */
 export declare const dopplerToken: string | undefined;
 Object.defineProperty(exports, "dopplerToken", {
@@ -19,7 +19,7 @@ Object.defineProperty(exports, "dopplerToken", {
 });
 
 /**
- * The Doppler API host (i.e. https://api.doppler.com)
+ * The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
  */
 export declare const host: string | undefined;
 Object.defineProperty(exports, "host", {
@@ -30,7 +30,7 @@ Object.defineProperty(exports, "host", {
 });
 
 /**
- * Whether or not to verify TLS
+ * Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
  */
 export declare const verifyTls: boolean | undefined;
 Object.defineProperty(exports, "verifyTls", {

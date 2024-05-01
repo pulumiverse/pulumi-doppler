@@ -11,17 +11,17 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// A Doppler token, either a personal or service token
+// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
 func GetDopplerToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "doppler:dopplerToken")
 }
 
-// The Doppler API host (i.e. https://api.doppler.com)
+// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
 func GetHost(ctx *pulumi.Context) string {
 	return config.Get(ctx, "doppler:host")
 }
 
-// Whether or not to verify TLS
+// Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
 func GetVerifyTls(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "doppler:verifyTls")
 }

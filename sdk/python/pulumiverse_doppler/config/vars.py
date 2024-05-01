@@ -18,21 +18,21 @@ class _ExportableConfig(types.ModuleType):
     @property
     def doppler_token(self) -> Optional[str]:
         """
-        A Doppler token, either a personal or service token
+        A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         """
         return __config__.get('dopplerToken')
 
     @property
     def host(self) -> Optional[str]:
         """
-        The Doppler API host (i.e. https://api.doppler.com)
+        The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         """
         return __config__.get('host')
 
     @property
     def verify_tls(self) -> Optional[bool]:
         """
-        Whether or not to verify TLS
+        Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         """
         return __config__.get_bool('verifyTls')
 

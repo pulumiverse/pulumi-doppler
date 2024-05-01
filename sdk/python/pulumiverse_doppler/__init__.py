@@ -108,6 +108,14 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "integration/terraformCloud",
+  "fqn": "pulumiverse_doppler.integration",
+  "classes": {
+   "doppler:integration/terraformCloud:TerraformCloud": "TerraformCloud"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "projectMember/group",
   "fqn": "pulumiverse_doppler.projectmember",
   "classes": {
@@ -136,6 +144,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler.secretssync",
   "classes": {
    "doppler:secretsSync/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "secretsSync/terraformCloud",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/terraformCloud:TerraformCloud": "TerraformCloud"
   }
  }
 ]

@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AwsParameterStore{}
 	case "doppler:secretsSync/awsSecretsManager:AwsSecretsManager":
 		r = &AwsSecretsManager{}
+	case "doppler:secretsSync/terraformCloud:TerraformCloud":
+		r = &TerraformCloud{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +48,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"doppler",
 		"secretsSync/awsSecretsManager",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
+		"secretsSync/terraformCloud",
 		&module{version},
 	)
 }

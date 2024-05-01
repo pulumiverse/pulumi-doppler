@@ -15,6 +15,11 @@ export type AwsSecretsManager = import("./awsSecretsManager").AwsSecretsManager;
 export const AwsSecretsManager: typeof import("./awsSecretsManager").AwsSecretsManager = null as any;
 utilities.lazyLoad(exports, ["AwsSecretsManager"], () => require("./awsSecretsManager"));
 
+export { TerraformCloudArgs, TerraformCloudState } from "./terraformCloud";
+export type TerraformCloud = import("./terraformCloud").TerraformCloud;
+export const TerraformCloud: typeof import("./terraformCloud").TerraformCloud = null as any;
+utilities.lazyLoad(exports, ["TerraformCloud"], () => require("./terraformCloud"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -24,6 +29,8 @@ const _module = {
                 return new AwsParameterStore(name, <any>undefined, { urn })
             case "doppler:secretsSync/awsSecretsManager:AwsSecretsManager":
                 return new AwsSecretsManager(name, <any>undefined, { urn })
+            case "doppler:secretsSync/terraformCloud:TerraformCloud":
+                return new TerraformCloud(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -31,3 +38,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/awsParameterStore", _module)
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/awsSecretsManager", _module)
+pulumi.runtime.registerResourceModule("doppler", "secretsSync/terraformCloud", _module)

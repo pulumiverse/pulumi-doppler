@@ -58,15 +58,15 @@
         "variables": {
             "dopplerToken": {
                 "type": "string",
-                "description": "A Doppler token, either a personal or service token\n"
+                "description": "A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.\n"
             },
             "host": {
                 "type": "string",
-                "description": "The Doppler API host (i.e. https://api.doppler.com)\n"
+                "description": "The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.\n"
             },
             "verifyTls": {
                 "type": "boolean",
-                "description": "Whether or not to verify TLS\n"
+                "description": "Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.\n"
             }
         },
         "defaults": [
@@ -78,15 +78,15 @@
         "properties": {
             "dopplerToken": {
                 "type": "string",
-                "description": "A Doppler token, either a personal or service token\n"
+                "description": "A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.\n"
             },
             "host": {
                 "type": "string",
-                "description": "The Doppler API host (i.e. https://api.doppler.com)\n"
+                "description": "The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.\n"
             },
             "verifyTls": {
                 "type": "boolean",
-                "description": "Whether or not to verify TLS\n"
+                "description": "Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.\n"
             }
         },
         "required": [
@@ -95,15 +95,15 @@
         "inputProperties": {
             "dopplerToken": {
                 "type": "string",
-                "description": "A Doppler token, either a personal or service token\n"
+                "description": "A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.\n"
             },
             "host": {
                 "type": "string",
-                "description": "The Doppler API host (i.e. https://api.doppler.com)\n"
+                "description": "The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.\n"
             },
             "verifyTls": {
                 "type": "boolean",
-                "description": "Whether or not to verify TLS\n"
+                "description": "Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.\n"
             }
         },
         "requiredInputs": [
@@ -690,6 +690,56 @@
                 "type": "object"
             }
         },
+        "doppler:integration/terraformCloud:TerraformCloud": {
+            "description": "## Example Usage\n\n",
+            "properties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "A Terraform Cloud API key.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the integration\n"
+                }
+            },
+            "required": [
+                "apiKey",
+                "name"
+            ],
+            "inputProperties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "A Terraform Cloud API key.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the integration\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "apiKey",
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TerraformCloud resources.\n",
+                "properties": {
+                    "apiKey": {
+                        "type": "string",
+                        "description": "A Terraform Cloud API key.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the integration\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "doppler:projectMember/group:Group": {
             "description": "Manage a Doppler project group member.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendEngineering = new doppler.projectmember.Group(\"backend_engineering\", {\n    project: \"backend\",\n    groupSlug: engineering.slug,\n    role: \"collaborator\",\n    environments: [\n        \"dev\",\n        \"stg\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_engineering = doppler.project_member.Group(\"backend_engineering\",\n    project=\"backend\",\n    group_slug=engineering[\"slug\"],\n    role=\"collaborator\",\n    environments=[\n        \"dev\",\n        \"stg\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendEngineering = new Doppler.ProjectMember.Group(\"backend_engineering\", new()\n    {\n        Project = \"backend\",\n        GroupSlug = engineering.Slug,\n        Role = \"collaborator\",\n        Environments = new[]\n        {\n            \"dev\",\n            \"stg\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/projectMember\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := projectMember.NewGroup(ctx, \"backend_engineering\", \u0026projectMember.GroupArgs{\n\t\t\tProject:   pulumi.String(\"backend\"),\n\t\t\tGroupSlug: pulumi.Any(engineering.Slug),\n\t\t\tRole:      pulumi.String(\"collaborator\"),\n\t\t\tEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"stg\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.projectMember.Group;\nimport com.pulumi.doppler.projectMember.GroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendEngineering = new Group(\"backendEngineering\", GroupArgs.builder()        \n            .project(\"backend\")\n            .groupSlug(engineering.slug())\n            .role(\"collaborator\")\n            .environments(            \n                \"dev\",\n                \"stg\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendEngineering:\n    type: doppler:projectMember:Group\n    name: backend_engineering\n    properties:\n      project: backend\n      groupSlug: ${engineering.slug}\n      role: collaborator\n      environments:\n        - dev\n        - stg\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -1106,6 +1156,147 @@
                             "type": "string"
                         },
                         "description": "AWS tags to attach to the secrets\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:secretsSync/terraformCloud:TerraformCloud": {
+            "description": "## Example Usage\n\n",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n"
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n"
+                },
+                "nameTransform": {
+                    "type": "string",
+                    "description": "A name transform to apply before syncing secrets: \"none\" or \"lowercase\"\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n"
+                },
+                "syncTarget": {
+                    "type": "string",
+                    "description": "Either \"workspace\" or \"variableSet\", based on the resource type to sync to\n"
+                },
+                "variableSetId": {
+                    "type": "string",
+                    "description": "The Terraform Cloud variable set ID to sync to\n"
+                },
+                "variableSyncType": {
+                    "type": "string",
+                    "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The Terraform Cloud workspace ID to sync to\n"
+                }
+            },
+            "required": [
+                "config",
+                "integration",
+                "nameTransform",
+                "project",
+                "syncTarget",
+                "variableSyncType"
+            ],
+            "inputProperties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n",
+                    "willReplaceOnChanges": true
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n",
+                    "willReplaceOnChanges": true
+                },
+                "nameTransform": {
+                    "type": "string",
+                    "description": "A name transform to apply before syncing secrets: \"none\" or \"lowercase\"\n",
+                    "willReplaceOnChanges": true
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n",
+                    "willReplaceOnChanges": true
+                },
+                "syncTarget": {
+                    "type": "string",
+                    "description": "Either \"workspace\" or \"variableSet\", based on the resource type to sync to\n",
+                    "willReplaceOnChanges": true
+                },
+                "variableSetId": {
+                    "type": "string",
+                    "description": "The Terraform Cloud variable set ID to sync to\n",
+                    "willReplaceOnChanges": true
+                },
+                "variableSyncType": {
+                    "type": "string",
+                    "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n",
+                    "willReplaceOnChanges": true
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The Terraform Cloud workspace ID to sync to\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "config",
+                "integration",
+                "nameTransform",
+                "project",
+                "syncTarget",
+                "variableSyncType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TerraformCloud resources.\n",
+                "properties": {
+                    "config": {
+                        "type": "string",
+                        "description": "The name of the Doppler config\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "integration": {
+                        "type": "string",
+                        "description": "The slug of the integration to use for this sync\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "nameTransform": {
+                        "type": "string",
+                        "description": "A name transform to apply before syncing secrets: \"none\" or \"lowercase\"\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "project": {
+                        "type": "string",
+                        "description": "The name of the Doppler project\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "syncTarget": {
+                        "type": "string",
+                        "description": "Either \"workspace\" or \"variableSet\", based on the resource type to sync to\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "variableSetId": {
+                        "type": "string",
+                        "description": "The Terraform Cloud variable set ID to sync to\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "variableSyncType": {
+                        "type": "string",
+                        "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "workspaceId": {
+                        "type": "string",
+                        "description": "The Terraform Cloud workspace ID to sync to\n",
                         "willReplaceOnChanges": true
                     }
                 },

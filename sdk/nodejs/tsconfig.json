@@ -23,6 +23,7 @@
         "integration/awsParameterStore.ts",
         "integration/awsSecretsManager.ts",
         "integration/index.ts",
+        "integration/terraformCloud.ts",
         "project.ts",
         "projectmember/group.ts",
         "projectmember/index.ts",
@@ -32,6 +33,7 @@
         "secretssync/awsParameterStore.ts",
         "secretssync/awsSecretsManager.ts",
         "secretssync/index.ts",
+        "secretssync/terraformCloud.ts",
         "serviceAccount.ts",
         "serviceToken.ts",
         "utilities.ts"

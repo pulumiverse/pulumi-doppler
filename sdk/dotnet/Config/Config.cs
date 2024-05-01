@@ -34,7 +34,7 @@ namespace Pulumiverse.Doppler
 
         private static readonly __Value<string?> _dopplerToken = new __Value<string?>(() => __config.Get("dopplerToken"));
         /// <summary>
-        /// A Doppler token, either a personal or service token
+        /// A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
         /// </summary>
         public static string? DopplerToken
         {
@@ -44,7 +44,7 @@ namespace Pulumiverse.Doppler
 
         private static readonly __Value<string?> _host = new __Value<string?>(() => __config.Get("host"));
         /// <summary>
-        /// The Doppler API host (i.e. https://api.doppler.com)
+        /// The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
         /// </summary>
         public static string? Host
         {
@@ -54,7 +54,7 @@ namespace Pulumiverse.Doppler
 
         private static readonly __Value<bool?> _verifyTls = new __Value<bool?>(() => __config.GetBoolean("verifyTls"));
         /// <summary>
-        /// Whether or not to verify TLS
+        /// Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
         /// </summary>
         public static bool? VerifyTls
         {

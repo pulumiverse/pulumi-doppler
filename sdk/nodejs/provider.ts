@@ -26,11 +26,11 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * A Doppler token, either a personal or service token
+     * A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
      */
     public readonly dopplerToken!: pulumi.Output<string>;
     /**
-     * The Doppler API host (i.e. https://api.doppler.com)
+     * The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
      */
     public readonly host!: pulumi.Output<string | undefined>;
 
@@ -62,15 +62,15 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * A Doppler token, either a personal or service token
+     * A Doppler token, either a personal or service token. This can also be set via the DOPPLER_TOKEN environment variable.
      */
     dopplerToken: pulumi.Input<string>;
     /**
-     * The Doppler API host (i.e. https://api.doppler.com)
+     * The Doppler API host (i.e. https://api.doppler.com). This can also be set via the DOPPLER_API_HOST environment variable.
      */
     host?: pulumi.Input<string>;
     /**
-     * Whether or not to verify TLS
+     * Whether or not to verify TLS. This can also be set via the DOPPLER_VERIFY_TLS environment variable.
      */
     verifyTls?: pulumi.Input<boolean>;
 }
