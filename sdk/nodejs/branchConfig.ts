@@ -19,6 +19,10 @@ import * as utilities from "./utilities";
  *     name: "ci_github",
  * });
  * ```
+ *
+ * ## Resource ID Format
+ *
+ * Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
  */
 export class BranchConfig extends pulumi.CustomResource {
     /**

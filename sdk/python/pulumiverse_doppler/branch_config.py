@@ -145,6 +145,10 @@ class BranchConfig(pulumi.CustomResource):
             name="ci_github")
         ```
 
+        ## Resource ID Format
+
+        Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] environment: The name of the Doppler environment where the config is located
@@ -171,6 +175,10 @@ class BranchConfig(pulumi.CustomResource):
             environment="ci",
             name="ci_github")
         ```
+
+        ## Resource ID Format
+
+        Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
 
         :param str resource_name: The name of the resource.
         :param BranchConfigArgs args: The arguments to use to populate this resource's properties.

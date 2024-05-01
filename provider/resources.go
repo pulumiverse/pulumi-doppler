@@ -50,7 +50,7 @@ func Provider() tfbridge.ProviderInfo {
 	p := shimv2.NewProvider(doppler.Provider())
 
 	oldConfigType := tfbridge.MakeResource(mainPkg, mainMod, "Config").String()
-	
+
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
@@ -97,8 +97,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumiverse/doppler",
 			// List any npm dependencies and their versions
@@ -139,7 +138,16 @@ func Provider() tfbridge.ProviderInfo {
 	}
 
 	prov.SetAutonaming(255, "-")
-	prov.ComputeTokens(tokens.KnownModules("doppler_", mainMod, []string{"integration_", "secrets_sync_"}, tokens.MakeStandard(mainPkg)))
+	prov.ComputeTokens(
+		tokens.KnownModules(
+			"doppler_",
+			mainMod,
+			[]string{
+				"integration_",
+				"project_member_",
+				"secrets_sync_",
+			},
+			tokens.MakeStandard(mainPkg)))
 
 	return prov
 }
