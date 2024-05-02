@@ -6,6 +6,12 @@ import * as utilities from "./utilities";
 
 /**
  * Manage a single Doppler secret in a config.
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import doppler:index/secret:Secret default <project-name>.<config-name>.<secret-name>
+ * ```
  */
 export class Secret extends pulumi.CustomResource {
     /**

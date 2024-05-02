@@ -18,6 +18,12 @@ import * as utilities from "./utilities";
  *     description: "The main backend project",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import doppler:index/project:Project default <project-name>
+ * ```
  */
 export class Project extends pulumi.CustomResource {
     /**

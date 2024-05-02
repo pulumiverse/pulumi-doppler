@@ -34,6 +34,7 @@
         "secret.ts",
         "secretssync/awsParameterStore.ts",
         "secretssync/awsSecretsManager.ts",
+        "secretssync/githubActions.ts",
         "secretssync/index.ts",
         "secretssync/terraformCloud.ts",
         "serviceAccount.ts",

@@ -39,6 +39,16 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// import using the group slug from the URL:
+//
+// https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+//
+// ```sh
+// $ pulumi import doppler:index/group:Group default <group-slug>
+// ```
 type Group struct {
 	pulumi.CustomResourceState
 

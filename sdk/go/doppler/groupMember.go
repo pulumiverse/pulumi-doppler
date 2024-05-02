@@ -13,6 +13,20 @@ import (
 )
 
 // Manage a Doppler user/group membership.
+//
+// ## Import
+//
+// import using the group slug from the URL:
+//
+// https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+//
+// and the user slug from the URL:
+//
+// https://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]
+//
+// ```sh
+// $ pulumi import doppler:index/groupMember:GroupMember default <group-slug>.workplace_user.<user-slug>
+// ```
 type GroupMember struct {
 	pulumi.CustomResourceState
 

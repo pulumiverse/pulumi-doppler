@@ -213,6 +213,12 @@ class Secret(pulumi.CustomResource):
         """
         Manage a single Doppler secret in a config.
 
+        ## Import
+
+        ```sh
+        $ pulumi import doppler:index/secret:Secret default <project-name>.<config-name>.<secret-name>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config: The name of the Doppler config
@@ -229,6 +235,12 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manage a single Doppler secret in a config.
+
+        ## Import
+
+        ```sh
+        $ pulumi import doppler:index/secret:Secret default <project-name>.<config-name>.<secret-name>
+        ```
 
         :param str resource_name: The name of the resource.
         :param SecretArgs args: The arguments to use to populate this resource's properties.

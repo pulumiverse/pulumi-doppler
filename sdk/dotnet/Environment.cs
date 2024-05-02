@@ -33,9 +33,11 @@ namespace Pulumiverse.Doppler
     /// });
     /// ```
     /// 
-    /// ## Resource ID Format
+    /// ## Import
     /// 
-    /// Resource IDs are in the format `&lt;project-name&gt;.&lt;environment-slug&gt;`.
+    /// ```sh
+    /// $ pulumi import doppler:index/environment:Environment default &lt;project-name&gt;.&lt;environment-slug&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/environment:Environment")]
     public partial class Environment : global::Pulumi.CustomResource

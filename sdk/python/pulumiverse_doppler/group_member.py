@@ -100,6 +100,20 @@ class GroupMember(pulumi.CustomResource):
         """
         Manage a Doppler user/group membership.
 
+        ## Import
+
+        import using the group slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+
+        and the user slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]
+
+        ```sh
+        $ pulumi import doppler:index/groupMember:GroupMember default <group-slug>.workplace_user.<user-slug>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group_slug: The slug of the Doppler group
@@ -113,6 +127,20 @@ class GroupMember(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manage a Doppler user/group membership.
+
+        ## Import
+
+        import using the group slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+
+        and the user slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]
+
+        ```sh
+        $ pulumi import doppler:index/groupMember:GroupMember default <group-slug>.workplace_user.<user-slug>
+        ```
 
         :param str resource_name: The name of the resource.
         :param GroupMemberArgs args: The arguments to use to populate this resource's properties.

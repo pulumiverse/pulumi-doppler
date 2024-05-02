@@ -13,6 +13,12 @@ import (
 )
 
 // Manage a single Doppler secret in a config.
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import doppler:index/secret:Secret default <project-name>.<config-name>.<secret-name>
+// ```
 type Secret struct {
 	pulumi.CustomResourceState
 

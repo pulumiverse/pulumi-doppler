@@ -15,6 +15,16 @@ import * as utilities from "./utilities";
  *
  * const ci = new doppler.ServiceAccount("ci", {name: "ci"});
  * ```
+ *
+ * ## Import
+ *
+ * import using the service account slug from the URL:
+ *
+ * https://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]
+ *
+ * ```sh
+ * $ pulumi import doppler:index/serviceAccount:ServiceAccount default <service-account-slug>
+ * ```
  */
 export class ServiceAccount extends pulumi.CustomResource {
     /**

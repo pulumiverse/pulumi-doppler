@@ -42,9 +42,11 @@ import (
 //
 // ```
 //
-// ## Resource ID Format
+// ## Import
 //
-// Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
+// ```sh
+// $ pulumi import doppler:index/branchConfig:BranchConfig default <project-name>.<environment-slug>.<config-name>
+// ```
 type BranchConfig struct {
 	pulumi.CustomResourceState
 

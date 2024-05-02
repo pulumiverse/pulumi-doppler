@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AwsParameterStore{}
 	case "doppler:secretsSync/awsSecretsManager:AwsSecretsManager":
 		r = &AwsSecretsManager{}
+	case "doppler:secretsSync/githubActions:GithubActions":
+		r = &GithubActions{}
 	case "doppler:secretsSync/terraformCloud:TerraformCloud":
 		r = &TerraformCloud{}
 	default:
@@ -48,6 +50,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"doppler",
 		"secretsSync/awsSecretsManager",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
+		"secretsSync/githubActions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
