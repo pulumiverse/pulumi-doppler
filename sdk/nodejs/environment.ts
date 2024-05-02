@@ -20,9 +20,11 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Resource ID Format
+ * ## Import
  *
- * Resource IDs are in the format `<project-name>.<environment-slug>`.
+ * ```sh
+ * $ pulumi import doppler:index/environment:Environment default <project-name>.<environment-slug>
+ * ```
  */
 export class Environment extends pulumi.CustomResource {
     /**

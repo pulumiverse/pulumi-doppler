@@ -31,6 +31,12 @@ namespace Pulumiverse.Doppler
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import doppler:index/project:Project default &lt;project-name&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource

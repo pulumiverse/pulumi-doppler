@@ -40,6 +40,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import doppler:index/project:Project default <project-name>
+// ```
 type Project struct {
 	pulumi.CustomResourceState
 

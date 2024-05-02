@@ -158,6 +158,14 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "secretsSync/githubActions",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/githubActions:GithubActions": "GithubActions"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "secretsSync/terraformCloud",
   "fqn": "pulumiverse_doppler.secretssync",
   "classes": {

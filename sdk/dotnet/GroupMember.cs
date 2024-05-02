@@ -12,6 +12,20 @@ namespace Pulumiverse.Doppler
 {
     /// <summary>
     /// Manage a Doppler user/group membership.
+    /// 
+    /// ## Import
+    /// 
+    /// import using the group slug from the URL:
+    /// 
+    /// https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+    /// 
+    /// and the user slug from the URL:
+    /// 
+    /// https://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]
+    /// 
+    /// ```sh
+    /// $ pulumi import doppler:index/groupMember:GroupMember default &lt;group-slug&gt;.workplace_user.&lt;user-slug&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/groupMember:GroupMember")]
     public partial class GroupMember : global::Pulumi.CustomResource

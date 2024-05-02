@@ -159,6 +159,16 @@ class ServiceAccount(pulumi.CustomResource):
         ci = doppler.ServiceAccount("ci", name="ci")
         ```
 
+        ## Import
+
+        import using the service account slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]
+
+        ```sh
+        $ pulumi import doppler:index/serviceAccount:ServiceAccount default <service-account-slug>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the service account
@@ -181,6 +191,16 @@ class ServiceAccount(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         ci = doppler.ServiceAccount("ci", name="ci")
+        ```
+
+        ## Import
+
+        import using the service account slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]
+
+        ```sh
+        $ pulumi import doppler:index/serviceAccount:ServiceAccount default <service-account-slug>
         ```
 
         :param str resource_name: The name of the resource.

@@ -30,6 +30,16 @@ namespace Pulumiverse.Doppler
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// import using the service account slug from the URL:
+    /// 
+    /// https://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]
+    /// 
+    /// ```sh
+    /// $ pulumi import doppler:index/serviceAccount:ServiceAccount default &lt;service-account-slug&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/serviceAccount:ServiceAccount")]
     public partial class ServiceAccount : global::Pulumi.CustomResource

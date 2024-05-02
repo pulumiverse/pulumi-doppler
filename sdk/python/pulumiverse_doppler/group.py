@@ -126,6 +126,16 @@ class Group(pulumi.CustomResource):
         engineering = doppler.Group("engineering", name="engineering")
         ```
 
+        ## Import
+
+        import using the group slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+
+        ```sh
+        $ pulumi import doppler:index/group:Group default <group-slug>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_project_role: The default project role assigned to the group when added to a Doppler project
@@ -147,6 +157,16 @@ class Group(pulumi.CustomResource):
         import pulumiverse_doppler as doppler
 
         engineering = doppler.Group("engineering", name="engineering")
+        ```
+
+        ## Import
+
+        import using the group slug from the URL:
+
+        https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+
+        ```sh
+        $ pulumi import doppler:index/group:Group default <group-slug>
         ```
 
         :param str resource_name: The name of the resource.

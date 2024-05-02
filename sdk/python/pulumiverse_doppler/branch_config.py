@@ -145,9 +145,11 @@ class BranchConfig(pulumi.CustomResource):
             name="ci_github")
         ```
 
-        ## Resource ID Format
+        ## Import
 
-        Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
+        ```sh
+        $ pulumi import doppler:index/branchConfig:BranchConfig default <project-name>.<environment-slug>.<config-name>
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -176,9 +178,11 @@ class BranchConfig(pulumi.CustomResource):
             name="ci_github")
         ```
 
-        ## Resource ID Format
+        ## Import
 
-        Resource IDs are in the format `<project-name>.<environment-slug>.<config-name>`.
+        ```sh
+        $ pulumi import doppler:index/branchConfig:BranchConfig default <project-name>.<environment-slug>.<config-name>
+        ```
 
         :param str resource_name: The name of the resource.
         :param BranchConfigArgs args: The arguments to use to populate this resource's properties.

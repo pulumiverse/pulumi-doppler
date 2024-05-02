@@ -12,6 +12,12 @@ namespace Pulumiverse.Doppler
 {
     /// <summary>
     /// Manage a single Doppler secret in a config.
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import doppler:index/secret:Secret default &lt;project-name&gt;.&lt;config-name&gt;.&lt;secret-name&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/secret:Secret")]
     public partial class Secret : global::Pulumi.CustomResource

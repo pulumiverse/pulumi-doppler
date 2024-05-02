@@ -30,6 +30,16 @@ namespace Pulumiverse.Doppler
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// import using the group slug from the URL:
+    /// 
+    /// https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+    /// 
+    /// ```sh
+    /// $ pulumi import doppler:index/group:Group default &lt;group-slug&gt;
+    /// ```
     /// </summary>
     [DopplerResourceType("doppler:index/group:Group")]
     public partial class Group : global::Pulumi.CustomResource

@@ -39,6 +39,16 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// import using the service account slug from the URL:
+//
+// https://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]
+//
+// ```sh
+// $ pulumi import doppler:index/serviceAccount:ServiceAccount default <service-account-slug>
+// ```
 type ServiceAccount struct {
 	pulumi.CustomResourceState
 

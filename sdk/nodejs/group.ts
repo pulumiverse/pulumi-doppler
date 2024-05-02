@@ -15,6 +15,16 @@ import * as utilities from "./utilities";
  *
  * const engineering = new doppler.Group("engineering", {name: "engineering"});
  * ```
+ *
+ * ## Import
+ *
+ * import using the group slug from the URL:
+ *
+ * https://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]
+ *
+ * ```sh
+ * $ pulumi import doppler:index/group:Group default <group-slug>
+ * ```
  */
 export class Group extends pulumi.CustomResource {
     /**

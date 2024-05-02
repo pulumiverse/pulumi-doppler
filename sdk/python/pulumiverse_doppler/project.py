@@ -112,6 +112,12 @@ class Project(pulumi.CustomResource):
             description="The main backend project")
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import doppler:index/project:Project default <project-name>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the Doppler project
@@ -135,6 +141,12 @@ class Project(pulumi.CustomResource):
         backend = doppler.Project("backend",
             name="backend",
             description="The main backend project")
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import doppler:index/project:Project default <project-name>
         ```
 
         :param str resource_name: The name of the resource.
