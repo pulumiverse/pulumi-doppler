@@ -112,7 +112,7 @@
     },
     "resources": {
         "doppler:index/branchConfig:BranchConfig": {
-            "description": "Manage a Doppler config.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCiGithub = new doppler.BranchConfig(\"backend_ci_github\", {\n    project: \"backend\",\n    environment: \"ci\",\n    name: \"ci_github\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci_github = doppler.BranchConfig(\"backend_ci_github\",\n    project=\"backend\",\n    environment=\"ci\",\n    name=\"ci_github\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCiGithub = new Doppler.BranchConfig(\"backend_ci_github\", new()\n    {\n        Project = \"backend\",\n        Environment = \"ci\",\n        Name = \"ci_github\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewBranchConfig(ctx, \"backend_ci_github\", \u0026doppler.BranchConfigArgs{\n\t\t\tProject:     pulumi.String(\"backend\"),\n\t\t\tEnvironment: pulumi.String(\"ci\"),\n\t\t\tName:        pulumi.String(\"ci_github\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.BranchConfig;\nimport com.pulumi.doppler.BranchConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCiGithub = new BranchConfig(\"backendCiGithub\", BranchConfigArgs.builder()        \n            .project(\"backend\")\n            .environment(\"ci\")\n            .name(\"ci_github\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCiGithub:\n    type: doppler:BranchConfig\n    name: backend_ci_github\n    properties:\n      project: backend\n      environment: ci\n      name: ci_github\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\n## Resource ID Format\n\nResource IDs are in the format `\u003cproject-name\u003e.\u003cenvironment-slug\u003e.\u003cconfig-name\u003e`.\n",
+            "description": "Manage a Doppler config.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCiGithub = new doppler.BranchConfig(\"backend_ci_github\", {\n    project: \"backend\",\n    environment: \"ci\",\n    name: \"ci_github\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci_github = doppler.BranchConfig(\"backend_ci_github\",\n    project=\"backend\",\n    environment=\"ci\",\n    name=\"ci_github\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCiGithub = new Doppler.BranchConfig(\"backend_ci_github\", new()\n    {\n        Project = \"backend\",\n        Environment = \"ci\",\n        Name = \"ci_github\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewBranchConfig(ctx, \"backend_ci_github\", \u0026doppler.BranchConfigArgs{\n\t\t\tProject:     pulumi.String(\"backend\"),\n\t\t\tEnvironment: pulumi.String(\"ci\"),\n\t\t\tName:        pulumi.String(\"ci_github\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.BranchConfig;\nimport com.pulumi.doppler.BranchConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCiGithub = new BranchConfig(\"backendCiGithub\", BranchConfigArgs.builder()        \n            .project(\"backend\")\n            .environment(\"ci\")\n            .name(\"ci_github\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCiGithub:\n    type: doppler:BranchConfig\n    name: backend_ci_github\n    properties:\n      project: backend\n      environment: ci\n      name: ci_github\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import doppler:index/branchConfig:BranchConfig default \u003cproject-name\u003e.\u003cenvironment-slug\u003e.\u003cconfig-name\u003e\n```\n\n",
             "properties": {
                 "environment": {
                     "type": "string",
@@ -179,7 +179,7 @@
             ]
         },
         "doppler:index/environment:Environment": {
-            "description": "Manage a Doppler environment.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCi = new doppler.Environment(\"backend_ci\", {\n    project: \"backend\",\n    slug: \"ci\",\n    name: \"Continuous Integration\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci = doppler.Environment(\"backend_ci\",\n    project=\"backend\",\n    slug=\"ci\",\n    name=\"Continuous Integration\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCi = new Doppler.Environment(\"backend_ci\", new()\n    {\n        Project = \"backend\",\n        Slug = \"ci\",\n        Name = \"Continuous Integration\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewEnvironment(ctx, \"backend_ci\", \u0026doppler.EnvironmentArgs{\n\t\t\tProject: pulumi.String(\"backend\"),\n\t\t\tSlug:    pulumi.String(\"ci\"),\n\t\t\tName:    pulumi.String(\"Continuous Integration\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Environment;\nimport com.pulumi.doppler.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCi = new Environment(\"backendCi\", EnvironmentArgs.builder()        \n            .project(\"backend\")\n            .slug(\"ci\")\n            .name(\"Continuous Integration\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCi:\n    type: doppler:Environment\n    name: backend_ci\n    properties:\n      project: backend\n      slug: ci\n      name: Continuous Integration\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\n## Resource ID Format\n\nResource IDs are in the format `\u003cproject-name\u003e.\u003cenvironment-slug\u003e`.\n",
+            "description": "Manage a Doppler environment.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backendCi = new doppler.Environment(\"backend_ci\", {\n    project: \"backend\",\n    slug: \"ci\",\n    name: \"Continuous Integration\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend_ci = doppler.Environment(\"backend_ci\",\n    project=\"backend\",\n    slug=\"ci\",\n    name=\"Continuous Integration\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backendCi = new Doppler.Environment(\"backend_ci\", new()\n    {\n        Project = \"backend\",\n        Slug = \"ci\",\n        Name = \"Continuous Integration\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewEnvironment(ctx, \"backend_ci\", \u0026doppler.EnvironmentArgs{\n\t\t\tProject: pulumi.String(\"backend\"),\n\t\t\tSlug:    pulumi.String(\"ci\"),\n\t\t\tName:    pulumi.String(\"Continuous Integration\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Environment;\nimport com.pulumi.doppler.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backendCi = new Environment(\"backendCi\", EnvironmentArgs.builder()        \n            .project(\"backend\")\n            .slug(\"ci\")\n            .name(\"Continuous Integration\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backendCi:\n    type: doppler:Environment\n    name: backend_ci\n    properties:\n      project: backend\n      slug: ci\n      name: Continuous Integration\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import doppler:index/environment:Environment default \u003cproject-name\u003e.\u003cenvironment-slug\u003e\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -240,7 +240,7 @@
             }
         },
         "doppler:index/group:Group": {
-            "description": "Manage a Doppler group.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst engineering = new doppler.Group(\"engineering\", {name: \"engineering\"});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nengineering = doppler.Group(\"engineering\", name=\"engineering\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var engineering = new Doppler.Group(\"engineering\", new()\n    {\n        Name = \"engineering\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewGroup(ctx, \"engineering\", \u0026doppler.GroupArgs{\n\t\t\tName: pulumi.String(\"engineering\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Group;\nimport com.pulumi.doppler.GroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var engineering = new Group(\"engineering\", GroupArgs.builder()        \n            .name(\"engineering\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  engineering:\n    type: doppler:Group\n    properties:\n      name: engineering\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a Doppler group.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst engineering = new doppler.Group(\"engineering\", {name: \"engineering\"});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nengineering = doppler.Group(\"engineering\", name=\"engineering\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var engineering = new Doppler.Group(\"engineering\", new()\n    {\n        Name = \"engineering\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewGroup(ctx, \"engineering\", \u0026doppler.GroupArgs{\n\t\t\tName: pulumi.String(\"engineering\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Group;\nimport com.pulumi.doppler.GroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var engineering = new Group(\"engineering\", GroupArgs.builder()        \n            .name(\"engineering\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  engineering:\n    type: doppler:Group\n    properties:\n      name: engineering\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nimport using the group slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]\n\n```sh\n$ pulumi import doppler:index/group:Group default \u003cgroup-slug\u003e\n```\n\n",
             "properties": {
                 "defaultProjectRole": {
                     "type": "string",
@@ -292,7 +292,7 @@
             }
         },
         "doppler:index/groupMember:GroupMember": {
-            "description": "Manage a Doppler user/group membership.\n\n",
+            "description": "Manage a Doppler user/group membership.\n\n## Import\n\nimport using the group slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]\n\nand the user slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]\n\n```sh\n$ pulumi import doppler:index/groupMember:GroupMember default \u003cgroup-slug\u003e.workplace_user.\u003cuser-slug\u003e\n```\n\n",
             "properties": {
                 "groupSlug": {
                     "type": "string",
@@ -341,7 +341,7 @@
             }
         },
         "doppler:index/project:Project": {
-            "description": "Manage a Doppler project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backend = new doppler.Project(\"backend\", {\n    name: \"backend\",\n    description: \"The main backend project\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend = doppler.Project(\"backend\",\n    name=\"backend\",\n    description=\"The main backend project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backend = new Doppler.Project(\"backend\", new()\n    {\n        Name = \"backend\",\n        Description = \"The main backend project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewProject(ctx, \"backend\", \u0026doppler.ProjectArgs{\n\t\t\tName:        pulumi.String(\"backend\"),\n\t\t\tDescription: pulumi.String(\"The main backend project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Project;\nimport com.pulumi.doppler.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backend = new Project(\"backend\", ProjectArgs.builder()        \n            .name(\"backend\")\n            .description(\"The main backend project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backend:\n    type: doppler:Project\n    properties:\n      name: backend\n      description: The main backend project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a Doppler project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst backend = new doppler.Project(\"backend\", {\n    name: \"backend\",\n    description: \"The main backend project\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nbackend = doppler.Project(\"backend\",\n    name=\"backend\",\n    description=\"The main backend project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backend = new Doppler.Project(\"backend\", new()\n    {\n        Name = \"backend\",\n        Description = \"The main backend project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewProject(ctx, \"backend\", \u0026doppler.ProjectArgs{\n\t\t\tName:        pulumi.String(\"backend\"),\n\t\t\tDescription: pulumi.String(\"The main backend project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Project;\nimport com.pulumi.doppler.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backend = new Project(\"backend\", ProjectArgs.builder()        \n            .name(\"backend\")\n            .description(\"The main backend project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backend:\n    type: doppler:Project\n    properties:\n      name: backend\n      description: The main backend project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import doppler:index/project:Project default \u003cproject-name\u003e\n```\n\n",
             "properties": {
                 "description": {
                     "type": "string",
@@ -384,7 +384,7 @@
             }
         },
         "doppler:index/secret:Secret": {
-            "description": "Manage a single Doppler secret in a config.\n\n",
+            "description": "Manage a single Doppler secret in a config.\n\n## Import\n\n```sh\n$ pulumi import doppler:index/secret:Secret default \u003cproject-name\u003e.\u003cconfig-name\u003e.\u003csecret-name\u003e\n```\n\n",
             "properties": {
                 "computed": {
                     "type": "string",
@@ -487,7 +487,7 @@
             }
         },
         "doppler:index/serviceAccount:ServiceAccount": {
-            "description": "Manage a Doppler service account.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst ci = new doppler.ServiceAccount(\"ci\", {name: \"ci\"});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nci = doppler.ServiceAccount(\"ci\", name=\"ci\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ci = new Doppler.ServiceAccount(\"ci\", new()\n    {\n        Name = \"ci\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewServiceAccount(ctx, \"ci\", \u0026doppler.ServiceAccountArgs{\n\t\t\tName: pulumi.String(\"ci\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.ServiceAccount;\nimport com.pulumi.doppler.ServiceAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ci = new ServiceAccount(\"ci\", ServiceAccountArgs.builder()        \n            .name(\"ci\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ci:\n    type: doppler:ServiceAccount\n    properties:\n      name: ci\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a Doppler service account.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst ci = new doppler.ServiceAccount(\"ci\", {name: \"ci\"});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nci = doppler.ServiceAccount(\"ci\", name=\"ci\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ci = new Doppler.ServiceAccount(\"ci\", new()\n    {\n        Name = \"ci\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := doppler.NewServiceAccount(ctx, \"ci\", \u0026doppler.ServiceAccountArgs{\n\t\t\tName: pulumi.String(\"ci\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.ServiceAccount;\nimport com.pulumi.doppler.ServiceAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ci = new ServiceAccount(\"ci\", ServiceAccountArgs.builder()        \n            .name(\"ci\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ci:\n    type: doppler:ServiceAccount\n    properties:\n      name: ci\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nimport using the service account slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/service_accounts/[service-account-slug]\n\n```sh\n$ pulumi import doppler:index/serviceAccount:ServiceAccount default \u003cservice-account-slug\u003e\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -1209,6 +1209,129 @@
                             "type": "string"
                         },
                         "description": "AWS tags to attach to the secrets\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:secretsSync/githubActions:GithubActions": {
+            "description": "Manage a GitHub Actions Doppler sync.\n\n",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n"
+                },
+                "environmentName": {
+                    "type": "string",
+                    "description": "The GitHub repo environment name to sync to (only used when `sync_target` is set to \"repo\")\n"
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n"
+                },
+                "orgScope": {
+                    "type": "string",
+                    "description": "Either \"all\" or \"private\", based on the which repos you want to have access (only used when `sync_target` is set to \"org\")\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n"
+                },
+                "repoName": {
+                    "type": "string",
+                    "description": "The GitHub repo name to sync to (only used when `sync_target` is set to \"repo\")\n"
+                },
+                "syncTarget": {
+                    "type": "string",
+                    "description": "Either \"repo\" or \"org\", based on the resource type to sync to\n"
+                }
+            },
+            "required": [
+                "config",
+                "integration",
+                "project",
+                "syncTarget"
+            ],
+            "inputProperties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n",
+                    "willReplaceOnChanges": true
+                },
+                "environmentName": {
+                    "type": "string",
+                    "description": "The GitHub repo environment name to sync to (only used when `sync_target` is set to \"repo\")\n",
+                    "willReplaceOnChanges": true
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n",
+                    "willReplaceOnChanges": true
+                },
+                "orgScope": {
+                    "type": "string",
+                    "description": "Either \"all\" or \"private\", based on the which repos you want to have access (only used when `sync_target` is set to \"org\")\n",
+                    "willReplaceOnChanges": true
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n",
+                    "willReplaceOnChanges": true
+                },
+                "repoName": {
+                    "type": "string",
+                    "description": "The GitHub repo name to sync to (only used when `sync_target` is set to \"repo\")\n",
+                    "willReplaceOnChanges": true
+                },
+                "syncTarget": {
+                    "type": "string",
+                    "description": "Either \"repo\" or \"org\", based on the resource type to sync to\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "config",
+                "integration",
+                "project",
+                "syncTarget"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GithubActions resources.\n",
+                "properties": {
+                    "config": {
+                        "type": "string",
+                        "description": "The name of the Doppler config\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "environmentName": {
+                        "type": "string",
+                        "description": "The GitHub repo environment name to sync to (only used when `sync_target` is set to \"repo\")\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "integration": {
+                        "type": "string",
+                        "description": "The slug of the integration to use for this sync\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "orgScope": {
+                        "type": "string",
+                        "description": "Either \"all\" or \"private\", based on the which repos you want to have access (only used when `sync_target` is set to \"org\")\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "project": {
+                        "type": "string",
+                        "description": "The name of the Doppler project\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "repoName": {
+                        "type": "string",
+                        "description": "The GitHub repo name to sync to (only used when `sync_target` is set to \"repo\")\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "syncTarget": {
+                        "type": "string",
+                        "description": "Either \"repo\" or \"org\", based on the resource type to sync to\n",
                         "willReplaceOnChanges": true
                     }
                 },
