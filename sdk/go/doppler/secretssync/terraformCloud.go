@@ -25,13 +25,10 @@ type TerraformCloud struct {
 	// The name of the Doppler project
 	Project pulumi.StringOutput `pulumi:"project"`
 	// Either "workspace" or "variableSet", based on the resource type to sync to
-	SyncTarget pulumi.StringOutput `pulumi:"syncTarget"`
-	// The Terraform Cloud variable set ID to sync to
-	VariableSetId pulumi.StringPtrOutput `pulumi:"variableSetId"`
-	// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-	VariableSyncType pulumi.StringOutput `pulumi:"variableSyncType"`
-	// The Terraform Cloud workspace ID to sync to
-	WorkspaceId pulumi.StringPtrOutput `pulumi:"workspaceId"`
+	SyncTarget       pulumi.StringOutput    `pulumi:"syncTarget"`
+	VariableSetId    pulumi.StringPtrOutput `pulumi:"variableSetId"`
+	VariableSyncType pulumi.StringOutput    `pulumi:"variableSyncType"`
+	WorkspaceId      pulumi.StringPtrOutput `pulumi:"workspaceId"`
 }
 
 // NewTerraformCloud registers a new resource with the given unique name, arguments, and options.
@@ -91,13 +88,10 @@ type terraformCloudState struct {
 	// The name of the Doppler project
 	Project *string `pulumi:"project"`
 	// Either "workspace" or "variableSet", based on the resource type to sync to
-	SyncTarget *string `pulumi:"syncTarget"`
-	// The Terraform Cloud variable set ID to sync to
-	VariableSetId *string `pulumi:"variableSetId"`
-	// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
+	SyncTarget       *string `pulumi:"syncTarget"`
+	VariableSetId    *string `pulumi:"variableSetId"`
 	VariableSyncType *string `pulumi:"variableSyncType"`
-	// The Terraform Cloud workspace ID to sync to
-	WorkspaceId *string `pulumi:"workspaceId"`
+	WorkspaceId      *string `pulumi:"workspaceId"`
 }
 
 type TerraformCloudState struct {
@@ -110,13 +104,10 @@ type TerraformCloudState struct {
 	// The name of the Doppler project
 	Project pulumi.StringPtrInput
 	// Either "workspace" or "variableSet", based on the resource type to sync to
-	SyncTarget pulumi.StringPtrInput
-	// The Terraform Cloud variable set ID to sync to
-	VariableSetId pulumi.StringPtrInput
-	// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
+	SyncTarget       pulumi.StringPtrInput
+	VariableSetId    pulumi.StringPtrInput
 	VariableSyncType pulumi.StringPtrInput
-	// The Terraform Cloud workspace ID to sync to
-	WorkspaceId pulumi.StringPtrInput
+	WorkspaceId      pulumi.StringPtrInput
 }
 
 func (TerraformCloudState) ElementType() reflect.Type {
@@ -133,13 +124,10 @@ type terraformCloudArgs struct {
 	// The name of the Doppler project
 	Project string `pulumi:"project"`
 	// Either "workspace" or "variableSet", based on the resource type to sync to
-	SyncTarget string `pulumi:"syncTarget"`
-	// The Terraform Cloud variable set ID to sync to
-	VariableSetId *string `pulumi:"variableSetId"`
-	// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-	VariableSyncType string `pulumi:"variableSyncType"`
-	// The Terraform Cloud workspace ID to sync to
-	WorkspaceId *string `pulumi:"workspaceId"`
+	SyncTarget       string  `pulumi:"syncTarget"`
+	VariableSetId    *string `pulumi:"variableSetId"`
+	VariableSyncType string  `pulumi:"variableSyncType"`
+	WorkspaceId      *string `pulumi:"workspaceId"`
 }
 
 // The set of arguments for constructing a TerraformCloud resource.
@@ -153,13 +141,10 @@ type TerraformCloudArgs struct {
 	// The name of the Doppler project
 	Project pulumi.StringInput
 	// Either "workspace" or "variableSet", based on the resource type to sync to
-	SyncTarget pulumi.StringInput
-	// The Terraform Cloud variable set ID to sync to
-	VariableSetId pulumi.StringPtrInput
-	// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
+	SyncTarget       pulumi.StringInput
+	VariableSetId    pulumi.StringPtrInput
 	VariableSyncType pulumi.StringInput
-	// The Terraform Cloud workspace ID to sync to
-	WorkspaceId pulumi.StringPtrInput
+	WorkspaceId      pulumi.StringPtrInput
 }
 
 func (TerraformCloudArgs) ElementType() reflect.Type {
@@ -274,17 +259,14 @@ func (o TerraformCloudOutput) SyncTarget() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringOutput { return v.SyncTarget }).(pulumi.StringOutput)
 }
 
-// The Terraform Cloud variable set ID to sync to
 func (o TerraformCloudOutput) VariableSetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringPtrOutput { return v.VariableSetId }).(pulumi.StringPtrOutput)
 }
 
-// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
 func (o TerraformCloudOutput) VariableSyncType() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringOutput { return v.VariableSyncType }).(pulumi.StringOutput)
 }
 
-// The Terraform Cloud workspace ID to sync to
 func (o TerraformCloudOutput) WorkspaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringPtrOutput { return v.WorkspaceId }).(pulumi.StringPtrOutput)
 }

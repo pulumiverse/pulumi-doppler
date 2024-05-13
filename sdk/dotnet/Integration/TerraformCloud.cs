@@ -16,9 +16,6 @@ namespace Pulumiverse.Doppler.Integration
     [DopplerResourceType("doppler:integration/terraformCloud:TerraformCloud")]
     public partial class TerraformCloud : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// A Terraform Cloud API key.
-        /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
@@ -81,10 +78,6 @@ namespace Pulumiverse.Doppler.Integration
     {
         [Input("apiKey", required: true)]
         private Input<string>? _apiKey;
-
-        /// <summary>
-        /// A Terraform Cloud API key.
-        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -111,10 +104,6 @@ namespace Pulumiverse.Doppler.Integration
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
-
-        /// <summary>
-        /// A Terraform Cloud API key.
-        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
