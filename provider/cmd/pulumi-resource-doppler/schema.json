@@ -748,7 +748,6 @@
             "properties": {
                 "apiKey": {
                     "type": "string",
-                    "description": "A Terraform Cloud API key.\n",
                     "secret": true
                 },
                 "name": {
@@ -763,7 +762,6 @@
             "inputProperties": {
                 "apiKey": {
                     "type": "string",
-                    "description": "A Terraform Cloud API key.\n",
                     "secret": true
                 },
                 "name": {
@@ -781,7 +779,6 @@
                 "properties": {
                     "apiKey": {
                         "type": "string",
-                        "description": "A Terraform Cloud API key.\n",
                         "secret": true
                     },
                     "name": {
@@ -1362,16 +1359,13 @@
                     "description": "Either \"workspace\" or \"variableSet\", based on the resource type to sync to\n"
                 },
                 "variableSetId": {
-                    "type": "string",
-                    "description": "The Terraform Cloud variable set ID to sync to\n"
+                    "type": "string"
                 },
                 "variableSyncType": {
-                    "type": "string",
-                    "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n"
+                    "type": "string"
                 },
                 "workspaceId": {
-                    "type": "string",
-                    "description": "The Terraform Cloud workspace ID to sync to\n"
+                    "type": "string"
                 }
             },
             "required": [
@@ -1410,17 +1404,14 @@
                 },
                 "variableSetId": {
                     "type": "string",
-                    "description": "The Terraform Cloud variable set ID to sync to\n",
                     "willReplaceOnChanges": true
                 },
                 "variableSyncType": {
                     "type": "string",
-                    "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n",
                     "willReplaceOnChanges": true
                 },
                 "workspaceId": {
                     "type": "string",
-                    "description": "The Terraform Cloud workspace ID to sync to\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -1462,17 +1453,14 @@
                     },
                     "variableSetId": {
                         "type": "string",
-                        "description": "The Terraform Cloud variable set ID to sync to\n",
                         "willReplaceOnChanges": true
                     },
                     "variableSyncType": {
                         "type": "string",
-                        "description": "Either \"terraform\" to sync secrets as Terraform variables or \"env\" to sync as environment variables\n",
                         "willReplaceOnChanges": true
                     },
                     "workspaceId": {
                         "type": "string",
-                        "description": "The Terraform Cloud workspace ID to sync to\n",
                         "willReplaceOnChanges": true
                     }
                 },
