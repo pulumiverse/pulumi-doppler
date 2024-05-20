@@ -55,17 +55,8 @@ export class TerraformCloud extends pulumi.CustomResource {
      * Either "workspace" or "variableSet", based on the resource type to sync to
      */
     public readonly syncTarget!: pulumi.Output<string>;
-    /**
-     * The Terraform Cloud variable set ID to sync to
-     */
     public readonly variableSetId!: pulumi.Output<string | undefined>;
-    /**
-     * Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-     */
     public readonly variableSyncType!: pulumi.Output<string>;
-    /**
-     * The Terraform Cloud workspace ID to sync to
-     */
     public readonly workspaceId!: pulumi.Output<string | undefined>;
 
     /**
@@ -147,17 +138,8 @@ export interface TerraformCloudState {
      * Either "workspace" or "variableSet", based on the resource type to sync to
      */
     syncTarget?: pulumi.Input<string>;
-    /**
-     * The Terraform Cloud variable set ID to sync to
-     */
     variableSetId?: pulumi.Input<string>;
-    /**
-     * Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-     */
     variableSyncType?: pulumi.Input<string>;
-    /**
-     * The Terraform Cloud workspace ID to sync to
-     */
     workspaceId?: pulumi.Input<string>;
 }
 
@@ -185,16 +167,7 @@ export interface TerraformCloudArgs {
      * Either "workspace" or "variableSet", based on the resource type to sync to
      */
     syncTarget: pulumi.Input<string>;
-    /**
-     * The Terraform Cloud variable set ID to sync to
-     */
     variableSetId?: pulumi.Input<string>;
-    /**
-     * Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-     */
     variableSyncType: pulumi.Input<string>;
-    /**
-     * The Terraform Cloud workspace ID to sync to
-     */
     workspaceId?: pulumi.Input<string>;
 }
