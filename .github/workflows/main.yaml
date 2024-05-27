@@ -254,3 +254,8 @@ name: main
     - v*
     - sdk/*
     - '**'
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize

@@ -29,9 +29,6 @@ class TerraformCloudArgs:
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] sync_target: Either "workspace" or "variableSet", based on the resource type to sync to
-        :param pulumi.Input[str] variable_sync_type: Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        :param pulumi.Input[str] variable_set_id: The Terraform Cloud variable set ID to sync to
-        :param pulumi.Input[str] workspace_id: The Terraform Cloud workspace ID to sync to
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "integration", integration)
@@ -107,9 +104,6 @@ class TerraformCloudArgs:
     @property
     @pulumi.getter(name="variableSyncType")
     def variable_sync_type(self) -> pulumi.Input[str]:
-        """
-        Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        """
         return pulumi.get(self, "variable_sync_type")
 
     @variable_sync_type.setter
@@ -119,9 +113,6 @@ class TerraformCloudArgs:
     @property
     @pulumi.getter(name="variableSetId")
     def variable_set_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Terraform Cloud variable set ID to sync to
-        """
         return pulumi.get(self, "variable_set_id")
 
     @variable_set_id.setter
@@ -131,9 +122,6 @@ class TerraformCloudArgs:
     @property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Terraform Cloud workspace ID to sync to
-        """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
@@ -159,9 +147,6 @@ class _TerraformCloudState:
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] sync_target: Either "workspace" or "variableSet", based on the resource type to sync to
-        :param pulumi.Input[str] variable_set_id: The Terraform Cloud variable set ID to sync to
-        :param pulumi.Input[str] variable_sync_type: Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        :param pulumi.Input[str] workspace_id: The Terraform Cloud workspace ID to sync to
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -243,9 +228,6 @@ class _TerraformCloudState:
     @property
     @pulumi.getter(name="variableSetId")
     def variable_set_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Terraform Cloud variable set ID to sync to
-        """
         return pulumi.get(self, "variable_set_id")
 
     @variable_set_id.setter
@@ -255,9 +237,6 @@ class _TerraformCloudState:
     @property
     @pulumi.getter(name="variableSyncType")
     def variable_sync_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        """
         return pulumi.get(self, "variable_sync_type")
 
     @variable_sync_type.setter
@@ -267,9 +246,6 @@ class _TerraformCloudState:
     @property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Terraform Cloud workspace ID to sync to
-        """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
@@ -301,9 +277,6 @@ class TerraformCloud(pulumi.CustomResource):
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] sync_target: Either "workspace" or "variableSet", based on the resource type to sync to
-        :param pulumi.Input[str] variable_set_id: The Terraform Cloud variable set ID to sync to
-        :param pulumi.Input[str] variable_sync_type: Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        :param pulumi.Input[str] workspace_id: The Terraform Cloud workspace ID to sync to
         """
         ...
     @overload
@@ -396,9 +369,6 @@ class TerraformCloud(pulumi.CustomResource):
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] sync_target: Either "workspace" or "variableSet", based on the resource type to sync to
-        :param pulumi.Input[str] variable_set_id: The Terraform Cloud variable set ID to sync to
-        :param pulumi.Input[str] variable_sync_type: Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        :param pulumi.Input[str] workspace_id: The Terraform Cloud workspace ID to sync to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -457,24 +427,15 @@ class TerraformCloud(pulumi.CustomResource):
     @property
     @pulumi.getter(name="variableSetId")
     def variable_set_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        The Terraform Cloud variable set ID to sync to
-        """
         return pulumi.get(self, "variable_set_id")
 
     @property
     @pulumi.getter(name="variableSyncType")
     def variable_sync_type(self) -> pulumi.Output[str]:
-        """
-        Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        """
         return pulumi.get(self, "variable_sync_type")
 
     @property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        The Terraform Cloud workspace ID to sync to
-        """
         return pulumi.get(self, "workspace_id")
 

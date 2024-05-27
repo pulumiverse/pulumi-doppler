@@ -46,21 +46,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         [Output("syncTarget")]
         public Output<string> SyncTarget { get; private set; } = null!;
 
-        /// <summary>
-        /// The Terraform Cloud variable set ID to sync to
-        /// </summary>
         [Output("variableSetId")]
         public Output<string?> VariableSetId { get; private set; } = null!;
 
-        /// <summary>
-        /// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        /// </summary>
         [Output("variableSyncType")]
         public Output<string> VariableSyncType { get; private set; } = null!;
 
-        /// <summary>
-        /// The Terraform Cloud workspace ID to sync to
-        /// </summary>
         [Output("workspaceId")]
         public Output<string?> WorkspaceId { get; private set; } = null!;
 
@@ -141,21 +132,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         [Input("syncTarget", required: true)]
         public Input<string> SyncTarget { get; set; } = null!;
 
-        /// <summary>
-        /// The Terraform Cloud variable set ID to sync to
-        /// </summary>
         [Input("variableSetId")]
         public Input<string>? VariableSetId { get; set; }
 
-        /// <summary>
-        /// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        /// </summary>
         [Input("variableSyncType", required: true)]
         public Input<string> VariableSyncType { get; set; } = null!;
 
-        /// <summary>
-        /// The Terraform Cloud workspace ID to sync to
-        /// </summary>
         [Input("workspaceId")]
         public Input<string>? WorkspaceId { get; set; }
 
@@ -197,21 +179,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         [Input("syncTarget")]
         public Input<string>? SyncTarget { get; set; }
 
-        /// <summary>
-        /// The Terraform Cloud variable set ID to sync to
-        /// </summary>
         [Input("variableSetId")]
         public Input<string>? VariableSetId { get; set; }
 
-        /// <summary>
-        /// Either "terraform" to sync secrets as Terraform variables or "env" to sync as environment variables
-        /// </summary>
         [Input("variableSyncType")]
         public Input<string>? VariableSyncType { get; set; }
 
-        /// <summary>
-        /// The Terraform Cloud workspace ID to sync to
-        /// </summary>
         [Input("workspaceId")]
         public Input<string>? WorkspaceId { get; set; }
 
