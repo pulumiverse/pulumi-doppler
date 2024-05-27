@@ -18,7 +18,6 @@ class TerraformCloudArgs:
                  name: pulumi.Input[str]):
         """
         The set of arguments for constructing a TerraformCloud resource.
-        :param pulumi.Input[str] api_key: A Terraform Cloud API key.
         :param pulumi.Input[str] name: The name of the integration
         """
         pulumi.set(__self__, "api_key", api_key)
@@ -27,9 +26,6 @@ class TerraformCloudArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
-        """
-        A Terraform Cloud API key.
-        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -56,7 +52,6 @@ class _TerraformCloudState:
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TerraformCloud resources.
-        :param pulumi.Input[str] api_key: A Terraform Cloud API key.
         :param pulumi.Input[str] name: The name of the integration
         """
         if api_key is not None:
@@ -67,9 +62,6 @@ class _TerraformCloudState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        A Terraform Cloud API key.
-        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -102,7 +94,6 @@ class TerraformCloud(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key: A Terraform Cloud API key.
         :param pulumi.Input[str] name: The name of the integration
         """
         ...
@@ -167,7 +158,6 @@ class TerraformCloud(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key: A Terraform Cloud API key.
         :param pulumi.Input[str] name: The name of the integration
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -181,9 +171,6 @@ class TerraformCloud(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
-        """
-        A Terraform Cloud API key.
-        """
         return pulumi.get(self, "api_key")
 
     @property

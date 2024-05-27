@@ -35,9 +35,6 @@ export class TerraformCloud extends pulumi.CustomResource {
         return obj['__pulumiType'] === TerraformCloud.__pulumiType;
     }
 
-    /**
-     * A Terraform Cloud API key.
-     */
     public readonly apiKey!: pulumi.Output<string>;
     /**
      * The name of the integration
@@ -81,9 +78,6 @@ export class TerraformCloud extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TerraformCloud resources.
  */
 export interface TerraformCloudState {
-    /**
-     * A Terraform Cloud API key.
-     */
     apiKey?: pulumi.Input<string>;
     /**
      * The name of the integration
@@ -95,9 +89,6 @@ export interface TerraformCloudState {
  * The set of arguments for constructing a TerraformCloud resource.
  */
 export interface TerraformCloudArgs {
-    /**
-     * A Terraform Cloud API key.
-     */
     apiKey: pulumi.Input<string>;
     /**
      * The name of the integration
