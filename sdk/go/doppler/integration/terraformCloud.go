@@ -16,7 +16,6 @@ import (
 type TerraformCloud struct {
 	pulumi.CustomResourceState
 
-	// A Terraform Cloud API key.
 	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
 	// The name of the integration
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -65,14 +64,12 @@ func GetTerraformCloud(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TerraformCloud resources.
 type terraformCloudState struct {
-	// A Terraform Cloud API key.
 	ApiKey *string `pulumi:"apiKey"`
 	// The name of the integration
 	Name *string `pulumi:"name"`
 }
 
 type TerraformCloudState struct {
-	// A Terraform Cloud API key.
 	ApiKey pulumi.StringPtrInput
 	// The name of the integration
 	Name pulumi.StringPtrInput
@@ -83,7 +80,6 @@ func (TerraformCloudState) ElementType() reflect.Type {
 }
 
 type terraformCloudArgs struct {
-	// A Terraform Cloud API key.
 	ApiKey string `pulumi:"apiKey"`
 	// The name of the integration
 	Name string `pulumi:"name"`
@@ -91,7 +87,6 @@ type terraformCloudArgs struct {
 
 // The set of arguments for constructing a TerraformCloud resource.
 type TerraformCloudArgs struct {
-	// A Terraform Cloud API key.
 	ApiKey pulumi.StringInput
 	// The name of the integration
 	Name pulumi.StringInput
@@ -184,7 +179,6 @@ func (o TerraformCloudOutput) ToTerraformCloudOutputWithContext(ctx context.Cont
 	return o
 }
 
-// A Terraform Cloud API key.
 func (o TerraformCloudOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
 }
