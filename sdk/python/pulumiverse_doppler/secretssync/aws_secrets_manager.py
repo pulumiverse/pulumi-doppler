@@ -254,9 +254,9 @@ class AwsSecretsManager(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
                         "Action": [
@@ -272,7 +272,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                         "Resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
@@ -330,9 +330,9 @@ class AwsSecretsManager(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
                     "Version": "2012-10-17",
                     "Statement": [{
                         "Action": [
@@ -348,7 +348,7 @@ class AwsSecretsManager(pulumi.CustomResource):
                         "Resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
