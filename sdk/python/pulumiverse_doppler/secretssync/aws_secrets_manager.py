@@ -254,12 +254,12 @@ class AwsSecretsManager(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
-                    "Version": "2012-10-17",
-                    "Statement": [{
-                        "Action": [
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
+                    "version": "2012-10-17",
+                    "statement": [{
+                        "action": [
                             "secretsmanager:GetSecretValue",
                             "secretsmanager:DescribeSecret",
                             "secretsmanager:PutSecretValue",
@@ -268,11 +268,11 @@ class AwsSecretsManager(pulumi.CustomResource):
                             "secretsmanager:TagResource",
                             "secretsmanager:UpdateSecret",
                         ],
-                        "Effect": "Allow",
-                        "Resource": "*",
+                        "effect": "Allow",
+                        "resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
@@ -330,12 +330,12 @@ class AwsSecretsManager(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
-                    "Version": "2012-10-17",
-                    "Statement": [{
-                        "Action": [
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
+                    "version": "2012-10-17",
+                    "statement": [{
+                        "action": [
                             "secretsmanager:GetSecretValue",
                             "secretsmanager:DescribeSecret",
                             "secretsmanager:PutSecretValue",
@@ -344,11 +344,11 @@ class AwsSecretsManager(pulumi.CustomResource):
                             "secretsmanager:TagResource",
                             "secretsmanager:UpdateSecret",
                         ],
-                        "Effect": "Allow",
-                        "Resource": "*",
+                        "effect": "Allow",
+                        "resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsSecretsManager("prod",
             name="Production",
             assume_role_arn=doppler_secrets_manager.arn)
