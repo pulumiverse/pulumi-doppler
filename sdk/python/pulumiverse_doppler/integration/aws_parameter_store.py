@@ -125,12 +125,12 @@ class AwsParameterStore(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
-                    "Version": "2012-10-17",
-                    "Statement": [{
-                        "Action": [
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
+                    "version": "2012-10-17",
+                    "statement": [{
+                        "action": [
                             "ssm:PutParameter",
                             "ssm:LabelParameterVersion",
                             "ssm:DeleteParameter",
@@ -142,11 +142,11 @@ class AwsParameterStore(pulumi.CustomResource):
                             "ssm:GetParameter",
                             "ssm:DeleteParameters",
                         ],
-                        "Effect": "Allow",
-                        "Resource": "*",
+                        "effect": "Allow",
+                        "resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsParameterStore("prod",
             name="Production",
             assume_role_arn=doppler_parameter_store.arn)
@@ -201,12 +201,12 @@ class AwsParameterStore(pulumi.CustomResource):
                     },
                 }],
             }),
-            inline_policies=[aws.iam.RoleInlinePolicyArgs(
-                name="doppler_secret_manager",
-                policy=json.dumps({
-                    "Version": "2012-10-17",
-                    "Statement": [{
-                        "Action": [
+            inline_policies=[{
+                "name": "doppler_secret_manager",
+                "policy": json.dumps({
+                    "version": "2012-10-17",
+                    "statement": [{
+                        "action": [
                             "ssm:PutParameter",
                             "ssm:LabelParameterVersion",
                             "ssm:DeleteParameter",
@@ -218,11 +218,11 @@ class AwsParameterStore(pulumi.CustomResource):
                             "ssm:GetParameter",
                             "ssm:DeleteParameters",
                         ],
-                        "Effect": "Allow",
-                        "Resource": "*",
+                        "effect": "Allow",
+                        "resource": "*",
                     }],
                 }),
-            )])
+            }])
         prod = doppler.integration.AwsParameterStore("prod",
             name="Production",
             assume_role_arn=doppler_parameter_store.arn)
