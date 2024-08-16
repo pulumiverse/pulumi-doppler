@@ -52,6 +52,8 @@ type Environment struct {
 
 	// The name of the Doppler environment
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Whether or not personal configs are enabled for the environment
+	PersonalConfigs pulumi.BoolPtrOutput `pulumi:"personalConfigs"`
 	// The name of the Doppler project where the environment is located
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The slug of the Doppler environment
@@ -99,6 +101,8 @@ func GetEnvironment(ctx *pulumi.Context,
 type environmentState struct {
 	// The name of the Doppler environment
 	Name *string `pulumi:"name"`
+	// Whether or not personal configs are enabled for the environment
+	PersonalConfigs *bool `pulumi:"personalConfigs"`
 	// The name of the Doppler project where the environment is located
 	Project *string `pulumi:"project"`
 	// The slug of the Doppler environment
@@ -108,6 +112,8 @@ type environmentState struct {
 type EnvironmentState struct {
 	// The name of the Doppler environment
 	Name pulumi.StringPtrInput
+	// Whether or not personal configs are enabled for the environment
+	PersonalConfigs pulumi.BoolPtrInput
 	// The name of the Doppler project where the environment is located
 	Project pulumi.StringPtrInput
 	// The slug of the Doppler environment
@@ -121,6 +127,8 @@ func (EnvironmentState) ElementType() reflect.Type {
 type environmentArgs struct {
 	// The name of the Doppler environment
 	Name string `pulumi:"name"`
+	// Whether or not personal configs are enabled for the environment
+	PersonalConfigs *bool `pulumi:"personalConfigs"`
 	// The name of the Doppler project where the environment is located
 	Project string `pulumi:"project"`
 	// The slug of the Doppler environment
@@ -131,6 +139,8 @@ type environmentArgs struct {
 type EnvironmentArgs struct {
 	// The name of the Doppler environment
 	Name pulumi.StringInput
+	// Whether or not personal configs are enabled for the environment
+	PersonalConfigs pulumi.BoolPtrInput
 	// The name of the Doppler project where the environment is located
 	Project pulumi.StringInput
 	// The slug of the Doppler environment
@@ -227,6 +237,11 @@ func (o EnvironmentOutput) ToEnvironmentOutputWithContext(ctx context.Context) E
 // The name of the Doppler environment
 func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether or not personal configs are enabled for the environment
+func (o EnvironmentOutput) PersonalConfigs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolPtrOutput { return v.PersonalConfigs }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the Doppler project where the environment is located

@@ -23,6 +23,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Output<string> Config { get; private set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Output("deleteBehavior")]
+        public Output<string?> DeleteBehavior { get; private set; } = null!;
+
+        /// <summary>
         /// The slug of the integration to use for this sync
         /// </summary>
         [Output("integration")]
@@ -109,6 +115,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Input<string> Config { get; set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
+
+        /// <summary>
         /// The slug of the integration to use for this sync
         /// </summary>
         [Input("integration", required: true)]
@@ -154,6 +166,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         /// </summary>
         [Input("config")]
         public Input<string>? Config { get; set; }
+
+        /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
 
         /// <summary>
         /// The slug of the integration to use for this sync

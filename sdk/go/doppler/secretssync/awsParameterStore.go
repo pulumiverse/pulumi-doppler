@@ -108,6 +108,7 @@ import (
 //				Tags: pulumi.StringMap{
 //					"myTag": pulumi.String("enabled"),
 //				},
+//				DeleteBehavior: pulumi.String("leave_in_target"),
 //			})
 //			if err != nil {
 //				return err
@@ -122,8 +123,12 @@ type AwsParameterStore struct {
 
 	// The name of the Doppler config
 	Config pulumi.StringOutput `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrOutput `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringOutput `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrOutput `pulumi:"kmsKeyId"`
 	// The path to the parameters in AWS
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The name of the Doppler project
@@ -183,8 +188,12 @@ func GetAwsParameterStore(ctx *pulumi.Context,
 type awsParameterStoreState struct {
 	// The name of the Doppler config
 	Config *string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration *string `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The path to the parameters in AWS
 	Path *string `pulumi:"path"`
 	// The name of the Doppler project
@@ -200,8 +209,12 @@ type awsParameterStoreState struct {
 type AwsParameterStoreState struct {
 	// The name of the Doppler config
 	Config pulumi.StringPtrInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringPtrInput
+	// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrInput
 	// The path to the parameters in AWS
 	Path pulumi.StringPtrInput
 	// The name of the Doppler project
@@ -221,8 +234,12 @@ func (AwsParameterStoreState) ElementType() reflect.Type {
 type awsParameterStoreArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration string `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The path to the parameters in AWS
 	Path string `pulumi:"path"`
 	// The name of the Doppler project
@@ -239,8 +256,12 @@ type awsParameterStoreArgs struct {
 type AwsParameterStoreArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringInput
+	// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrInput
 	// The path to the parameters in AWS
 	Path pulumi.StringInput
 	// The name of the Doppler project
@@ -345,9 +366,19 @@ func (o AwsParameterStoreOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsParameterStore) pulumi.StringOutput { return v.Config }).(pulumi.StringOutput)
 }
 
+// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+func (o AwsParameterStoreOutput) DeleteBehavior() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AwsParameterStore) pulumi.StringPtrOutput { return v.DeleteBehavior }).(pulumi.StringPtrOutput)
+}
+
 // The slug of the integration to use for this sync
 func (o AwsParameterStoreOutput) Integration() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsParameterStore) pulumi.StringOutput { return v.Integration }).(pulumi.StringOutput)
+}
+
+// The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+func (o AwsParameterStoreOutput) KmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AwsParameterStore) pulumi.StringPtrOutput { return v.KmsKeyId }).(pulumi.StringPtrOutput)
 }
 
 // The path to the parameters in AWS

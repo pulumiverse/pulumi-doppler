@@ -49,6 +49,12 @@ namespace Pulumiverse.Doppler
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Whether or not personal configs are enabled for the environment
+        /// </summary>
+        [Output("personalConfigs")]
+        public Output<bool?> PersonalConfigs { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Doppler project where the environment is located
         /// </summary>
         [Output("project")]
@@ -114,6 +120,12 @@ namespace Pulumiverse.Doppler
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
+        /// Whether or not personal configs are enabled for the environment
+        /// </summary>
+        [Input("personalConfigs")]
+        public Input<bool>? PersonalConfigs { get; set; }
+
+        /// <summary>
         /// The name of the Doppler project where the environment is located
         /// </summary>
         [Input("project", required: true)]
@@ -138,6 +150,12 @@ namespace Pulumiverse.Doppler
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Whether or not personal configs are enabled for the environment
+        /// </summary>
+        [Input("personalConfigs")]
+        public Input<bool>? PersonalConfigs { get; set; }
 
         /// <summary>
         /// The name of the Doppler project where the environment is located

@@ -12,10 +12,15 @@ from .get_user import *
 from .group import *
 from .group_member import *
 from .project import *
+from .project_role import *
 from .provider import *
 from .secret import *
 from .service_account import *
+from .service_account_token import *
 from .service_token import *
+from .webhook import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -78,6 +83,14 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "index/projectRole",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/projectRole:ProjectRole": "ProjectRole"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "index/secret",
   "fqn": "pulumiverse_doppler",
   "classes": {
@@ -94,10 +107,26 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "index/serviceAccountToken",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/serviceAccountToken:ServiceAccountToken": "ServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "index/serviceToken",
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/serviceToken:ServiceToken": "ServiceToken"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "index/webhook",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/webhook:Webhook": "Webhook"
   }
  },
  {
@@ -114,6 +143,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler.integration",
   "classes": {
    "doppler:integration/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "integration/flyio",
+  "fqn": "pulumiverse_doppler.integration",
+  "classes": {
+   "doppler:integration/flyio:Flyio": "Flyio"
   }
  },
  {
@@ -154,6 +191,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler.secretssync",
   "classes": {
    "doppler:secretsSync/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "secretsSync/flyio",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/flyio:Flyio": "Flyio"
   }
  },
  {

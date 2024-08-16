@@ -59,6 +59,10 @@ export class Environment extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Whether or not personal configs are enabled for the environment
+     */
+    public readonly personalConfigs!: pulumi.Output<boolean | undefined>;
+    /**
      * The name of the Doppler project where the environment is located
      */
     public readonly project!: pulumi.Output<string>;
@@ -81,6 +85,7 @@ export class Environment extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as EnvironmentState | undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["personalConfigs"] = state ? state.personalConfigs : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
         } else {
@@ -95,6 +100,7 @@ export class Environment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'slug'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["personalConfigs"] = args ? args.personalConfigs : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
         }
@@ -111,6 +117,10 @@ export interface EnvironmentState {
      * The name of the Doppler environment
      */
     name?: pulumi.Input<string>;
+    /**
+     * Whether or not personal configs are enabled for the environment
+     */
+    personalConfigs?: pulumi.Input<boolean>;
     /**
      * The name of the Doppler project where the environment is located
      */
@@ -129,6 +139,10 @@ export interface EnvironmentArgs {
      * The name of the Doppler environment
      */
     name: pulumi.Input<string>;
+    /**
+     * Whether or not personal configs are enabled for the environment
+     */
+    personalConfigs?: pulumi.Input<boolean>;
     /**
      * The name of the Doppler project where the environment is located
      */

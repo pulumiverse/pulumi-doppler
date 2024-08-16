@@ -23,6 +23,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Output<string> Config { get; private set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Output("deleteBehavior")]
+        public Output<string?> DeleteBehavior { get; private set; } = null!;
+
+        /// <summary>
         /// The GitHub repo environment name to sync to (only used when `sync_target` is set to "repo")
         /// </summary>
         [Output("environmentName")]
@@ -112,6 +118,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Input<string> Config { get; set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
+
+        /// <summary>
         /// The GitHub repo environment name to sync to (only used when `sync_target` is set to "repo")
         /// </summary>
         [Input("environmentName")]
@@ -160,6 +172,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         /// </summary>
         [Input("config")]
         public Input<string>? Config { get; set; }
+
+        /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
 
         /// <summary>
         /// The GitHub repo environment name to sync to (only used when `sync_target` is set to "repo")

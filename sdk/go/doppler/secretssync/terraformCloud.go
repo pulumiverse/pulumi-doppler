@@ -18,6 +18,8 @@ type TerraformCloud struct {
 
 	// The name of the Doppler config
 	Config pulumi.StringOutput `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrOutput `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringOutput `pulumi:"integration"`
 	// A name transform to apply before syncing secrets: "none" or "lowercase"
@@ -81,6 +83,8 @@ func GetTerraformCloud(ctx *pulumi.Context,
 type terraformCloudState struct {
 	// The name of the Doppler config
 	Config *string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration *string `pulumi:"integration"`
 	// A name transform to apply before syncing secrets: "none" or "lowercase"
@@ -97,6 +101,8 @@ type terraformCloudState struct {
 type TerraformCloudState struct {
 	// The name of the Doppler config
 	Config pulumi.StringPtrInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringPtrInput
 	// A name transform to apply before syncing secrets: "none" or "lowercase"
@@ -117,6 +123,8 @@ func (TerraformCloudState) ElementType() reflect.Type {
 type terraformCloudArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration string `pulumi:"integration"`
 	// A name transform to apply before syncing secrets: "none" or "lowercase"
@@ -134,6 +142,8 @@ type terraformCloudArgs struct {
 type TerraformCloudArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringInput
 	// A name transform to apply before syncing secrets: "none" or "lowercase"
@@ -237,6 +247,11 @@ func (o TerraformCloudOutput) ToTerraformCloudOutputWithContext(ctx context.Cont
 // The name of the Doppler config
 func (o TerraformCloudOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerraformCloud) pulumi.StringOutput { return v.Config }).(pulumi.StringOutput)
+}
+
+// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+func (o TerraformCloudOutput) DeleteBehavior() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TerraformCloud) pulumi.StringPtrOutput { return v.DeleteBehavior }).(pulumi.StringPtrOutput)
 }
 
 // The slug of the integration to use for this sync

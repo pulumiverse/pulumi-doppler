@@ -40,6 +40,10 @@ export class TerraformCloud extends pulumi.CustomResource {
      */
     public readonly config!: pulumi.Output<string>;
     /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    public readonly deleteBehavior!: pulumi.Output<string | undefined>;
+    /**
      * The slug of the integration to use for this sync
      */
     public readonly integration!: pulumi.Output<string>;
@@ -73,6 +77,7 @@ export class TerraformCloud extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TerraformCloudState | undefined;
             resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["deleteBehavior"] = state ? state.deleteBehavior : undefined;
             resourceInputs["integration"] = state ? state.integration : undefined;
             resourceInputs["nameTransform"] = state ? state.nameTransform : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
@@ -101,6 +106,7 @@ export class TerraformCloud extends pulumi.CustomResource {
                 throw new Error("Missing required property 'variableSyncType'");
             }
             resourceInputs["config"] = args ? args.config : undefined;
+            resourceInputs["deleteBehavior"] = args ? args.deleteBehavior : undefined;
             resourceInputs["integration"] = args ? args.integration : undefined;
             resourceInputs["nameTransform"] = args ? args.nameTransform : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
@@ -122,6 +128,10 @@ export interface TerraformCloudState {
      * The name of the Doppler config
      */
     config?: pulumi.Input<string>;
+    /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
     /**
      * The slug of the integration to use for this sync
      */
@@ -151,6 +161,10 @@ export interface TerraformCloudArgs {
      * The name of the Doppler config
      */
     config: pulumi.Input<string>;
+    /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
     /**
      * The slug of the integration to use for this sync
      */

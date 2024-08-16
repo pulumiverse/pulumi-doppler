@@ -24,9 +24,11 @@
         "index.ts",
         "integration/awsParameterStore.ts",
         "integration/awsSecretsManager.ts",
+        "integration/flyio.ts",
         "integration/index.ts",
         "integration/terraformCloud.ts",
         "project.ts",
+        "projectRole.ts",
         "projectmember/group.ts",
         "projectmember/index.ts",
         "projectmember/serviceAccount.ts",
@@ -34,11 +36,17 @@
         "secret.ts",
         "secretssync/awsParameterStore.ts",
         "secretssync/awsSecretsManager.ts",
+        "secretssync/flyio.ts",
         "secretssync/githubActions.ts",
         "secretssync/index.ts",
         "secretssync/terraformCloud.ts",
         "serviceAccount.ts",
+        "serviceAccountToken.ts",
         "serviceToken.ts",
-        "utilities.ts"
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
+        "utilities.ts",
+        "webhook.ts"
     ]
 }

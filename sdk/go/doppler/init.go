@@ -31,12 +31,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GroupMember{}
 	case "doppler:index/project:Project":
 		r = &Project{}
+	case "doppler:index/projectRole:ProjectRole":
+		r = &ProjectRole{}
 	case "doppler:index/secret:Secret":
 		r = &Secret{}
 	case "doppler:index/serviceAccount:ServiceAccount":
 		r = &ServiceAccount{}
+	case "doppler:index/serviceAccountToken:ServiceAccountToken":
+		r = &ServiceAccountToken{}
 	case "doppler:index/serviceToken:ServiceToken":
 		r = &ServiceToken{}
+	case "doppler:index/webhook:Webhook":
+		r = &Webhook{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -95,6 +101,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"doppler",
+		"index/projectRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
 		"index/secret",
 		&module{version},
 	)
@@ -105,7 +116,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"doppler",
+		"index/serviceAccountToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
 		"index/serviceToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"doppler",
+		"index/webhook",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

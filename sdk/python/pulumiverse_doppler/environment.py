@@ -16,16 +16,20 @@ class EnvironmentArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  project: pulumi.Input[str],
-                 slug: pulumi.Input[str]):
+                 slug: pulumi.Input[str],
+                 personal_configs: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
         :param pulumi.Input[str] name: The name of the Doppler environment
         :param pulumi.Input[str] project: The name of the Doppler project where the environment is located
         :param pulumi.Input[str] slug: The slug of the Doppler environment
+        :param pulumi.Input[bool] personal_configs: Whether or not personal configs are enabled for the environment
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "slug", slug)
+        if personal_configs is not None:
+            pulumi.set(__self__, "personal_configs", personal_configs)
 
     @property
     @pulumi.getter
@@ -63,21 +67,37 @@ class EnvironmentArgs:
     def slug(self, value: pulumi.Input[str]):
         pulumi.set(self, "slug", value)
 
+    @property
+    @pulumi.getter(name="personalConfigs")
+    def personal_configs(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not personal configs are enabled for the environment
+        """
+        return pulumi.get(self, "personal_configs")
+
+    @personal_configs.setter
+    def personal_configs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "personal_configs", value)
+
 
 @pulumi.input_type
 class _EnvironmentState:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
+                 personal_configs: Optional[pulumi.Input[bool]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
         :param pulumi.Input[str] name: The name of the Doppler environment
+        :param pulumi.Input[bool] personal_configs: Whether or not personal configs are enabled for the environment
         :param pulumi.Input[str] project: The name of the Doppler project where the environment is located
         :param pulumi.Input[str] slug: The slug of the Doppler environment
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if personal_configs is not None:
+            pulumi.set(__self__, "personal_configs", personal_configs)
         if project is not None:
             pulumi.set(__self__, "project", project)
         if slug is not None:
@@ -94,6 +114,18 @@ class _EnvironmentState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="personalConfigs")
+    def personal_configs(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not personal configs are enabled for the environment
+        """
+        return pulumi.get(self, "personal_configs")
+
+    @personal_configs.setter
+    def personal_configs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "personal_configs", value)
 
     @property
     @pulumi.getter
@@ -126,6 +158,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 personal_configs: Optional[pulumi.Input[bool]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -153,6 +186,7 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the Doppler environment
+        :param pulumi.Input[bool] personal_configs: Whether or not personal configs are enabled for the environment
         :param pulumi.Input[str] project: The name of the Doppler project where the environment is located
         :param pulumi.Input[str] slug: The slug of the Doppler environment
         """
@@ -199,6 +233,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 personal_configs: Optional[pulumi.Input[bool]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -213,6 +248,7 @@ class Environment(pulumi.CustomResource):
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
+            __props__.__dict__["personal_configs"] = personal_configs
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
             __props__.__dict__["project"] = project
@@ -230,6 +266,7 @@ class Environment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
+            personal_configs: Optional[pulumi.Input[bool]] = None,
             project: Optional[pulumi.Input[str]] = None,
             slug: Optional[pulumi.Input[str]] = None) -> 'Environment':
         """
@@ -240,6 +277,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the Doppler environment
+        :param pulumi.Input[bool] personal_configs: Whether or not personal configs are enabled for the environment
         :param pulumi.Input[str] project: The name of the Doppler project where the environment is located
         :param pulumi.Input[str] slug: The slug of the Doppler environment
         """
@@ -248,6 +286,7 @@ class Environment(pulumi.CustomResource):
         __props__ = _EnvironmentState.__new__(_EnvironmentState)
 
         __props__.__dict__["name"] = name
+        __props__.__dict__["personal_configs"] = personal_configs
         __props__.__dict__["project"] = project
         __props__.__dict__["slug"] = slug
         return Environment(resource_name, opts=opts, __props__=__props__)
@@ -259,6 +298,14 @@ class Environment(pulumi.CustomResource):
         The name of the Doppler environment
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="personalConfigs")
+    def personal_configs(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether or not personal configs are enabled for the environment
+        """
+        return pulumi.get(self, "personal_configs")
 
     @property
     @pulumi.getter

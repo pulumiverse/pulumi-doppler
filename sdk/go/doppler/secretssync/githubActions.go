@@ -18,6 +18,8 @@ type GithubActions struct {
 
 	// The name of the Doppler config
 	Config pulumi.StringOutput `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrOutput `pulumi:"deleteBehavior"`
 	// The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
 	EnvironmentName pulumi.StringPtrOutput `pulumi:"environmentName"`
 	// The slug of the integration to use for this sync
@@ -76,6 +78,8 @@ func GetGithubActions(ctx *pulumi.Context,
 type githubActionsState struct {
 	// The name of the Doppler config
 	Config *string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
 	EnvironmentName *string `pulumi:"environmentName"`
 	// The slug of the integration to use for this sync
@@ -93,6 +97,8 @@ type githubActionsState struct {
 type GithubActionsState struct {
 	// The name of the Doppler config
 	Config pulumi.StringPtrInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
 	EnvironmentName pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
@@ -114,6 +120,8 @@ func (GithubActionsState) ElementType() reflect.Type {
 type githubActionsArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
 	EnvironmentName *string `pulumi:"environmentName"`
 	// The slug of the integration to use for this sync
@@ -132,6 +140,8 @@ type githubActionsArgs struct {
 type GithubActionsArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
 	EnvironmentName pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
@@ -236,6 +246,11 @@ func (o GithubActionsOutput) ToGithubActionsOutputWithContext(ctx context.Contex
 // The name of the Doppler config
 func (o GithubActionsOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v *GithubActions) pulumi.StringOutput { return v.Config }).(pulumi.StringOutput)
+}
+
+// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+func (o GithubActionsOutput) DeleteBehavior() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GithubActions) pulumi.StringPtrOutput { return v.DeleteBehavior }).(pulumi.StringPtrOutput)
 }
 
 // The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
