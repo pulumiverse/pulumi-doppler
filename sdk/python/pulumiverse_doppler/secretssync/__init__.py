@@ -7,5 +7,6 @@ import typing
 # Export this package's modules as members:
 from .aws_parameter_store import *
 from .aws_secrets_manager import *
+from .flyio import *
 from .github_actions import *
 from .terraform_cloud import *

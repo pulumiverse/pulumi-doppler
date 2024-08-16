@@ -159,7 +159,8 @@ class AwsParameterStore(pulumi.CustomResource):
             secure_string=True,
             tags={
                 "myTag": "enabled",
-            })
+            },
+            delete_behavior="leave_in_target")
         ```
 
         :param str resource_name: The name of the resource.
@@ -235,7 +236,8 @@ class AwsParameterStore(pulumi.CustomResource):
             secure_string=True,
             tags={
                 "myTag": "enabled",
-            })
+            },
+            delete_behavior="leave_in_target")
         ```
 
         :param str resource_name: The name of the resource.

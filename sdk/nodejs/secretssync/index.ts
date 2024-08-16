@@ -15,6 +15,11 @@ export type AwsSecretsManager = import("./awsSecretsManager").AwsSecretsManager;
 export const AwsSecretsManager: typeof import("./awsSecretsManager").AwsSecretsManager = null as any;
 utilities.lazyLoad(exports, ["AwsSecretsManager"], () => require("./awsSecretsManager"));
 
+export { FlyioArgs, FlyioState } from "./flyio";
+export type Flyio = import("./flyio").Flyio;
+export const Flyio: typeof import("./flyio").Flyio = null as any;
+utilities.lazyLoad(exports, ["Flyio"], () => require("./flyio"));
+
 export { GithubActionsArgs, GithubActionsState } from "./githubActions";
 export type GithubActions = import("./githubActions").GithubActions;
 export const GithubActions: typeof import("./githubActions").GithubActions = null as any;
@@ -34,6 +39,8 @@ const _module = {
                 return new AwsParameterStore(name, <any>undefined, { urn })
             case "doppler:secretsSync/awsSecretsManager:AwsSecretsManager":
                 return new AwsSecretsManager(name, <any>undefined, { urn })
+            case "doppler:secretsSync/flyio:Flyio":
+                return new Flyio(name, <any>undefined, { urn })
             case "doppler:secretsSync/githubActions:GithubActions":
                 return new GithubActions(name, <any>undefined, { urn })
             case "doppler:secretsSync/terraformCloud:TerraformCloud":
@@ -45,5 +52,6 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/awsParameterStore", _module)
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/awsSecretsManager", _module)
+pulumi.runtime.registerResourceModule("doppler", "secretsSync/flyio", _module)
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/githubActions", _module)
 pulumi.runtime.registerResourceModule("doppler", "secretsSync/terraformCloud", _module)

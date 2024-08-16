@@ -155,7 +155,8 @@ class AwsSecretsManager(pulumi.CustomResource):
             path="/backend/",
             tags={
                 "myTag": "enabled",
-            })
+            },
+            delete_behavior="leave_in_target")
         ```
 
         :param str resource_name: The name of the resource.
@@ -227,7 +228,8 @@ class AwsSecretsManager(pulumi.CustomResource):
             path="/backend/",
             tags={
                 "myTag": "enabled",
-            })
+            },
+            delete_behavior="leave_in_target")
         ```
 
         :param str resource_name: The name of the resource.

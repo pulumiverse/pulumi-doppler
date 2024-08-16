@@ -99,6 +99,7 @@ namespace Pulumiverse.Doppler.Integration
     ///         {
     ///             { "myTag", "enabled" },
     ///         },
+    ///         DeleteBehavior = "leave_in_target",
     ///     });
     /// 
     /// });

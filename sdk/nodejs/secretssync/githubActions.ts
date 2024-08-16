@@ -40,6 +40,10 @@ export class GithubActions extends pulumi.CustomResource {
      */
     public readonly config!: pulumi.Output<string>;
     /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    public readonly deleteBehavior!: pulumi.Output<string | undefined>;
+    /**
      * The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
      */
     public readonly environmentName!: pulumi.Output<string | undefined>;
@@ -78,6 +82,7 @@ export class GithubActions extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GithubActionsState | undefined;
             resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["deleteBehavior"] = state ? state.deleteBehavior : undefined;
             resourceInputs["environmentName"] = state ? state.environmentName : undefined;
             resourceInputs["integration"] = state ? state.integration : undefined;
             resourceInputs["orgScope"] = state ? state.orgScope : undefined;
@@ -99,6 +104,7 @@ export class GithubActions extends pulumi.CustomResource {
                 throw new Error("Missing required property 'syncTarget'");
             }
             resourceInputs["config"] = args ? args.config : undefined;
+            resourceInputs["deleteBehavior"] = args ? args.deleteBehavior : undefined;
             resourceInputs["environmentName"] = args ? args.environmentName : undefined;
             resourceInputs["integration"] = args ? args.integration : undefined;
             resourceInputs["orgScope"] = args ? args.orgScope : undefined;
@@ -119,6 +125,10 @@ export interface GithubActionsState {
      * The name of the Doppler config
      */
     config?: pulumi.Input<string>;
+    /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
     /**
      * The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
      */
@@ -153,6 +163,10 @@ export interface GithubActionsArgs {
      * The name of the Doppler config
      */
     config: pulumi.Input<string>;
+    /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
     /**
      * The GitHub repo environment name to sync to (only used when `syncTarget` is set to "repo")
      */

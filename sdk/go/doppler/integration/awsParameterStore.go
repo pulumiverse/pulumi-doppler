@@ -108,6 +108,7 @@ import (
 //				Tags: pulumi.StringMap{
 //					"myTag": pulumi.String("enabled"),
 //				},
+//				DeleteBehavior: pulumi.String("leave_in_target"),
 //			})
 //			if err != nil {
 //				return err

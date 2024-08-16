@@ -99,6 +99,7 @@ namespace Pulumiverse.Doppler.SecretsSync
     ///         {
     ///             { "myTag", "enabled" },
     ///         },
+    ///         DeleteBehavior = "leave_in_target",
     ///     });
     /// 
     /// });
@@ -114,10 +115,22 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Output<string> Config { get; private set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Output("deleteBehavior")]
+        public Output<string?> DeleteBehavior { get; private set; } = null!;
+
+        /// <summary>
         /// The slug of the integration to use for this sync
         /// </summary>
         [Output("integration")]
         public Output<string> Integration { get; private set; } = null!;
+
+        /// <summary>
+        /// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+        /// </summary>
+        [Output("kmsKeyId")]
+        public Output<string?> KmsKeyId { get; private set; } = null!;
 
         /// <summary>
         /// The path to the secret in AWS
@@ -142,6 +155,12 @@ namespace Pulumiverse.Doppler.SecretsSync
         /// </summary>
         [Output("tags")]
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+        /// </summary>
+        [Output("updateMetadata")]
+        public Output<bool?> UpdateMetadata { get; private set; } = null!;
 
 
         /// <summary>
@@ -197,10 +216,22 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Input<string> Config { get; set; } = null!;
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
+
+        /// <summary>
         /// The slug of the integration to use for this sync
         /// </summary>
         [Input("integration", required: true)]
         public Input<string> Integration { get; set; } = null!;
+
+        /// <summary>
+        /// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
 
         /// <summary>
         /// The path to the secret in AWS
@@ -232,6 +263,12 @@ namespace Pulumiverse.Doppler.SecretsSync
             set => _tags = value;
         }
 
+        /// <summary>
+        /// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+        /// </summary>
+        [Input("updateMetadata")]
+        public Input<bool>? UpdateMetadata { get; set; }
+
         public AwsSecretsManagerArgs()
         {
         }
@@ -247,10 +284,22 @@ namespace Pulumiverse.Doppler.SecretsSync
         public Input<string>? Config { get; set; }
 
         /// <summary>
+        /// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        /// </summary>
+        [Input("deleteBehavior")]
+        public Input<string>? DeleteBehavior { get; set; }
+
+        /// <summary>
         /// The slug of the integration to use for this sync
         /// </summary>
         [Input("integration")]
         public Input<string>? Integration { get; set; }
+
+        /// <summary>
+        /// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
 
         /// <summary>
         /// The path to the secret in AWS
@@ -281,6 +330,12 @@ namespace Pulumiverse.Doppler.SecretsSync
             get => _tags ?? (_tags = new InputMap<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+        /// </summary>
+        [Input("updateMetadata")]
+        public Input<bool>? UpdateMetadata { get; set; }
 
         public AwsSecretsManagerState()
         {

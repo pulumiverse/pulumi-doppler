@@ -68,6 +68,7 @@ import * as utilities from "../utilities";
  *     tags: {
  *         myTag: "enabled",
  *     },
+ *     deleteBehavior: "leave_in_target",
  * });
  * ```
  */

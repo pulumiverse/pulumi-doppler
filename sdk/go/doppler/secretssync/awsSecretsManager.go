@@ -104,6 +104,7 @@ import (
 //				Tags: pulumi.StringMap{
 //					"myTag": pulumi.String("enabled"),
 //				},
+//				DeleteBehavior: pulumi.String("leave_in_target"),
 //			})
 //			if err != nil {
 //				return err
@@ -118,8 +119,12 @@ type AwsSecretsManager struct {
 
 	// The name of the Doppler config
 	Config pulumi.StringOutput `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrOutput `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringOutput `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrOutput `pulumi:"kmsKeyId"`
 	// The path to the secret in AWS
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The name of the Doppler project
@@ -128,6 +133,8 @@ type AwsSecretsManager struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// AWS tags to attach to the secrets
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
+	// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+	UpdateMetadata pulumi.BoolPtrOutput `pulumi:"updateMetadata"`
 }
 
 // NewAwsSecretsManager registers a new resource with the given unique name, arguments, and options.
@@ -177,8 +184,12 @@ func GetAwsSecretsManager(ctx *pulumi.Context,
 type awsSecretsManagerState struct {
 	// The name of the Doppler config
 	Config *string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration *string `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The path to the secret in AWS
 	Path *string `pulumi:"path"`
 	// The name of the Doppler project
@@ -187,13 +198,19 @@ type awsSecretsManagerState struct {
 	Region *string `pulumi:"region"`
 	// AWS tags to attach to the secrets
 	Tags map[string]string `pulumi:"tags"`
+	// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+	UpdateMetadata *bool `pulumi:"updateMetadata"`
 }
 
 type AwsSecretsManagerState struct {
 	// The name of the Doppler config
 	Config pulumi.StringPtrInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringPtrInput
+	// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrInput
 	// The path to the secret in AWS
 	Path pulumi.StringPtrInput
 	// The name of the Doppler project
@@ -202,6 +219,8 @@ type AwsSecretsManagerState struct {
 	Region pulumi.StringPtrInput
 	// AWS tags to attach to the secrets
 	Tags pulumi.StringMapInput
+	// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+	UpdateMetadata pulumi.BoolPtrInput
 }
 
 func (AwsSecretsManagerState) ElementType() reflect.Type {
@@ -211,8 +230,12 @@ func (AwsSecretsManagerState) ElementType() reflect.Type {
 type awsSecretsManagerArgs struct {
 	// The name of the Doppler config
 	Config string `pulumi:"config"`
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior *string `pulumi:"deleteBehavior"`
 	// The slug of the integration to use for this sync
 	Integration string `pulumi:"integration"`
+	// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The path to the secret in AWS
 	Path string `pulumi:"path"`
 	// The name of the Doppler project
@@ -221,14 +244,20 @@ type awsSecretsManagerArgs struct {
 	Region string `pulumi:"region"`
 	// AWS tags to attach to the secrets
 	Tags map[string]string `pulumi:"tags"`
+	// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+	UpdateMetadata *bool `pulumi:"updateMetadata"`
 }
 
 // The set of arguments for constructing a AwsSecretsManager resource.
 type AwsSecretsManagerArgs struct {
 	// The name of the Doppler config
 	Config pulumi.StringInput
+	// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+	DeleteBehavior pulumi.StringPtrInput
 	// The slug of the integration to use for this sync
 	Integration pulumi.StringInput
+	// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+	KmsKeyId pulumi.StringPtrInput
 	// The path to the secret in AWS
 	Path pulumi.StringInput
 	// The name of the Doppler project
@@ -237,6 +266,8 @@ type AwsSecretsManagerArgs struct {
 	Region pulumi.StringInput
 	// AWS tags to attach to the secrets
 	Tags pulumi.StringMapInput
+	// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+	UpdateMetadata pulumi.BoolPtrInput
 }
 
 func (AwsSecretsManagerArgs) ElementType() reflect.Type {
@@ -331,9 +362,19 @@ func (o AwsSecretsManagerOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringOutput { return v.Config }).(pulumi.StringOutput)
 }
 
+// The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+func (o AwsSecretsManagerOutput) DeleteBehavior() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringPtrOutput { return v.DeleteBehavior }).(pulumi.StringPtrOutput)
+}
+
 // The slug of the integration to use for this sync
 func (o AwsSecretsManagerOutput) Integration() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringOutput { return v.Integration }).(pulumi.StringOutput)
+}
+
+// The AWS KMS key used to encrypt the secret (ID, Alias, or ARN)
+func (o AwsSecretsManagerOutput) KmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringPtrOutput { return v.KmsKeyId }).(pulumi.StringPtrOutput)
 }
 
 // The path to the secret in AWS
@@ -354,6 +395,11 @@ func (o AwsSecretsManagerOutput) Region() pulumi.StringOutput {
 // AWS tags to attach to the secrets
 func (o AwsSecretsManagerOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AwsSecretsManager) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.
+func (o AwsSecretsManagerOutput) UpdateMetadata() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AwsSecretsManager) pulumi.BoolPtrOutput { return v.UpdateMetadata }).(pulumi.BoolPtrOutput)
 }
 
 type AwsSecretsManagerArrayOutput struct{ *pulumi.OutputState }

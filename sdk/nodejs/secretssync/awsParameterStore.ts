@@ -68,6 +68,7 @@ import * as utilities from "../utilities";
  *     tags: {
  *         myTag: "enabled",
  *     },
+ *     deleteBehavior: "leave_in_target",
  * });
  * ```
  */
@@ -104,9 +105,17 @@ export class AwsParameterStore extends pulumi.CustomResource {
      */
     public readonly config!: pulumi.Output<string>;
     /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    public readonly deleteBehavior!: pulumi.Output<string | undefined>;
+    /**
      * The slug of the integration to use for this sync
      */
     public readonly integration!: pulumi.Output<string>;
+    /**
+     * The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+     */
+    public readonly kmsKeyId!: pulumi.Output<string | undefined>;
     /**
      * The path to the parameters in AWS
      */
@@ -142,7 +151,9 @@ export class AwsParameterStore extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AwsParameterStoreState | undefined;
             resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["deleteBehavior"] = state ? state.deleteBehavior : undefined;
             resourceInputs["integration"] = state ? state.integration : undefined;
+            resourceInputs["kmsKeyId"] = state ? state.kmsKeyId : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -166,7 +177,9 @@ export class AwsParameterStore extends pulumi.CustomResource {
                 throw new Error("Missing required property 'region'");
             }
             resourceInputs["config"] = args ? args.config : undefined;
+            resourceInputs["deleteBehavior"] = args ? args.deleteBehavior : undefined;
             resourceInputs["integration"] = args ? args.integration : undefined;
+            resourceInputs["kmsKeyId"] = args ? args.kmsKeyId : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -187,9 +200,17 @@ export interface AwsParameterStoreState {
      */
     config?: pulumi.Input<string>;
     /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
+    /**
      * The slug of the integration to use for this sync
      */
     integration?: pulumi.Input<string>;
+    /**
+     * The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+     */
+    kmsKeyId?: pulumi.Input<string>;
     /**
      * The path to the parameters in AWS
      */
@@ -221,9 +242,17 @@ export interface AwsParameterStoreArgs {
      */
     config: pulumi.Input<string>;
     /**
+     * The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leaveInTarget` (default) or `deleteFromTarget`.
+     */
+    deleteBehavior?: pulumi.Input<string>;
+    /**
      * The slug of the integration to use for this sync
      */
     integration: pulumi.Input<string>;
+    /**
+     * The AWS KMS key used to encrypt the parameter (ID, Alias, or ARN)
+     */
+    kmsKeyId?: pulumi.Input<string>;
     /**
      * The path to the parameters in AWS
      */

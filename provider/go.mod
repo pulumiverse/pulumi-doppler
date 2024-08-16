@@ -10,7 +10,7 @@ replace (
 )
 
 require (
-	github.com/DopplerHQ/terraform-provider-doppler v1.7.1
+	github.com/DopplerHQ/terraform-provider-doppler v1.9.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.88.0
 	github.com/pulumi/pulumi/sdk/v3 v3.126.0
 )

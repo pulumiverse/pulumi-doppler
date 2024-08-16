@@ -20,6 +20,7 @@ class TerraformCloudArgs:
                  project: pulumi.Input[str],
                  sync_target: pulumi.Input[str],
                  variable_sync_type: pulumi.Input[str],
+                 delete_behavior: Optional[pulumi.Input[str]] = None,
                  variable_set_id: Optional[pulumi.Input[str]] = None,
                  workspace_id: Optional[pulumi.Input[str]] = None):
         """
@@ -29,6 +30,7 @@ class TerraformCloudArgs:
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
         :param pulumi.Input[str] sync_target: Either "workspace" or "variableSet", based on the resource type to sync to
+        :param pulumi.Input[str] delete_behavior: The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "integration", integration)
@@ -36,6 +38,8 @@ class TerraformCloudArgs:
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "sync_target", sync_target)
         pulumi.set(__self__, "variable_sync_type", variable_sync_type)
+        if delete_behavior is not None:
+            pulumi.set(__self__, "delete_behavior", delete_behavior)
         if variable_set_id is not None:
             pulumi.set(__self__, "variable_set_id", variable_set_id)
         if workspace_id is not None:
@@ -111,6 +115,18 @@ class TerraformCloudArgs:
         pulumi.set(self, "variable_sync_type", value)
 
     @property
+    @pulumi.getter(name="deleteBehavior")
+    def delete_behavior(self) -> Optional[pulumi.Input[str]]:
+        """
+        The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        """
+        return pulumi.get(self, "delete_behavior")
+
+    @delete_behavior.setter
+    def delete_behavior(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete_behavior", value)
+
+    @property
     @pulumi.getter(name="variableSetId")
     def variable_set_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "variable_set_id")
@@ -133,6 +149,7 @@ class TerraformCloudArgs:
 class _TerraformCloudState:
     def __init__(__self__, *,
                  config: Optional[pulumi.Input[str]] = None,
+                 delete_behavior: Optional[pulumi.Input[str]] = None,
                  integration: Optional[pulumi.Input[str]] = None,
                  name_transform: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
@@ -143,6 +160,7 @@ class _TerraformCloudState:
         """
         Input properties used for looking up and filtering TerraformCloud resources.
         :param pulumi.Input[str] config: The name of the Doppler config
+        :param pulumi.Input[str] delete_behavior: The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
         :param pulumi.Input[str] integration: The slug of the integration to use for this sync
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
@@ -150,6 +168,8 @@ class _TerraformCloudState:
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
+        if delete_behavior is not None:
+            pulumi.set(__self__, "delete_behavior", delete_behavior)
         if integration is not None:
             pulumi.set(__self__, "integration", integration)
         if name_transform is not None:
@@ -176,6 +196,18 @@ class _TerraformCloudState:
     @config.setter
     def config(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter(name="deleteBehavior")
+    def delete_behavior(self) -> Optional[pulumi.Input[str]]:
+        """
+        The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        """
+        return pulumi.get(self, "delete_behavior")
+
+    @delete_behavior.setter
+    def delete_behavior(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete_behavior", value)
 
     @property
     @pulumi.getter
@@ -259,6 +291,7 @@ class TerraformCloud(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  config: Optional[pulumi.Input[str]] = None,
+                 delete_behavior: Optional[pulumi.Input[str]] = None,
                  integration: Optional[pulumi.Input[str]] = None,
                  name_transform: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
@@ -273,6 +306,7 @@ class TerraformCloud(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config: The name of the Doppler config
+        :param pulumi.Input[str] delete_behavior: The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
         :param pulumi.Input[str] integration: The slug of the integration to use for this sync
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
@@ -303,6 +337,7 @@ class TerraformCloud(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  config: Optional[pulumi.Input[str]] = None,
+                 delete_behavior: Optional[pulumi.Input[str]] = None,
                  integration: Optional[pulumi.Input[str]] = None,
                  name_transform: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
@@ -322,6 +357,7 @@ class TerraformCloud(pulumi.CustomResource):
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config
+            __props__.__dict__["delete_behavior"] = delete_behavior
             if integration is None and not opts.urn:
                 raise TypeError("Missing required property 'integration'")
             __props__.__dict__["integration"] = integration
@@ -350,6 +386,7 @@ class TerraformCloud(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             config: Optional[pulumi.Input[str]] = None,
+            delete_behavior: Optional[pulumi.Input[str]] = None,
             integration: Optional[pulumi.Input[str]] = None,
             name_transform: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
@@ -365,6 +402,7 @@ class TerraformCloud(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config: The name of the Doppler config
+        :param pulumi.Input[str] delete_behavior: The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
         :param pulumi.Input[str] integration: The slug of the integration to use for this sync
         :param pulumi.Input[str] name_transform: A name transform to apply before syncing secrets: "none" or "lowercase"
         :param pulumi.Input[str] project: The name of the Doppler project
@@ -375,6 +413,7 @@ class TerraformCloud(pulumi.CustomResource):
         __props__ = _TerraformCloudState.__new__(_TerraformCloudState)
 
         __props__.__dict__["config"] = config
+        __props__.__dict__["delete_behavior"] = delete_behavior
         __props__.__dict__["integration"] = integration
         __props__.__dict__["name_transform"] = name_transform
         __props__.__dict__["project"] = project
@@ -391,6 +430,14 @@ class TerraformCloud(pulumi.CustomResource):
         The name of the Doppler config
         """
         return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter(name="deleteBehavior")
+    def delete_behavior(self) -> pulumi.Output[Optional[str]]:
+        """
+        The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.
+        """
+        return pulumi.get(self, "delete_behavior")
 
     @property
     @pulumi.getter
