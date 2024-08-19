@@ -2049,6 +2049,7 @@
     },
     "functions": {
         "doppler:index/getSecrets:getSecrets": {
+            "description": "Retrieve all secrets in the config.\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSecrets.\n",
                 "properties": {
