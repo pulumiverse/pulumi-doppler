@@ -272,7 +272,7 @@ class Webhook(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[pulumi.InputType['WebhookAuthenticationArgs']]] = None,
+                 authentication: Optional[pulumi.Input[Union['WebhookAuthenticationArgs', 'WebhookAuthenticationArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  enabled_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  payload: Optional[pulumi.Input[str]] = None,
@@ -284,7 +284,7 @@ class Webhook(pulumi.CustomResource):
         Create a Webhook resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['WebhookAuthenticationArgs']] authentication: Authentication method used by the webhook
+        :param pulumi.Input[Union['WebhookAuthenticationArgs', 'WebhookAuthenticationArgsDict']] authentication: Authentication method used by the webhook
         :param pulumi.Input[bool] enabled: Whether the webhook is enabled or disabled.  Default to true.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_configs: Configs this webhook will trigger for
         :param pulumi.Input[str] payload: The webhook's payload as a JSON string.  Leave empty to use the default webhook payload
@@ -315,7 +315,7 @@ class Webhook(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[pulumi.InputType['WebhookAuthenticationArgs']]] = None,
+                 authentication: Optional[pulumi.Input[Union['WebhookAuthenticationArgs', 'WebhookAuthenticationArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  enabled_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  payload: Optional[pulumi.Input[str]] = None,
@@ -355,7 +355,7 @@ class Webhook(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication: Optional[pulumi.Input[pulumi.InputType['WebhookAuthenticationArgs']]] = None,
+            authentication: Optional[pulumi.Input[Union['WebhookAuthenticationArgs', 'WebhookAuthenticationArgsDict']]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             enabled_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             payload: Optional[pulumi.Input[str]] = None,
@@ -370,7 +370,7 @@ class Webhook(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['WebhookAuthenticationArgs']] authentication: Authentication method used by the webhook
+        :param pulumi.Input[Union['WebhookAuthenticationArgs', 'WebhookAuthenticationArgsDict']] authentication: Authentication method used by the webhook
         :param pulumi.Input[bool] enabled: Whether the webhook is enabled or disabled.  Default to true.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_configs: Configs this webhook will trigger for
         :param pulumi.Input[str] payload: The webhook's payload as a JSON string.  Leave empty to use the default webhook payload

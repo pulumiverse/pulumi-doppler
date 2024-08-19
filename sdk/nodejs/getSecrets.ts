@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Retrieve all secrets in the config.
+ */
 export function getSecrets(args?: GetSecretsArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretsResult> {
     args = args || {};
 
@@ -49,6 +52,9 @@ export interface GetSecretsResult {
      */
     readonly project?: string;
 }
+/**
+ * Retrieve all secrets in the config.
+ */
 export function getSecretsOutput(args?: GetSecretsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsResult> {
     return pulumi.output(args).apply((a: any) => getSecrets(a, opts))
 }
