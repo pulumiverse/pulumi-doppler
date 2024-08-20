@@ -12,9 +12,15 @@ namespace Pulumiverse.Doppler
 {
     public static class GetSecrets
     {
+        /// <summary>
+        /// Retrieve all secrets in the config.
+        /// </summary>
         public static Task<GetSecretsResult> InvokeAsync(GetSecretsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretsResult>("doppler:index/getSecrets:getSecrets", args ?? new GetSecretsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve all secrets in the config.
+        /// </summary>
         public static Output<GetSecretsResult> Invoke(GetSecretsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretsResult>("doppler:index/getSecrets:getSecrets", args ?? new GetSecretsInvokeArgs(), options.WithDefaults());
     }
