@@ -328,7 +328,7 @@
             }
         },
         "doppler:index/groupMember:GroupMember": {
-            "description": "Manage a Doppler user/group membership.\n\n## Import\n\nimport using the group slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]\n\nand the user slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]\n\n```sh\n$ pulumi import doppler:index/groupMember:GroupMember default \u003cgroup-slug\u003e.workplace_user.\u003cuser-slug\u003e\n```\n\n",
+            "description": "Manage a Doppler user/group membership.\n\n**Note:** You can also exclusively manage all memberships in a group with a single resource.\nSee the `doppler.GroupMembers` resource for more information.\n\n## Import\n\nimport using the group slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]\n\nand the user slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]\n\n```sh\n$ pulumi import doppler:index/groupMember:GroupMember default \u003cgroup-slug\u003e.workplace_user.\u003cuser-slug\u003e\n```\n\n",
             "properties": {
                 "groupSlug": {
                     "type": "string",
@@ -371,6 +371,62 @@
                         "type": "string",
                         "description": "The slug of the Doppler workplace user\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:index/groupMembers:GroupMembers": {
+            "description": "Manage a Doppler group's memberships.\n\n**Note:** The `doppler.GroupMembers` resource will clear/replace all existing memberships.\nMultiple `doppler.GroupMembers` resources or combinations of `doppler.GroupMembers` and `doppler.GroupMember` will produce inconsistent behavior.\nTo non-exclusively manage group memberships, use `doppler.GroupMember` only.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumi/doppler\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst engineering = new doppler.Group(\"engineering\", {name: \"engineering\"});\nconst nic = doppler.getUser({\n    email: \"nic@doppler.com\",\n});\nconst andre = doppler.getUser({\n    email: \"andre@doppler.com\",\n});\nconst engineeringGroupMembers = new doppler.GroupMembers(\"engineering\", {\n    groupSlug: engineering.slug,\n    userSlugs: [\n        nic.then(nic =\u003e nic.slug),\n        andre.then(andre =\u003e andre.slug),\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_doppler as doppler\nimport pulumiverse_doppler as doppler\n\nengineering = doppler.Group(\"engineering\", name=\"engineering\")\nnic = doppler.get_user(email=\"nic@doppler.com\")\nandre = doppler.get_user(email=\"andre@doppler.com\")\nengineering_group_members = doppler.GroupMembers(\"engineering\",\n    group_slug=engineering.slug,\n    user_slugs=[\n        nic.slug,\n        andre.slug,\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumi.Doppler;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var engineering = new Doppler.Group(\"engineering\", new()\n    {\n        Name = \"engineering\",\n    });\n\n    var nic = Doppler.GetUser.Invoke(new()\n    {\n        Email = \"nic@doppler.com\",\n    });\n\n    var andre = Doppler.GetUser.Invoke(new()\n    {\n        Email = \"andre@doppler.com\",\n    });\n\n    var engineeringGroupMembers = new Doppler.GroupMembers(\"engineering\", new()\n    {\n        GroupSlug = engineering.Slug,\n        UserSlugs = new[]\n        {\n            nic.Apply(getUserResult =\u003e getUserResult.Slug),\n            andre.Apply(getUserResult =\u003e getUserResult.Slug),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tengineering, err := doppler.NewGroup(ctx, \"engineering\", \u0026doppler.GroupArgs{\n\t\t\tName: pulumi.String(\"engineering\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnic, err := doppler.GetUser(ctx, \u0026doppler.GetUserArgs{\n\t\t\tEmail: \"nic@doppler.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tandre, err := doppler.GetUser(ctx, \u0026doppler.GetUserArgs{\n\t\t\tEmail: \"andre@doppler.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = doppler.NewGroupMembers(ctx, \"engineering\", \u0026doppler.GroupMembersArgs{\n\t\t\tGroupSlug: engineering.Slug,\n\t\t\tUserSlugs: pulumi.StringArray{\n\t\t\t\tpulumi.String(nic.Slug),\n\t\t\t\tpulumi.String(andre.Slug),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.Group;\nimport com.pulumi.doppler.GroupArgs;\nimport com.pulumi.doppler.DopplerFunctions;\nimport com.pulumi.doppler.inputs.GetUserArgs;\nimport com.pulumi.doppler.GroupMembers;\nimport com.pulumi.doppler.GroupMembersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var engineering = new Group(\"engineering\", GroupArgs.builder()\n            .name(\"engineering\")\n            .build());\n\n        final var nic = DopplerFunctions.getUser(GetUserArgs.builder()\n            .email(\"nic@doppler.com\")\n            .build());\n\n        final var andre = DopplerFunctions.getUser(GetUserArgs.builder()\n            .email(\"andre@doppler.com\")\n            .build());\n\n        var engineeringGroupMembers = new GroupMembers(\"engineeringGroupMembers\", GroupMembersArgs.builder()\n            .groupSlug(engineering.slug())\n            .userSlugs(            \n                nic.applyValue(getUserResult -\u003e getUserResult.slug()),\n                andre.applyValue(getUserResult -\u003e getUserResult.slug()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  engineering:\n    type: doppler:Group\n    properties:\n      name: engineering\n  engineeringGroupMembers:\n    type: doppler:GroupMembers\n    name: engineering\n    properties:\n      groupSlug: ${engineering.slug}\n      userSlugs:\n        - ${nic.slug}\n        - ${andre.slug}\nvariables:\n  nic:\n    fn::invoke:\n      Function: doppler:getUser\n      Arguments:\n        email: nic@doppler.com\n  andre:\n    fn::invoke:\n      Function: doppler:getUser\n      Arguments:\n        email: andre@doppler.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nimport using the group slug from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/groups/[group-slug]\n\nand the user slugs from the URL:\n\nhttps://dashboard.doppler.com/workplace/[workplace-slug]/team/users/[user-slug]\n\n```sh\n$ pulumi import doppler:index/groupMembers:GroupMembers default \u003cgroup-slug\u003e\n```\n\n",
+            "properties": {
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the group\n"
+                },
+                "userSlugs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of user slugs in the group\n"
+                }
+            },
+            "required": [
+                "groupSlug",
+                "userSlugs"
+            ],
+            "inputProperties": {
+                "groupSlug": {
+                    "type": "string",
+                    "description": "The slug of the group\n",
+                    "willReplaceOnChanges": true
+                },
+                "userSlugs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of user slugs in the group\n"
+                }
+            },
+            "requiredInputs": [
+                "groupSlug",
+                "userSlugs"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GroupMembers resources.\n",
+                "properties": {
+                    "groupSlug": {
+                        "type": "string",
+                        "description": "The slug of the group\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "userSlugs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of user slugs in the group\n"
                     }
                 },
                 "type": "object"
@@ -1073,6 +1129,56 @@
                 "type": "object"
             }
         },
+        "doppler:integration/circleci:Circleci": {
+            "description": "Manage a CircleCI Doppler integration.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst prod = new doppler.integration.Circleci(\"prod\", {\n    name: \"Production\",\n    apiToken: \"my_api_token\",\n});\nconst backendProd = new doppler.secretssync.Circleci(\"backend_prod\", {\n    integration: prod.id,\n    project: \"backend\",\n    config: \"prd\",\n    resourceType: \"project\",\n    resourceId: \"github/myorg/myproject\",\n    organizationSlug: \"myorg\",\n    deleteBehavior: \"leave_in_target\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nprod = doppler.integration.Circleci(\"prod\",\n    name=\"Production\",\n    api_token=\"my_api_token\")\nbackend_prod = doppler.secrets_sync.Circleci(\"backend_prod\",\n    integration=prod.id,\n    project=\"backend\",\n    config=\"prd\",\n    resource_type=\"project\",\n    resource_id=\"github/myorg/myproject\",\n    organization_slug=\"myorg\",\n    delete_behavior=\"leave_in_target\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prod = new Doppler.Integration.Circleci(\"prod\", new()\n    {\n        Name = \"Production\",\n        ApiToken = \"my_api_token\",\n    });\n\n    var backendProd = new Doppler.SecretsSync.Circleci(\"backend_prod\", new()\n    {\n        Integration = prod.Id,\n        Project = \"backend\",\n        Config = \"prd\",\n        ResourceType = \"project\",\n        ResourceId = \"github/myorg/myproject\",\n        OrganizationSlug = \"myorg\",\n        DeleteBehavior = \"leave_in_target\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/integration\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/secretsSync\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tprod, err := integration.NewCircleci(ctx, \"prod\", \u0026integration.CircleciArgs{\n\t\t\tName:     pulumi.String(\"Production\"),\n\t\t\tApiToken: pulumi.String(\"my_api_token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = secretsSync.NewCircleci(ctx, \"backend_prod\", \u0026secretsSync.CircleciArgs{\n\t\t\tIntegration:      prod.ID(),\n\t\t\tProject:          pulumi.String(\"backend\"),\n\t\t\tConfig:           pulumi.String(\"prd\"),\n\t\t\tResourceType:     pulumi.String(\"project\"),\n\t\t\tResourceId:       pulumi.String(\"github/myorg/myproject\"),\n\t\t\tOrganizationSlug: pulumi.String(\"myorg\"),\n\t\t\tDeleteBehavior:   pulumi.String(\"leave_in_target\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.integration.Circleci;\nimport com.pulumi.doppler.integration.CircleciArgs;\nimport com.pulumi.doppler.secretsSync.Circleci;\nimport com.pulumi.doppler.secretsSync.CircleciArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prod = new Circleci(\"prod\", CircleciArgs.builder()\n            .name(\"Production\")\n            .apiToken(\"my_api_token\")\n            .build());\n\n        var backendProd = new Circleci(\"backendProd\", CircleciArgs.builder()\n            .integration(prod.id())\n            .project(\"backend\")\n            .config(\"prd\")\n            .resourceType(\"project\")\n            .resourceId(\"github/myorg/myproject\")\n            .organizationSlug(\"myorg\")\n            .deleteBehavior(\"leave_in_target\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prod:\n    type: doppler:integration:Circleci\n    properties:\n      name: Production\n      apiToken: my_api_token\n  backendProd:\n    type: doppler:secretsSync:Circleci\n    name: backend_prod\n    properties:\n      integration: ${prod.id}\n      project: backend\n      config: prd\n      resourceType: project\n      resourceId: github/myorg/myproject\n      organizationSlug: myorg\n      deleteBehavior: leave_in_target\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "apiToken": {
+                    "type": "string",
+                    "description": "A CircleCI API token. See https://docs.doppler.com/docs/circleci for details.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the integration\n"
+                }
+            },
+            "required": [
+                "apiToken",
+                "name"
+            ],
+            "inputProperties": {
+                "apiToken": {
+                    "type": "string",
+                    "description": "A CircleCI API token. See https://docs.doppler.com/docs/circleci for details.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the integration\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "apiToken",
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Circleci resources.\n",
+                "properties": {
+                    "apiToken": {
+                        "type": "string",
+                        "description": "A CircleCI API token. See https://docs.doppler.com/docs/circleci for details.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the integration\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "doppler:integration/flyio:Flyio": {
             "description": "Manage a Fly.io Doppler integration.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst prod = new doppler.integration.Flyio(\"prod\", {\n    name: \"TF Fly.io\",\n    apiKey: \"fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n});\nconst backendProd = new doppler.secretssync.Flyio(\"backend_prod\", {\n    integration: prod.id,\n    project: \"backend\",\n    config: \"prd\",\n    appId: \"my-app\",\n    restartMachines: true,\n    deleteBehavior: \"leave_in_target\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nprod = doppler.integration.Flyio(\"prod\",\n    name=\"TF Fly.io\",\n    api_key=\"fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\")\nbackend_prod = doppler.secrets_sync.Flyio(\"backend_prod\",\n    integration=prod.id,\n    project=\"backend\",\n    config=\"prd\",\n    app_id=\"my-app\",\n    restart_machines=True,\n    delete_behavior=\"leave_in_target\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prod = new Doppler.Integration.Flyio(\"prod\", new()\n    {\n        Name = \"TF Fly.io\",\n        ApiKey = \"fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\n    });\n\n    var backendProd = new Doppler.SecretsSync.Flyio(\"backend_prod\", new()\n    {\n        Integration = prod.Id,\n        Project = \"backend\",\n        Config = \"prd\",\n        AppId = \"my-app\",\n        RestartMachines = true,\n        DeleteBehavior = \"leave_in_target\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/integration\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/secretsSync\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tprod, err := integration.NewFlyio(ctx, \"prod\", \u0026integration.FlyioArgs{\n\t\t\tName:   pulumi.String(\"TF Fly.io\"),\n\t\t\tApiKey: pulumi.String(\"fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = secretsSync.NewFlyio(ctx, \"backend_prod\", \u0026secretsSync.FlyioArgs{\n\t\t\tIntegration:     prod.ID(),\n\t\t\tProject:         pulumi.String(\"backend\"),\n\t\t\tConfig:          pulumi.String(\"prd\"),\n\t\t\tAppId:           pulumi.String(\"my-app\"),\n\t\t\tRestartMachines: pulumi.Bool(true),\n\t\t\tDeleteBehavior:  pulumi.String(\"leave_in_target\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.integration.Flyio;\nimport com.pulumi.doppler.integration.FlyioArgs;\nimport com.pulumi.doppler.secretsSync.Flyio;\nimport com.pulumi.doppler.secretsSync.FlyioArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prod = new Flyio(\"prod\", FlyioArgs.builder()\n            .name(\"TF Fly.io\")\n            .apiKey(\"fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\")\n            .build());\n\n        var backendProd = new Flyio(\"backendProd\", FlyioArgs.builder()\n            .integration(prod.id())\n            .project(\"backend\")\n            .config(\"prd\")\n            .appId(\"my-app\")\n            .restartMachines(true)\n            .deleteBehavior(\"leave_in_target\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prod:\n    type: doppler:integration:Flyio\n    properties:\n      name: TF Fly.io\n      apiKey: fo1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n  backendProd:\n    type: doppler:secretsSync:Flyio\n    name: backend_prod\n    properties:\n      integration: ${prod.id}\n      project: backend\n      config: prd\n      appId: my-app\n      restartMachines: true\n      deleteBehavior: leave_in_target\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -1652,6 +1758,131 @@
                     "updateMetadata": {
                         "type": "boolean",
                         "description": "If enabled, Doppler will update the AWS secret metadata (e.g. KMS key) during every sync. If disabled, Doppler will only set secret metadata for new AWS secrets. Note that Doppler never updates tags for existing AWS secrets.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "doppler:secretsSync/circleci:Circleci": {
+            "description": "Manage a CircleCI Doppler sync.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as doppler from \"@pulumiverse/doppler\";\n\nconst prod = new doppler.integration.Circleci(\"prod\", {\n    name: \"Production\",\n    apiToken: \"my_api_token\",\n});\nconst backendProd = new doppler.secretssync.Circleci(\"backend_prod\", {\n    integration: prod.id,\n    project: \"backend\",\n    config: \"prd\",\n    resourceType: \"project\",\n    resourceId: \"github/myorg/myproject\",\n    organizationSlug: \"myorg\",\n    deleteBehavior: \"leave_in_target\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_doppler as doppler\n\nprod = doppler.integration.Circleci(\"prod\",\n    name=\"Production\",\n    api_token=\"my_api_token\")\nbackend_prod = doppler.secrets_sync.Circleci(\"backend_prod\",\n    integration=prod.id,\n    project=\"backend\",\n    config=\"prd\",\n    resource_type=\"project\",\n    resource_id=\"github/myorg/myproject\",\n    organization_slug=\"myorg\",\n    delete_behavior=\"leave_in_target\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Doppler = Pulumiverse.Doppler;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prod = new Doppler.Integration.Circleci(\"prod\", new()\n    {\n        Name = \"Production\",\n        ApiToken = \"my_api_token\",\n    });\n\n    var backendProd = new Doppler.SecretsSync.Circleci(\"backend_prod\", new()\n    {\n        Integration = prod.Id,\n        Project = \"backend\",\n        Config = \"prd\",\n        ResourceType = \"project\",\n        ResourceId = \"github/myorg/myproject\",\n        OrganizationSlug = \"myorg\",\n        DeleteBehavior = \"leave_in_target\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/integration\"\n\t\"github.com/pulumiverse/pulumi-doppler/sdk/go/doppler/secretsSync\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tprod, err := integration.NewCircleci(ctx, \"prod\", \u0026integration.CircleciArgs{\n\t\t\tName:     pulumi.String(\"Production\"),\n\t\t\tApiToken: pulumi.String(\"my_api_token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = secretsSync.NewCircleci(ctx, \"backend_prod\", \u0026secretsSync.CircleciArgs{\n\t\t\tIntegration:      prod.ID(),\n\t\t\tProject:          pulumi.String(\"backend\"),\n\t\t\tConfig:           pulumi.String(\"prd\"),\n\t\t\tResourceType:     pulumi.String(\"project\"),\n\t\t\tResourceId:       pulumi.String(\"github/myorg/myproject\"),\n\t\t\tOrganizationSlug: pulumi.String(\"myorg\"),\n\t\t\tDeleteBehavior:   pulumi.String(\"leave_in_target\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.doppler.integration.Circleci;\nimport com.pulumi.doppler.integration.CircleciArgs;\nimport com.pulumi.doppler.secretsSync.Circleci;\nimport com.pulumi.doppler.secretsSync.CircleciArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prod = new Circleci(\"prod\", CircleciArgs.builder()\n            .name(\"Production\")\n            .apiToken(\"my_api_token\")\n            .build());\n\n        var backendProd = new Circleci(\"backendProd\", CircleciArgs.builder()\n            .integration(prod.id())\n            .project(\"backend\")\n            .config(\"prd\")\n            .resourceType(\"project\")\n            .resourceId(\"github/myorg/myproject\")\n            .organizationSlug(\"myorg\")\n            .deleteBehavior(\"leave_in_target\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prod:\n    type: doppler:integration:Circleci\n    properties:\n      name: Production\n      apiToken: my_api_token\n  backendProd:\n    type: doppler:secretsSync:Circleci\n    name: backend_prod\n    properties:\n      integration: ${prod.id}\n      project: backend\n      config: prd\n      resourceType: project\n      resourceId: github/myorg/myproject\n      organizationSlug: myorg\n      deleteBehavior: leave_in_target\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n"
+                },
+                "deleteBehavior": {
+                    "type": "string",
+                    "description": "The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.\n"
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n"
+                },
+                "organizationSlug": {
+                    "type": "string",
+                    "description": "The organization slug where the resource is located\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n"
+                },
+                "resourceId": {
+                    "type": "string",
+                    "description": "The resource ID (either project or context) to sync to\n"
+                },
+                "resourceType": {
+                    "type": "string",
+                    "description": "Either \"project\" or \"context\", based on the resource type to sync to\n"
+                }
+            },
+            "required": [
+                "config",
+                "integration",
+                "organizationSlug",
+                "project",
+                "resourceId",
+                "resourceType"
+            ],
+            "inputProperties": {
+                "config": {
+                    "type": "string",
+                    "description": "The name of the Doppler config\n",
+                    "willReplaceOnChanges": true
+                },
+                "deleteBehavior": {
+                    "type": "string",
+                    "description": "The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.\n"
+                },
+                "integration": {
+                    "type": "string",
+                    "description": "The slug of the integration to use for this sync\n",
+                    "willReplaceOnChanges": true
+                },
+                "organizationSlug": {
+                    "type": "string",
+                    "description": "The organization slug where the resource is located\n",
+                    "willReplaceOnChanges": true
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The name of the Doppler project\n",
+                    "willReplaceOnChanges": true
+                },
+                "resourceId": {
+                    "type": "string",
+                    "description": "The resource ID (either project or context) to sync to\n",
+                    "willReplaceOnChanges": true
+                },
+                "resourceType": {
+                    "type": "string",
+                    "description": "Either \"project\" or \"context\", based on the resource type to sync to\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "config",
+                "integration",
+                "organizationSlug",
+                "project",
+                "resourceId",
+                "resourceType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Circleci resources.\n",
+                "properties": {
+                    "config": {
+                        "type": "string",
+                        "description": "The name of the Doppler config\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deleteBehavior": {
+                        "type": "string",
+                        "description": "The behavior to be performed on the secrets in the sync target when this resource is deleted or recreated. Either `leave_in_target` (default) or `delete_from_target`.\n"
+                    },
+                    "integration": {
+                        "type": "string",
+                        "description": "The slug of the integration to use for this sync\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "organizationSlug": {
+                        "type": "string",
+                        "description": "The organization slug where the resource is located\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "project": {
+                        "type": "string",
+                        "description": "The name of the Doppler project\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "resourceId": {
+                        "type": "string",
+                        "description": "The resource ID (either project or context) to sync to\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "resourceType": {
+                        "type": "string",
+                        "description": "Either \"project\" or \"context\", based on the resource type to sync to\n",
                         "willReplaceOnChanges": true
                     }
                 },
