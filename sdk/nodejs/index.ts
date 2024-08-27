@@ -35,6 +35,11 @@ export type GroupMember = import("./groupMember").GroupMember;
 export const GroupMember: typeof import("./groupMember").GroupMember = null as any;
 utilities.lazyLoad(exports, ["GroupMember"], () => require("./groupMember"));
 
+export { GroupMembersArgs, GroupMembersState } from "./groupMembers";
+export type GroupMembers = import("./groupMembers").GroupMembers;
+export const GroupMembers: typeof import("./groupMembers").GroupMembers = null as any;
+utilities.lazyLoad(exports, ["GroupMembers"], () => require("./groupMembers"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
@@ -103,6 +108,8 @@ const _module = {
                 return new Group(name, <any>undefined, { urn })
             case "doppler:index/groupMember:GroupMember":
                 return new GroupMember(name, <any>undefined, { urn })
+            case "doppler:index/groupMembers:GroupMembers":
+                return new GroupMembers(name, <any>undefined, { urn })
             case "doppler:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
             case "doppler:index/projectRole:ProjectRole":
@@ -126,6 +133,7 @@ pulumi.runtime.registerResourceModule("doppler", "index/branchConfig", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/environment", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/group", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/groupMember", _module)
+pulumi.runtime.registerResourceModule("doppler", "index/groupMembers", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/project", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/projectRole", _module)
 pulumi.runtime.registerResourceModule("doppler", "index/secret", _module)

@@ -15,6 +15,11 @@ export type AwsSecretsManager = import("./awsSecretsManager").AwsSecretsManager;
 export const AwsSecretsManager: typeof import("./awsSecretsManager").AwsSecretsManager = null as any;
 utilities.lazyLoad(exports, ["AwsSecretsManager"], () => require("./awsSecretsManager"));
 
+export { CircleciArgs, CircleciState } from "./circleci";
+export type Circleci = import("./circleci").Circleci;
+export const Circleci: typeof import("./circleci").Circleci = null as any;
+utilities.lazyLoad(exports, ["Circleci"], () => require("./circleci"));
+
 export { FlyioArgs, FlyioState } from "./flyio";
 export type Flyio = import("./flyio").Flyio;
 export const Flyio: typeof import("./flyio").Flyio = null as any;
@@ -34,6 +39,8 @@ const _module = {
                 return new AwsParameterStore(name, <any>undefined, { urn })
             case "doppler:integration/awsSecretsManager:AwsSecretsManager":
                 return new AwsSecretsManager(name, <any>undefined, { urn })
+            case "doppler:integration/circleci:Circleci":
+                return new Circleci(name, <any>undefined, { urn })
             case "doppler:integration/flyio:Flyio":
                 return new Flyio(name, <any>undefined, { urn })
             case "doppler:integration/terraformCloud:TerraformCloud":
@@ -45,5 +52,6 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("doppler", "integration/awsParameterStore", _module)
 pulumi.runtime.registerResourceModule("doppler", "integration/awsSecretsManager", _module)
+pulumi.runtime.registerResourceModule("doppler", "integration/circleci", _module)
 pulumi.runtime.registerResourceModule("doppler", "integration/flyio", _module)
 pulumi.runtime.registerResourceModule("doppler", "integration/terraformCloud", _module)

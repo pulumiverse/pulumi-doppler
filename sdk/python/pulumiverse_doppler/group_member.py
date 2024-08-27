@@ -100,6 +100,9 @@ class GroupMember(pulumi.CustomResource):
         """
         Manage a Doppler user/group membership.
 
+        **Note:** You can also exclusively manage all memberships in a group with a single resource.
+        See the `GroupMembers` resource for more information.
+
         ## Import
 
         import using the group slug from the URL:
@@ -127,6 +130,9 @@ class GroupMember(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manage a Doppler user/group membership.
+
+        **Note:** You can also exclusively manage all memberships in a group with a single resource.
+        See the `GroupMembers` resource for more information.
 
         ## Import
 
