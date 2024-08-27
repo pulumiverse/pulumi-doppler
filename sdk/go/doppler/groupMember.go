@@ -14,6 +14,9 @@ import (
 
 // Manage a Doppler user/group membership.
 //
+// **Note:** You can also exclusively manage all memberships in a group with a single resource.
+// See the `GroupMembers` resource for more information.
+//
 // ## Import
 //
 // import using the group slug from the URL:

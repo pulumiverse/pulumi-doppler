@@ -11,6 +11,7 @@ from .get_secrets import *
 from .get_user import *
 from .group import *
 from .group_member import *
+from .group_members import *
 from .project import *
 from .project_role import *
 from .provider import *
@@ -71,6 +72,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler",
   "classes": {
    "doppler:index/groupMember:GroupMember": "GroupMember"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "index/groupMembers",
+  "fqn": "pulumiverse_doppler",
+  "classes": {
+   "doppler:index/groupMembers:GroupMembers": "GroupMembers"
   }
  },
  {
@@ -147,6 +156,14 @@ _utilities.register(
  },
  {
   "pkg": "doppler",
+  "mod": "integration/circleci",
+  "fqn": "pulumiverse_doppler.integration",
+  "classes": {
+   "doppler:integration/circleci:Circleci": "Circleci"
+  }
+ },
+ {
+  "pkg": "doppler",
   "mod": "integration/flyio",
   "fqn": "pulumiverse_doppler.integration",
   "classes": {
@@ -191,6 +208,14 @@ _utilities.register(
   "fqn": "pulumiverse_doppler.secretssync",
   "classes": {
    "doppler:secretsSync/awsSecretsManager:AwsSecretsManager": "AwsSecretsManager"
+  }
+ },
+ {
+  "pkg": "doppler",
+  "mod": "secretsSync/circleci",
+  "fqn": "pulumiverse_doppler.secretssync",
+  "classes": {
+   "doppler:secretsSync/circleci:Circleci": "Circleci"
   }
  },
  {
